@@ -493,6 +493,7 @@ python main.py \
 
 - 已同步到 GitHub 日志仓库 `https://github.com/CmmmMMM407/PANDA-FUXIAN`。
 - 主同步 commit：`aebb0f4`，包含 Weibo-21 与 Weibo 的 logs、metrics、predictions、summary、code patch 证据和项目状态文档。
+- 状态补充 commit：`dd8cab8`，记录同步完成状态。
 - 同步前已检查并排除 checkpoint、权重、原始数据集、服务器密码、token、私钥和完整连接凭据。
 
 ## 新日志模板

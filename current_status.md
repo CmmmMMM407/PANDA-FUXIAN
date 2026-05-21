@@ -85,7 +85,7 @@
   - Acc：0.9415244596 ± 0.0034356471 sample std。
   - AUC：0.9865523392 ± 0.0010596098 sample std。
 - Weibo 三 seed 汇总已保存：`remote_panda_work/repro_logs/20260521_weibo_three_seed_summary.json` 和 `remote_panda_work/repro_logs/20260521_weibo_three_seed_summary.csv`。
-- 实验日志、metrics、predictions、summary 和状态文档已同步到 GitHub 日志仓库 `CmmmMMM407/PANDA-FUXIAN`，commit `aebb0f4`。
+- 实验日志、metrics、predictions、summary 和状态文档已同步到 GitHub 日志仓库 `CmmmMMM407/PANDA-FUXIAN`，最新 commit `dd8cab8`。
 - 已导出 Weibo seeds 42/2024/2026 predictions 和 metrics；本地证据位于 `remote_panda_work/repro_logs/`。
 - 远端 checkpoint 已按 seed 备份：
   - `/root/autodl-tmp/panda_repro/panda/param_model/FTmodel/checkpoints_by_seed/weibo21_seed42_parameter_panda.pkl`
