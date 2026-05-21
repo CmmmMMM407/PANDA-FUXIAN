@@ -6,7 +6,7 @@
 
 阶段：Weibo-21 与 Weibo paper-aligned 三 seed 复现实验均已完成，进入结果整理、对比分析与报告撰写。
 
-当前目标是同步 GitHub 日志仓库、整理 code-compat patch 说明，并撰写阶段复盘和最终复现报告。
+当前目标是整理 code-compat patch 说明，并撰写阶段复盘和最终复现报告。
 
 ## 当前假设
 
@@ -85,6 +85,7 @@
   - Acc：0.9415244596 ± 0.0034356471 sample std。
   - AUC：0.9865523392 ± 0.0010596098 sample std。
 - Weibo 三 seed 汇总已保存：`remote_panda_work/repro_logs/20260521_weibo_three_seed_summary.json` 和 `remote_panda_work/repro_logs/20260521_weibo_three_seed_summary.csv`。
+- 实验日志、metrics、predictions、summary 和状态文档已同步到 GitHub 日志仓库 `CmmmMMM407/PANDA-FUXIAN`，commit `aebb0f4`。
 - 已导出 Weibo seeds 42/2024/2026 predictions 和 metrics；本地证据位于 `remote_panda_work/repro_logs/`。
 - 远端 checkpoint 已按 seed 备份：
   - `/root/autodl-tmp/panda_repro/panda/param_model/FTmodel/checkpoints_by_seed/weibo21_seed42_parameter_panda.pkl`
@@ -96,17 +97,15 @@
 
 ## 当前卡点
 
-1. 需要把本轮新增实验日志、metrics、predictions、summary 和状态文档同步到 GitHub 日志仓库。
-2. Weibo-21 与 Weibo 三 seed 均值均略低于 PANDA 论文报告的 F1/Acc，但 AUC 基本对齐；最终报告需要解释 seed 波动、官方代码兼容补丁和复现边界。
-3. 当前使用了必要 code-compat patch，最终报告必须清楚区分 official commit、compat patch 和非算法性修改。
+1. Weibo-21 与 Weibo 三 seed 均值均略低于 PANDA 论文报告的 F1/Acc，但 AUC 基本对齐；最终报告需要解释 seed 波动、官方代码兼容补丁和复现边界。
+2. 当前使用了必要 code-compat patch，最终报告必须清楚区分 official commit、compat patch 和非算法性修改。
 
 ## 下一步最高优先级
 
-1. 同步本轮新增实验记录到 GitHub 日志仓库 `CmmmMMM407/PANDA-FUXIAN`。
-2. 整理 Weibo-21 与 Weibo 三 seed 主表。
-3. 整理 code-compat patch 说明，避免把 diagnostic 或兼容性信息混入算法结论。
-4. 与 PANDA 论文报告结果、MMDFND、DAMMFND 结果比较。
-5. 写复现实验阶段复盘和最终复现报告。
+1. 整理 Weibo-21 与 Weibo 三 seed 主表。
+2. 整理 code-compat patch 说明，避免把 diagnostic 或兼容性信息混入算法结论。
+3. 与 PANDA 论文报告结果、MMDFND、DAMMFND 结果比较。
+4. 写复现实验阶段复盘和最终复现报告。
 
 ## 当前推荐下一跑命令
 
