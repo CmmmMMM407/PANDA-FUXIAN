@@ -1,0 +1,48 @@
+diff --git a/model/PANDA.py b/model/PANDA.py
+index 27e5c01..ee5d99b 100644
+--- a/model/PANDA.py
++++ b/model/PANDA.py
+@@ -164,10 +164,10 @@ class MultiDomainPLEFENDModel(torch.nn.Module):
+                 expert = nn.Sequential(nn.Linear(320, 320), nn.SiLU(), nn.Linear(320, 320))
+                 fusion_share.append(expert)
+                 final_share.append(Block(dim=320, num_heads=8))
+-            self.text_share_expert.append(nn.ModuleList(text_share))
+-            self.image_share_expert.append(nn.ModuleList(image_share))
+-            self.fusion_share_expert.append(nn.ModuleList(fusion_share))
+-            self.final_share_expert.append(nn.ModuleList(final_share))
++            text_share_expert.append(nn.ModuleList(text_share))
++            image_share_expert.append(nn.ModuleList(image_share))
++            fusion_share_expert.append(nn.ModuleList(fusion_share))
++            final_share_expert.append(nn.ModuleList(final_share))
+         self.text_share_expert = nn.ModuleList(text_share_expert)
+         self.image_share_expert = nn.ModuleList(image_share_expert)
+         self.fusion_share_expert = nn.ModuleList(fusion_share_expert)
+@@ -451,7 +451,8 @@ class Trainer():
+                  lambda_rec=0.1, # Hyperparameter for reconstruction loss
+                  domain_num=9, # Number of domains
+                  early_stop=5,
+-                 epoches=100
++                 epoches=100,
++                 dataset_type=None
+                  ):
+         self.lr = lr
+         self.weight_decay = weight_decay
+@@ -465,15 +466,14 @@ class Trainer():
+         self.use_cuda = use_cuda
+         self.lambda_rec = lambda_rec
+         self.domain_num = domain_num
++        self.dataset_type = dataset_type
+ 
+         self.emb_dim = emb_dim
+         self.mlp_dims = mlp_dims
+         self.bert = bert
+         self.dropout = dropout
+-        if not os.path.exists(save_param_dir):
+-            self.save_param_dir = os.makedirs(save_param_dir)
+-        else:
+-            self.save_param_dir = save_param_dir
++        os.makedirs(save_param_dir, exist_ok=True)
++        self.save_param_dir = save_param_dir
+ 
+     def train(self):
+         # Pass domain_num to the model

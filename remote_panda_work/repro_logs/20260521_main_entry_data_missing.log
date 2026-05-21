@@ -1,0 +1,23 @@
+/root/miniconda3/lib/python3.10/site-packages/transformers/generation_utils.py:24: FutureWarning: Importing `GenerationMixin` from `src/transformers/generation_utils.py` is deprecated and will be removed in Transformers v5. Import as `from transformers import GenerationMixin` instead.
+  warnings.warn(
+lr: 0.0001; model name: FTmodel; emb_type: bert; batchsize: 32; epoch: 1; gpu: 0; emb_dim: 768
+Traceback (most recent call last):
+  File "/root/autodl-tmp/panda_repro/panda/main.py", line 83, in <module>
+    Run(config = config).main()
+  File "/root/autodl-tmp/panda_repro/panda/run.py", line 138, in main
+    train_loader, val_loader, test_loader = self.get_dataloader(self.dataset)
+  File "/root/autodl-tmp/panda_repro/panda/run.py", line 118, in get_dataloader
+    val_loader = loader.load_data(self.val_path, 'Weibo_21/val_loader.pkl', 'Weibo_21/val_clip_loader.pkl', False)
+  File "/root/autodl-tmp/panda_repro/panda/utils/weibo21_clip_prompt.py", line 156, in load_data
+    self.data = pd.read_excel(path)
+  File "/root/miniconda3/lib/python3.10/site-packages/pandas/util/_decorators.py", line 311, in wrapper
+    return func(*args, **kwargs)
+  File "/root/miniconda3/lib/python3.10/site-packages/pandas/io/excel/_base.py", line 457, in read_excel
+    io = ExcelFile(io, storage_options=storage_options, engine=engine)
+  File "/root/miniconda3/lib/python3.10/site-packages/pandas/io/excel/_base.py", line 1376, in __init__
+    ext = inspect_excel_format(
+  File "/root/miniconda3/lib/python3.10/site-packages/pandas/io/excel/_base.py", line 1250, in inspect_excel_format
+    with get_handle(
+  File "/root/miniconda3/lib/python3.10/site-packages/pandas/io/common.py", line 798, in get_handle
+    handle = open(handle, ioargs.mode)
+FileNotFoundError: [Errno 2] No such file or directory: './Weibo_21/val_datasets.xlsx'

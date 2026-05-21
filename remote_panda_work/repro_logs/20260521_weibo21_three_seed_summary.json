@@ -1,0 +1,57 @@
+{
+  "dataset": "weibo21",
+  "model": "PANDA/FTmodel",
+  "paper_aligned_params": {
+    "batchsize": 32,
+    "lr": 0.0001,
+    "epoch_arg": 50,
+    "early_stop": 6
+  },
+  "seeds": [
+    {
+      "seed": 42,
+      "macro_f1": 0.954465645625,
+      "acc": 0.954471544715,
+      "auc": 0.988598625066,
+      "support": 615
+    },
+    {
+      "seed": 2024,
+      "macro_f1": 0.947960737858,
+      "acc": 0.947967479675,
+      "auc": 0.98874669487,
+      "support": 615
+    },
+    {
+      "seed": 2026,
+      "macro_f1": 0.93982721645,
+      "acc": 0.939837398374,
+      "auc": 0.986250661026,
+      "support": 615
+    }
+  ],
+  "summary": {
+    "macro_f1": {
+      "mean": 0.947417866644,
+      "sample_std": 0.00733429847,
+      "population_std": 0.005988429624,
+      "min": 0.93982721645,
+      "max": 0.954465645625
+    },
+    "acc": {
+      "mean": 0.947425474255,
+      "sample_std": 0.007332113419,
+      "population_std": 0.005986645538,
+      "min": 0.939837398374,
+      "max": 0.954471544715
+    },
+    "auc": {
+      "mean": 0.987865326987,
+      "sample_std": 0.001400300251,
+      "population_std": 0.001143340367,
+      "min": 0.986250661026,
+      "max": 0.98874669487
+    }
+  },
+  "std_note": "sample_std uses n-1; population_std included for reproducibility."
+}

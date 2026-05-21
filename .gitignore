@@ -1,0 +1,28 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+
+# Local secrets and credentials
+.env
+.env.*
+secrets/
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+
+# Large or generated experiment assets
+data/
+Weibo/
+Weibo_21/
+pretrained_model/
+param_model/
+*.pkl
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# Temporary local outputs
+tmp/
+cache/

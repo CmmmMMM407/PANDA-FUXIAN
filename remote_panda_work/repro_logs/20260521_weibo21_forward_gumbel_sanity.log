@@ -1,0 +1,107 @@
+/root/miniconda3/lib/python3.10/site-packages/transformers/generation_utils.py:24: FutureWarning: Importing `GenerationMixin` from `src/transformers/generation_utils.py` is deprecated and will be removed in Transformers v5. Import as `from transformers import GenerationMixin` instead.
+  warnings.warn(
+START 2026-05-21 20:49:40
+CUDA True NVIDIA GeForce RTX 4090
+BATCH_SHAPES [[2, 197], [2, 197], [2], [2], [2, 3, 224, 224], [2, 3, 224, 224], [2, 52], [2, 197], [2, 197], [2, 197]]
+BATCH_LABELS [0, 0] BATCH_CATEGORIES [8, 3]
+Loading vision model config from /root/miniconda3/lib/python3.10/site-packages/cn_clip/clip/model_configs/ViT-B-16.json
+Loading text model config from /root/miniconda3/lib/python3.10/site-packages/cn_clip/clip/model_configs/RoBERTa-wwm-ext-base-chinese.json
+Model info {'embed_dim': 512, 'image_resolution': 224, 'vision_layers': 12, 'vision_width': 768, 'vision_patch_size': 16, 'vocab_size': 21128, 'text_attention_probs_dropout_prob': 0.1, 'text_hidden_act': 'gelu', 'text_hidden_dropout_prob': 0.1, 'text_hidden_size': 768, 'text_initializer_range': 0.02, 'text_intermediate_size': 3072, 'text_max_position_embeddings': 512, 'text_num_attention_heads': 12, 'text_num_hidden_layers': 12, 'text_type_vocab_size': 2}
+GPU_MEM_AFTER_MODEL_MB 1642.11
+JSON_SUMMARY_START
+{
+  "main": {
+    "shape": [
+      2
+    ],
+    "finite": true,
+    "min": 0.48762795329093933,
+    "max": 0.4963371455669403,
+    "mean": 0.4919825494289398,
+    "std": 0.004354596138000488,
+    "values": [
+      0.48762795329093933,
+      0.4963371455669403
+    ]
+  },
+  "text": {
+    "shape": [
+      2
+    ],
+    "finite": true,
+    "min": 0.5117212533950806,
+    "max": 0.5118229985237122,
+    "mean": 0.5117721557617188,
+    "std": 5.087257159175351e-05,
+    "values": [
+      0.5117212533950806,
+      0.5118229985237122
+    ]
+  },
+  "image": {
+    "shape": [
+      2
+    ],
+    "finite": true,
+    "min": 0.47566869854927063,
+    "max": 0.47724857926368713,
+    "mean": 0.4764586389064789,
+    "std": 0.000789940357208252,
+    "values": [
+      0.47724857926368713,
+      0.47566869854927063
+    ]
+  },
+  "fusion": {
+    "shape": [
+      2
+    ],
+    "finite": true,
+    "min": 0.49347609281539917,
+    "max": 0.49348804354667664,
+    "mean": 0.4934820532798767,
+    "std": 5.9753842833742965e-06,
+    "values": [
+      0.49347609281539917,
+      0.49348804354667664
+    ]
+  },
+  "loss_rec": {
+    "shape": [],
+    "finite": true,
+    "min": 0.817135751247406,
+    "max": 0.817135751247406,
+    "mean": 0.817135751247406,
+    "std": 0.0,
+    "values": [
+      0.817135751247406
+    ]
+  },
+  "repeat_same_seed_max_abs_diff": 0.0,
+  "repeat_different_seed_max_abs_diff": 0.0011876821517944336,
+  "gumbel_same_seed_equal": true,
+  "gumbel_diff_seed_equal": false,
+  "gumbel_neighbors_seed555": [
+    [
+      8,
+      5
+    ],
+    [
+      3,
+      8
+    ]
+  ],
+  "gumbel_neighbors_seed556": [
+    [
+      8,
+      0
+    ],
+    [
+      3,
+      8
+    ]
+  ],
+  "gpu_mem_final_mb": 1650.25
+}
+JSON_SUMMARY_END
+END 2026-05-21 20:49:49

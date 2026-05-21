@@ -1,0 +1,4 @@
+Command: instantiate model.PANDA.Trainer with same keyword shape used by run.py FTmodel branch.
+Observed error on official commit 03e4c003e83480fe94ac52120522b34e4224f17b:
+TypeError: Trainer.__init__() got an unexpected keyword argument dataset_type
+Reason: run.py passes dataset_type=self.dataset_type, but model/PANDA.py::Trainer.__init__ signature does not accept it.

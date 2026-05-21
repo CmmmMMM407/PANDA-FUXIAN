@@ -1,0 +1,31 @@
+diff --git a/utils/utils.py b/utils/utils.py
+index 558d6c7..b6a43d1 100644
+--- a/utils/utils.py
++++ b/utils/utils.py
+@@ -196,7 +196,7 @@ def metrics(y_true, y_pred, category, category_dict):
+     for c, res in res_by_category.items():
+         try:
+             metrics_by_category[c] = {
+-                'auc': roc_auc_score(res['y_true'], res['y_pred']).round(4).tolist()
++                'auc': round(float(roc_auc_score(res['y_true'], res['y_pred'])), 4)
+             }
+         except ValueError:
+             pass
+@@ -215,12 +215,11 @@ def metrics(y_true, y_pred, category, category_dict):
+     for c, res in res_by_category.items():
+         # precision, recall, fscore, support = precision_recall_fscore_support(res['y_true'], np.around(np.array(res['y_pred'])).astype(int), zero_division=0)
+         metrics_by_category[c] = {
+-            'precision': precision_score(res['y_true'], np.around(np.array(res['y_pred'])).astype(int),
+-                                         average='macro',zero_division=1).round(4).tolist(),
+-            'recall': recall_score(res['y_true'], np.around(np.array(res['y_pred'])).astype(int),
+-                                   average='macro',zero_division=1).round(4).tolist(),
+-            'fscore': f1_score(res['y_true'], np.around(np.array(res['y_pred'])).astype(int), average='macro',zero_division=1).round(
+-                4).tolist(),
++            'precision': round(float(precision_score(res['y_true'], np.around(np.array(res['y_pred'])).astype(int),
++                                         average='macro',zero_division=1)), 4),
++            'recall': round(float(recall_score(res['y_true'], np.around(np.array(res['y_pred'])).astype(int),
++                                   average='macro',zero_division=1)), 4),
++            'fscore': round(float(f1_score(res['y_true'], np.around(np.array(res['y_pred'])).astype(int), average='macro',zero_division=1)), 4),
+ 
+             #'auc': metrics_by_category[c]['auc'],
+             #'acc': accuracy_score(res['y_true'], np.around(np.array(res['y_pred'])).astype(int)).round(4)

@@ -1,0 +1,441 @@
+/root/miniconda3/lib/python3.10/site-packages/transformers/generation_utils.py:24: FutureWarning: Importing `GenerationMixin` from `src/transformers/generation_utils.py` is deprecated and will be removed in Transformers v5. Import as `from transformers import GenerationMixin` instead.
+  warnings.warn(
+[train] rows=4926 labels={'0': 2447, '1': 2479} first_batch_shapes=[[4, 197], [4, 197], [4], [4], [4, 3, 224, 224], [4, 3, 224, 224], [4, 52], [4, 197], [4, 197], [4, 197]]
+[val] rows=615 labels={'0': 305, '1': 310} first_batch_shapes=[[4, 197], [4, 197], [4], [4], [4, 3, 224, 224], [4, 3, 224, 224], [4, 52], [4, 197], [4, 197], [4, 197]]
+[test] rows=615 labels={'0': 305, '1': 310} first_batch_shapes=[[4, 197], [4, 197], [4], [4], [4, 3, 224, 224], [4, 3, 224, 224], [4, 52], [4, 197], [4, 197], [4, 197]]
+JSON_SUMMARY_START
+{
+  "train": {
+    "rows": 4926,
+    "labels": {
+      "0": 2447,
+      "1": 2479
+    },
+    "categories": {
+      "军事": 181,
+      "医药健康": 489,
+      "政治": 529,
+      "教育考试": 293,
+      "文体娱乐": 818,
+      "灾难事故": 305,
+      "社会生活": 1547,
+      "科技": 126,
+      "财经商业": 638
+    },
+    "batch_tensors": [
+      {
+        "idx": 0,
+        "shape": [
+          4,
+          197
+        ],
+        "dtype": "torch.int64",
+        "finite": true,
+        "min": null,
+        "max": null
+      },
+      {
+        "idx": 1,
+        "shape": [
+          4,
+          197
+        ],
+        "dtype": "torch.float32",
+        "finite": true,
+        "min": 0.0,
+        "max": 1.0
+      },
+      {
+        "idx": 2,
+        "shape": [
+          4
+        ],
+        "dtype": "torch.int64",
+        "finite": true,
+        "min": null,
+        "max": null
+      },
+      {
+        "idx": 3,
+        "shape": [
+          4
+        ],
+        "dtype": "torch.int64",
+        "finite": true,
+        "min": null,
+        "max": null
+      },
+      {
+        "idx": 4,
+        "shape": [
+          4,
+          3,
+          224,
+          224
+        ],
+        "dtype": "torch.float32",
+        "finite": true,
+        "min": -2.1179039478302,
+        "max": 2.640000104904175
+      },
+      {
+        "idx": 5,
+        "shape": [
+          4,
+          3,
+          224,
+          224
+        ],
+        "dtype": "torch.float32",
+        "finite": true,
+        "min": -1.7922625541687012,
+        "max": 2.1458969116210938
+      },
+      {
+        "idx": 6,
+        "shape": [
+          4,
+          52
+        ],
+        "dtype": "torch.int64",
+        "finite": true,
+        "min": null,
+        "max": null
+      },
+      {
+        "idx": 7,
+        "shape": [
+          4,
+          197
+        ],
+        "dtype": "torch.int64",
+        "finite": true,
+        "min": null,
+        "max": null
+      },
+      {
+        "idx": 8,
+        "shape": [
+          4,
+          197
+        ],
+        "dtype": "torch.int64",
+        "finite": true,
+        "min": null,
+        "max": null
+      },
+      {
+        "idx": 9,
+        "shape": [
+          4,
+          197
+        ],
+        "dtype": "torch.int64",
+        "finite": true,
+        "min": null,
+        "max": null
+      }
+    ],
+    "first_batch_labels": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "first_batch_categories": [
+      2,
+      3,
+      3,
+      1
+    ]
+  },
+  "val": {
+    "rows": 615,
+    "labels": {
+      "0": 305,
+      "1": 310
+    },
+    "categories": {
+      "军事": 24,
+      "医药健康": 66,
+      "政治": 57,
+      "教育考试": 31,
+      "文体娱乐": 117,
+      "灾难事故": 28,
+      "社会生活": 200,
+      "科技": 22,
+      "财经商业": 70
+    },
+    "batch_tensors": [
+      {
+        "idx": 0,
+        "shape": [
+          4,
+          197
+        ],
+        "dtype": "torch.int64",
+        "finite": true,
+        "min": null,
+        "max": null
+      },
+      {
+        "idx": 1,
+        "shape": [
+          4,
+          197
+        ],
+        "dtype": "torch.float32",
+        "finite": true,
+        "min": 0.0,
+        "max": 1.0
+      },
+      {
+        "idx": 2,
+        "shape": [
+          4
+        ],
+        "dtype": "torch.int64",
+        "finite": true,
+        "min": null,
+        "max": null
+      },
+      {
+        "idx": 3,
+        "shape": [
+          4
+        ],
+        "dtype": "torch.int64",
+        "finite": true,
+        "min": null,
+        "max": null
+      },
+      {
+        "idx": 4,
+        "shape": [
+          4,
+          3,
+          224,
+          224
+        ],
+        "dtype": "torch.float32",
+        "finite": true,
+        "min": -2.1179039478302,
+        "max": 2.640000104904175
+      },
+      {
+        "idx": 5,
+        "shape": [
+          4,
+          3,
+          224,
+          224
+        ],
+        "dtype": "torch.float32",
+        "finite": true,
+        "min": -1.7922625541687012,
+        "max": 2.1458969116210938
+      },
+      {
+        "idx": 6,
+        "shape": [
+          4,
+          52
+        ],
+        "dtype": "torch.int64",
+        "finite": true,
+        "min": null,
+        "max": null
+      },
+      {
+        "idx": 7,
+        "shape": [
+          4,
+          197
+        ],
+        "dtype": "torch.int64",
+        "finite": true,
+        "min": null,
+        "max": null
+      },
+      {
+        "idx": 8,
+        "shape": [
+          4,
+          197
+        ],
+        "dtype": "torch.int64",
+        "finite": true,
+        "min": null,
+        "max": null
+      },
+      {
+        "idx": 9,
+        "shape": [
+          4,
+          197
+        ],
+        "dtype": "torch.int64",
+        "finite": true,
+        "min": null,
+        "max": null
+      }
+    ],
+    "first_batch_labels": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "first_batch_categories": [
+      8,
+      3,
+      2,
+      8
+    ]
+  },
+  "test": {
+    "rows": 615,
+    "labels": {
+      "0": 305,
+      "1": 310
+    },
+    "categories": {
+      "军事": 23,
+      "医药健康": 63,
+      "政治": 66,
+      "教育考试": 31,
+      "文体娱乐": 109,
+      "灾难事故": 44,
+      "社会生活": 184,
+      "科技": 17,
+      "财经商业": 78
+    },
+    "batch_tensors": [
+      {
+        "idx": 0,
+        "shape": [
+          4,
+          197
+        ],
+        "dtype": "torch.int64",
+        "finite": true,
+        "min": null,
+        "max": null
+      },
+      {
+        "idx": 1,
+        "shape": [
+          4,
+          197
+        ],
+        "dtype": "torch.float32",
+        "finite": true,
+        "min": 0.0,
+        "max": 1.0
+      },
+      {
+        "idx": 2,
+        "shape": [
+          4
+        ],
+        "dtype": "torch.int64",
+        "finite": true,
+        "min": null,
+        "max": null
+      },
+      {
+        "idx": 3,
+        "shape": [
+          4
+        ],
+        "dtype": "torch.int64",
+        "finite": true,
+        "min": null,
+        "max": null
+      },
+      {
+        "idx": 4,
+        "shape": [
+          4,
+          3,
+          224,
+          224
+        ],
+        "dtype": "torch.float32",
+        "finite": true,
+        "min": -2.1179039478302,
+        "max": 2.640000104904175
+      },
+      {
+        "idx": 5,
+        "shape": [
+          4,
+          3,
+          224,
+          224
+        ],
+        "dtype": "torch.float32",
+        "finite": true,
+        "min": -1.7922625541687012,
+        "max": 2.1458969116210938
+      },
+      {
+        "idx": 6,
+        "shape": [
+          4,
+          52
+        ],
+        "dtype": "torch.int64",
+        "finite": true,
+        "min": null,
+        "max": null
+      },
+      {
+        "idx": 7,
+        "shape": [
+          4,
+          197
+        ],
+        "dtype": "torch.int64",
+        "finite": true,
+        "min": null,
+        "max": null
+      },
+      {
+        "idx": 8,
+        "shape": [
+          4,
+          197
+        ],
+        "dtype": "torch.int64",
+        "finite": true,
+        "min": null,
+        "max": null
+      },
+      {
+        "idx": 9,
+        "shape": [
+          4,
+          197
+        ],
+        "dtype": "torch.int64",
+        "finite": true,
+        "min": null,
+        "max": null
+      }
+    ],
+    "first_batch_labels": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "first_batch_categories": [
+      3,
+      8,
+      7,
+      8
+    ]
+  }
+}
+JSON_SUMMARY_END

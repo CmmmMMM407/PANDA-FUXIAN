@@ -1,0 +1,15 @@
+torch 2.1.2+cu118 cuda 11.8 cuda_available True
+mae_has_model True tensor_count 150
+mae_tensor patch_embed.proj.weight present True abs_sum 12768.732421875
+mae_tensor blocks.0.attn.qkv.weight present True abs_sum 45074.88671875
+mae_tensor norm.weight present True abs_sum 557.471435546875
+Loading vision model config from /root/miniconda3/lib/python3.10/site-packages/cn_clip/clip/model_configs/ViT-B-16.json
+Loading text model config from /root/miniconda3/lib/python3.10/site-packages/cn_clip/clip/model_configs/RoBERTa-wwm-ext-base-chinese.json
+Model info {'embed_dim': 512, 'image_resolution': 224, 'vision_layers': 12, 'vision_width': 768, 'vision_patch_size': 16, 'vocab_size': 21128, 'text_attention_probs_dropout_prob': 0.1, 'text_hidden_act': 'gelu', 'text_hidden_dropout_prob': 0.1, 'text_hidden_size': 768, 'text_initializer_range': 0.02, 'text_intermediate_size': 3072, 'text_max_position_embeddings': 512, 'text_num_attention_heads': 12, 'text_num_hidden_layers': 12, 'text_type_vocab_size': 2}
+clip_blank_finite True clip_noise_finite True
+clip_blank_noise_l2 8.194082260131836
+Loading vision model config from /root/miniconda3/lib/python3.10/site-packages/cn_clip/clip/model_configs/ViT-B-16.json
+Loading text model config from /root/miniconda3/lib/python3.10/site-packages/cn_clip/clip/model_configs/RoBERTa-wwm-ext-base-chinese.json
+Model info {'embed_dim': 512, 'image_resolution': 224, 'vision_layers': 12, 'vision_width': 768, 'vision_patch_size': 16, 'vocab_size': 21128, 'text_attention_probs_dropout_prob': 0.1, 'text_hidden_act': 'gelu', 'text_hidden_dropout_prob': 0.1, 'text_hidden_size': 768, 'text_initializer_range': 0.02, 'text_intermediate_size': 3072, 'text_max_position_embeddings': 512, 'text_num_attention_heads': 12, 'text_num_hidden_layers': 12, 'text_type_vocab_size': 2}
+real_panda_construct_ok 514266705
+share_experts 1 12

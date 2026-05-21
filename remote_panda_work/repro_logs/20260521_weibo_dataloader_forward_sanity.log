@@ -1,0 +1,35 @@
+/root/miniconda3/lib/python3.10/site-packages/transformers/generation_utils.py:24: FutureWarning: Importing `GenerationMixin` from `src/transformers/generation_utils.py` is deprecated and will be removed in Transformers v5. Import as `from transformers import GenerationMixin` instead.
+  warnings.warn(
+category_dict {'经济': 0, '健康': 1, '军事': 2, '科学': 3, '政治': 4, '国际': 5, '教育': 6, '娱乐': 7, '社会': 8}
+train rows 5415 label_counts {0: 2517, 1: 2898} category_counts {'社会': 2865, '娱乐': 908, '健康': 503, '教育': 238, '军事': 234, '经济': 223, '政治': 213, '科学': 159, '国际': 72}
+val rows 843 label_counts {0: 389, 1: 454} category_counts {'社会': 307, '娱乐': 261, '教育': 103, '健康': 86, '政治': 29, '军事': 25, '科学': 19, '经济': 8, '国际': 5}
+test rows 1465 label_counts {0: 709, 1: 756} category_counts {'社会': 643, '娱乐': 459, '健康': 116, '教育': 80, '科学': 52, '经济': 49, '政治': 34, '军事': 23, '国际': 9}
+Loading vision model config from /root/miniconda3/lib/python3.10/site-packages/cn_clip/clip/model_configs/ViT-B-16.json
+Loading text model config from /root/miniconda3/lib/python3.10/site-packages/cn_clip/clip/model_configs/RoBERTa-wwm-ext-base-chinese.json
+Model info {'embed_dim': 512, 'image_resolution': 224, 'vision_layers': 12, 'vision_width': 768, 'vision_patch_size': 16, 'vocab_size': 21128, 'text_attention_probs_dropout_prob': 0.1, 'text_hidden_act': 'gelu', 'text_hidden_dropout_prob': 0.1, 'text_hidden_size': 768, 'text_initializer_range': 0.02, 'text_intermediate_size': 3072, 'text_max_position_embeddings': 512, 'text_num_attention_heads': 12, 'text_num_hidden_layers': 12, 'text_type_vocab_size': 2}
+Loading vision model config from /root/miniconda3/lib/python3.10/site-packages/cn_clip/clip/model_configs/ViT-B-16.json
+Loading text model config from /root/miniconda3/lib/python3.10/site-packages/cn_clip/clip/model_configs/RoBERTa-wwm-ext-base-chinese.json
+Model info {'embed_dim': 512, 'image_resolution': 224, 'vision_layers': 12, 'vision_width': 768, 'vision_patch_size': 16, 'vocab_size': 21128, 'text_attention_probs_dropout_prob': 0.1, 'text_hidden_act': 'gelu', 'text_hidden_dropout_prob': 0.1, 'text_hidden_size': 768, 'text_initializer_range': 0.02, 'text_intermediate_size': 3072, 'text_max_position_embeddings': 512, 'text_num_attention_heads': 12, 'text_num_hidden_layers': 12, 'text_type_vocab_size': 2}
+Loading vision model config from /root/miniconda3/lib/python3.10/site-packages/cn_clip/clip/model_configs/ViT-B-16.json
+Loading text model config from /root/miniconda3/lib/python3.10/site-packages/cn_clip/clip/model_configs/RoBERTa-wwm-ext-base-chinese.json
+Model info {'embed_dim': 512, 'image_resolution': 224, 'vision_layers': 12, 'vision_width': 768, 'vision_patch_size': 16, 'vocab_size': 21128, 'text_attention_probs_dropout_prob': 0.1, 'text_hidden_act': 'gelu', 'text_hidden_dropout_prob': 0.1, 'text_hidden_size': 768, 'text_initializer_range': 0.02, 'text_intermediate_size': 3072, 'text_max_position_embeddings': 512, 'text_num_attention_heads': 12, 'text_num_hidden_layers': 12, 'text_type_vocab_size': 2}
+train batch_len 10 shapes [(32, 197), (32, 197), (32,), (32,), (32, 3, 224, 224), (32, 3, 224, 224), (32, 52), (32, 197), (32, 197), (32, 197)]
+train finite_image True finite_clip_image True
+val batch_len 10 shapes [(32, 197), (32, 197), (32,), (32,), (32, 3, 224, 224), (32, 3, 224, 224), (32, 52), (32, 197), (32, 197), (32, 197)]
+val finite_image True finite_clip_image True
+test batch_len 10 shapes [(32, 197), (32, 197), (32,), (32,), (32, 3, 224, 224), (32, 3, 224, 224), (32, 52), (32, 197), (32, 197), (32, 197)]
+test finite_image True finite_clip_image True
+Loading vision model config from /root/miniconda3/lib/python3.10/site-packages/cn_clip/clip/model_configs/ViT-B-16.json
+Loading text model config from /root/miniconda3/lib/python3.10/site-packages/cn_clip/clip/model_configs/RoBERTa-wwm-ext-base-chinese.json
+Model info {'embed_dim': 512, 'image_resolution': 224, 'vision_layers': 12, 'vision_width': 768, 'vision_patch_size': 16, 'vocab_size': 21128, 'text_attention_probs_dropout_prob': 0.1, 'text_hidden_act': 'gelu', 'text_hidden_dropout_prob': 0.1, 'text_hidden_size': 768, 'text_initializer_range': 0.02, 'text_intermediate_size': 3072, 'text_max_position_embeddings': 512, 'text_num_attention_heads': 12, 'text_num_hidden_layers': 12, 'text_type_vocab_size': 2}
+forward_summary {
+  "main_min": 0.4991917014122009,
+  "main_max": 0.5077992081642151,
+  "main_std": 0.002216954017058015,
+  "main_finite": true,
+  "text_finite": true,
+  "image_finite": true,
+  "fusion_finite": true,
+  "loss_rec": 0.6258389353752136,
+  "loss_rec_finite": true
+}

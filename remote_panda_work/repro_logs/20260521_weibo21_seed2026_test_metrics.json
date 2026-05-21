@@ -1,0 +1,107 @@
+{
+  "run": {
+    "dataset": "weibo21",
+    "model_name": "FTmodel",
+    "seed": 2026,
+    "batchsize": 32,
+    "lr": 0.0001,
+    "epoch_arg": 50,
+    "early_stop": 6,
+    "checkpoint": "param_model/FTmodel/checkpoints_by_seed/weibo21_seed2026_parameter_panda.pkl",
+    "train_log": "logs/weibo21_panda_seed2026_bs32_lr1e-4.log",
+    "prediction_export_seed": 2026,
+    "export_time": "2026-05-21 22:28:48"
+  },
+  "independent_recomputed_test": {
+    "support": 615,
+    "auc": 0.986250661026,
+    "macro_f1": 0.93982721645,
+    "macro_recall": 0.940005288207,
+    "macro_precision": 0.940489803697,
+    "acc": 0.939837398374,
+    "confusion_matrix_labels_0_1": [
+      [
+        293,
+        12
+      ],
+      [
+        25,
+        285
+      ]
+    ]
+  },
+  "by_category": {
+    "科技": {
+      "support": 17,
+      "precision_macro": 0.871212,
+      "recall_macro": 0.871212,
+      "f1_macro": 0.871212,
+      "acc": 0.882353,
+      "auc": 0.969697
+    },
+    "军事": {
+      "support": 23,
+      "precision_macro": 0.944444,
+      "recall_macro": 0.966667,
+      "f1_macro": 0.953347,
+      "acc": 0.956522,
+      "auc": 1.0
+    },
+    "教育考试": {
+      "support": 31,
+      "precision_macro": 0.952381,
+      "recall_macro": 0.916667,
+      "f1_macro": 0.929545,
+      "acc": 0.935484,
+      "auc": 0.942982
+    },
+    "灾难事故": {
+      "support": 44,
+      "precision_macro": 0.984375,
+      "recall_macro": 0.961538,
+      "f1_macro": 0.972063,
+      "acc": 0.977273,
+      "auc": 1.0
+    },
+    "政治": {
+      "support": 66,
+      "precision_macro": 0.98913,
+      "recall_macro": 0.97619,
+      "f1_macro": 0.98231,
+      "acc": 0.984848,
+      "auc": 0.998942
+    },
+    "医药健康": {
+      "support": 63,
+      "precision_macro": 0.912037,
+      "recall_macro": 0.90373,
+      "f1_macro": 0.904158,
+      "acc": 0.904762,
+      "auc": 0.974798
+    },
+    "财经商业": {
+      "support": 78,
+      "precision_macro": 0.903846,
+      "recall_macro": 0.921296,
+      "f1_macro": 0.911698,
+      "acc": 0.923077,
+      "auc": 0.982253
+    },
+    "文体娱乐": {
+      "support": 109,
+      "precision_macro": 0.992857,
+      "recall_macro": 0.9875,
+      "f1_macro": 0.990074,
+      "acc": 0.990826,
+      "auc": 1.0
+    },
+    "社会生活": {
+      "support": 184,
+      "precision_macro": 0.9137,
+      "recall_macro": 0.902619,
+      "f1_macro": 0.905871,
+      "acc": 0.907609,
+      "auc": 0.974881
+    }
+  }
+}

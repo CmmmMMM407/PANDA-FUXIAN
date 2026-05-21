@@ -1,0 +1,182 @@
+{
+  "run": {
+    "dataset": "weibo21",
+    "model_name": "FTmodel",
+    "seed": 42,
+    "batchsize": 32,
+    "lr": 0.0001,
+    "epoch_arg": 50,
+    "early_stop": 6,
+    "checkpoint": "param_model/FTmodel/parameter_panda.pkl",
+    "train_log": "logs/weibo21_panda_seed42_bs32_lr1e-4_rerun1.log",
+    "prediction_export_seed": 42,
+    "export_time": "2026-05-21 21:16:51"
+  },
+  "independent_recomputed_test": {
+    "support": 615,
+    "auc": 0.988598625066,
+    "macro_f1": 0.954465645625,
+    "macro_recall": 0.95444209413,
+    "macro_precision": 0.954509393247,
+    "acc": 0.954471544715,
+    "confusion_matrix_labels_0_1": [
+      [
+        290,
+        15
+      ],
+      [
+        13,
+        297
+      ]
+    ]
+  },
+  "by_category": {
+    "科技": {
+      "support": 17,
+      "precision_macro": 0.958333,
+      "recall_macro": 0.916667,
+      "f1_macro": 0.932806,
+      "acc": 0.941176,
+      "auc": 1.0
+    },
+    "军事": {
+      "support": 23,
+      "precision_macro": 0.944444,
+      "recall_macro": 0.966667,
+      "f1_macro": 0.953347,
+      "acc": 0.956522,
+      "auc": 1.0
+    },
+    "教育考试": {
+      "support": 31,
+      "precision_macro": 0.932018,
+      "recall_macro": 0.932018,
+      "f1_macro": 0.932018,
+      "acc": 0.935484,
+      "auc": 0.991228
+    },
+    "灾难事故": {
+      "support": 44,
+      "precision_macro": 0.964286,
+      "recall_macro": 0.983871,
+      "f1_macro": 0.973285,
+      "acc": 0.977273,
+      "auc": 0.997519
+    },
+    "政治": {
+      "support": 66,
+      "precision_macro": 1.0,
+      "recall_macro": 1.0,
+      "f1_macro": 1.0,
+      "acc": 1.0,
+      "auc": 1.0
+    },
+    "医药健康": {
+      "support": 63,
+      "precision_macro": 0.921212,
+      "recall_macro": 0.920363,
+      "f1_macro": 0.920555,
+      "acc": 0.920635,
+      "auc": 0.980847
+    },
+    "财经商业": {
+      "support": 78,
+      "precision_macro": 0.932692,
+      "recall_macro": 0.951389,
+      "f1_macro": 0.941132,
+      "acc": 0.948718,
+      "auc": 0.989969
+    },
+    "文体娱乐": {
+      "support": 109,
+      "precision_macro": 0.985915,
+      "recall_macro": 0.975,
+      "f1_macro": 0.980037,
+      "acc": 0.981651,
+      "auc": 0.997826
+    },
+    "社会生活": {
+      "support": 184,
+      "precision_macro": 0.934286,
+      "recall_macro": 0.934286,
+      "f1_macro": 0.934286,
+      "acc": 0.934783,
+      "auc": 0.976071
+    }
+  },
+  "official_logged_final_test": {
+    "科技": {
+      "precision": 0.9583,
+      "recall": 0.9167,
+      "fscore": 0.9328,
+      "acc": 0.9412
+    },
+    "军事": {
+      "precision": 0.9444,
+      "recall": 0.9667,
+      "fscore": 0.9533,
+      "acc": 0.9565
+    },
+    "教育考试": {
+      "precision": 0.932,
+      "recall": 0.932,
+      "fscore": 0.932,
+      "acc": 0.9355
+    },
+    "灾难事故": {
+      "precision": 0.9643,
+      "recall": 0.9839,
+      "fscore": 0.9733,
+      "acc": 0.9773
+    },
+    "政治": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "fscore": 1.0,
+      "acc": 1.0
+    },
+    "医药健康": {
+      "precision": 0.9212,
+      "recall": 0.9204,
+      "fscore": 0.9206,
+      "acc": 0.9206
+    },
+    "财经商业": {
+      "precision": 0.9327,
+      "recall": 0.9514,
+      "fscore": 0.9411,
+      "acc": 0.9487
+    },
+    "文体娱乐": {
+      "precision": 0.9859,
+      "recall": 0.975,
+      "fscore": 0.98,
+      "acc": 0.9817
+    },
+    "社会生活": {
+      "precision": 0.9343,
+      "recall": 0.9343,
+      "fscore": 0.9343,
+      "acc": 0.9348
+    },
+    "auc": 0.9885563194077208,
+    "metric": 0.9544656456253173,
+    "recall": 0.9544420941300898,
+    "precision": 0.954509393247017,
+    "acc": 0.9544715447154472,
+    "real": {
+      "precision": 0.9570957095709571,
+      "recall": 0.9508196721311475,
+      "F1": 0.9539473684210527
+    },
+    "fake": {
+      "precision": 0.9519230769230769,
+      "recall": 0.9580645161290322,
+      "F1": 0.954983922829582
+    }
+  },
+  "notes": [
+    "PANDA forward uses a Gumbel neighbor selector even in eval mode.",
+    "The exported prediction file fixes torch/numpy/python seed to 42 immediately before test inference."
+  ]
+}
