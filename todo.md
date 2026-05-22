@@ -47,9 +47,9 @@
 
 - [x] 汇总 Weibo-21 三 seed 均值和标准差。
 - [x] 汇总 Weibo 三 seed 均值和标准差。
-- [ ] 与 MMDFND、DAMMFND、PANDA 论文报告结果比较。
-- [ ] 写复现实验阶段复盘。
-- [ ] 整理最终复现报告。
+- [x] 与 MMDFND、DAMMFND、PANDA 论文报告结果比较。
+- [x] 写复现实验阶段复盘。
+- [x] 整理最终复现报告。
 
 ## 每次会话结束前固定动作
 
@@ -58,5 +58,5 @@
 - [x] 刷新本文件的 TODO 状态。
 - [x] 将新增实验日志、metrics、predictions、summary 和状态文档同步到 GitHub 日志仓库 `CmmmMMM407/PANDA-FUXIAN`。
 - [x] 同步前检查不包含 checkpoint、权重、原始数据集、服务器密码、token、私钥或完整连接凭据。
-- [ ] 若读了新论文或仓库，更新 `reading_notes.md`。
-- [ ] 不在任何项目文件中写入服务器密码、token、私钥或完整 SSH 凭据。
+- [x] 若读了新论文或仓库，更新 `reading_notes.md`。
+- [x] 不在任何项目文件中写入服务器密码、token、私钥或完整 SSH 凭据。

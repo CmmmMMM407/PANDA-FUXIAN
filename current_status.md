@@ -1,12 +1,12 @@
 # 当前状态
 
-最后更新：2026-05-21
+最后更新：2026-05-22
 
 ## 当前阶段
 
-阶段：Weibo-21 与 Weibo paper-aligned 三 seed 复现实验均已完成，进入结果整理、对比分析与报告撰写。
+阶段：Weibo-21 与 Weibo paper-aligned 三 seed 复现实验、主表整理、论文 reported baseline 对比和阶段报告均已完成。
 
-当前目标是整理 code-compat patch 说明，并撰写阶段复盘和最终复现报告。
+当前目标是按需补充更多 seeds、deterministic eval 或可复现 baseline 实跑；若不补实验，本阶段已可进入论文写作。
 
 ## 当前假设
 
@@ -97,15 +97,16 @@
 
 ## 当前卡点
 
-1. Weibo-21 与 Weibo 三 seed 均值均略低于 PANDA 论文报告的 F1/Acc，但 AUC 基本对齐；最终报告需要解释 seed 波动、官方代码兼容补丁和复现边界。
-2. 当前使用了必要 code-compat patch，最终报告必须清楚区分 official commit、compat patch 和非算法性修改。
+1. Weibo-21 与 Weibo 三 seed 均值均略低于 PANDA 论文报告的 F1/Acc，但 AUC 基本对齐；阶段报告已解释 seed 波动、官方代码兼容补丁和复现边界。
+2. Weibo 上本复现 PANDA 的 F1/Acc 与 DAMMFND reported 基本持平或略低，若论文需要更强结论，应实跑 DAMMFND/MMDFND 或补 deterministic eval。
+3. 当前使用了必要 code-compat patch，所有公开写作必须清楚区分 official commit、compat patch 和非算法性修改。
 
 ## 下一步最高优先级
 
-1. 整理 Weibo-21 与 Weibo 三 seed 主表。
-2. 整理 code-compat patch 说明，避免把 diagnostic 或兼容性信息混入算法结论。
-3. 与 PANDA 论文报告结果、MMDFND、DAMMFND 结果比较。
-4. 写复现实验阶段复盘和最终复现报告。
+1. 若继续补实验：补跑更多 seeds 或固定 Gumbel neighbor selection 做 deterministic eval。
+2. 若继续补 baseline：实跑 DAMMFND/MMDFND 官方代码，避免只引用 reported baseline。
+3. 若进入写作：基于 `final_reproduction_report.md` 扩展论文实验章节。
+4. 同步新增报告和状态文档到 GitHub 日志仓库。
 
 ## 当前推荐下一跑命令
 

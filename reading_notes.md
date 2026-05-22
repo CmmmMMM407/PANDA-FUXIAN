@@ -31,6 +31,12 @@ https://github.com/lu-wayne/panda
 - Weibo：F1 0.951，Acc 0.953，AUC 0.987
 - Weibo-21：F1 0.958，Acc 0.959，AUC 0.988
 
+2026-05-22 复核来源：
+
+- AAAI 2026 论文页面：`https://ojs.aaai.org/index.php/AAAI/article/view/37049`
+- PDF：`https://ojs.aaai.org/index.php/AAAI/article/download/37049/41011`
+- Table 1 同时给出 MMDFND、DAMMFND、PANDA 在 Weibo、Weibo-21、FineFake 上的 overall F1/Acc/AUC。
+
 复现注意：
 
 - 不能只运行 README 的 `python main.py`。
@@ -57,6 +63,11 @@ https://github.com/yutchina/MMDFND
 - 作为 PANDA 的环境和数据准备参考。
 - 作为可复现 baseline。
 - 提供 Weibo / Weibo-21 数据目录结构说明。
+
+PANDA 论文 Table 1 reported 结果：
+
+- Weibo：F1 0.933，Acc 0.933，AUC 0.973
+- Weibo-21：F1 0.940，Acc 0.940，AUC 0.976
 
 本次远端核验：
 
@@ -91,8 +102,8 @@ https://github.com/luweihai/DAMMFND
 
 中文数据集结果参考：
 
-- Weibo：F1 0.943，Acc 0.944，AUC 0.983
-- Weibo-21：F1 0.947，Acc 0.947，AUC 0.985
+- PANDA 论文 Table 1 reported Weibo：F1 0.941，Acc 0.944，AUC 0.979
+- PANDA 论文 Table 1 reported Weibo-21：F1 0.943，Acc 0.946，AUC 0.979
 
 ## RAMM
 

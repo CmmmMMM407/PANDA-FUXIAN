@@ -496,6 +496,53 @@ python main.py \
 - 后续状态补充 commit 以仓库 `main` 分支历史为准。
 - 同步前已检查并排除 checkpoint、权重、原始数据集、服务器密码、token、私钥和完整连接凭据。
 
+## 2026-05-22：主表对比与阶段复现报告
+
+目标：
+
+- 按 `todo.md` 的 P2 计划，整理 Weibo-21 / Weibo 三 seed 主表。
+- 与 PANDA 论文 reported 的 MMDFND、DAMMFND、PANDA 主表结果比较。
+- 写出阶段复盘和最终复现报告。
+
+操作：
+
+- 读取 `current_status.md`、`todo.md`、`project_overview.md`、`official_code_audit.md`、`experiment_log.md` 和 `reading_notes.md`。
+- 复核本地 summary、metrics、predictions 和 code-compat patch 证据文件。
+- 从 PANDA AAAI 2026 论文页面和 PDF Table 1 复核 reported baseline 数值。
+- 新增 `final_reproduction_report.md`。
+- 更新 `current_status.md`、`todo.md`、`reading_notes.md`。
+
+参数：
+
+```text
+PANDA official commit: 03e4c003e83480fe94ac52120522b34e4224f17b
+Seeds: 42, 2024, 2026
+Batch size: 32
+Learning rate: 1e-4
+Epoch arg: 50
+Early stop: 6
+```
+
+结果：
+
+- Weibo-21 三 seed mean ± sample std：Macro-F1 0.9474 ± 0.0073，Acc 0.9474 ± 0.0073，AUC 0.9879 ± 0.0014。
+- Weibo 三 seed mean ± sample std：Macro-F1 0.9415 ± 0.0034，Acc 0.9415 ± 0.0034，AUC 0.9866 ± 0.0011。
+- 相对 PANDA reported，Weibo-21 的 F1/Acc 分别低 0.0106/0.0116，AUC 低 0.0001。
+- 相对 PANDA reported，Weibo 的 F1/Acc 分别低 0.0095/0.0115，AUC 低 0.0004。
+- 阶段报告保存为 `final_reproduction_report.md`。
+
+结论：
+
+- PANDA 的 AUC 基本复现，F1/Acc 在三 seed 均值下没有完全复现论文 reported 水平。
+- Weibo-21 上本复现 PANDA 仍高于 MMDFND/DAMMFND reported baseline。
+- Weibo 上本复现 PANDA 的 AUC 高于 MMDFND/DAMMFND reported，F1/Acc 与 DAMMFND reported 基本持平或略低。
+
+下一步：
+
+- 若继续补实验，优先补更多 seeds 或 deterministic eval。
+- 若继续补 baseline，实跑 DAMMFND/MMDFND 官方代码。
+- 将新增报告和状态文档同步到 GitHub 日志仓库。
+
 ## 新日志模板
 
 ````markdown
