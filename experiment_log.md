@@ -530,6 +530,7 @@ Early stop: 6
 - 相对 PANDA reported，Weibo-21 的 F1/Acc 分别低 0.0106/0.0116，AUC 低 0.0001。
 - 相对 PANDA reported，Weibo 的 F1/Acc 分别低 0.0095/0.0115，AUC 低 0.0004。
 - 阶段报告保存为 `final_reproduction_report.md`。
+- 新增报告和状态文档已同步到 GitHub 日志仓库，commit：`6783787`。
 
 结论：
 
@@ -541,7 +542,7 @@ Early stop: 6
 
 - 若继续补实验，优先补更多 seeds 或 deterministic eval。
 - 若继续补 baseline，实跑 DAMMFND/MMDFND 官方代码。
-- 将新增报告和状态文档同步到 GitHub 日志仓库。
+- 若进入写作，基于 `final_reproduction_report.md` 扩展论文实验章节。
 
 ## 新日志模板
 
