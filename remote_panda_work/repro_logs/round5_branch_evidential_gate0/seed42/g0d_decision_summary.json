@@ -1,0 +1,12 @@
+{
+  "status": "Feasible-B",
+  "best_primary": "g0d_h_di_boundary_shrink_eps0p02",
+  "best_control": "g0d_h_final_random_same_norm_eps0p02",
+  "head_reconstruction_max_abs_diff": 2.073971835381272e-07,
+  "localized_low_margin_sensitivity": true,
+  "destructive_correct_flip_risk": true,
+  "reasons": [
+    "boundary_shrink_flips_more_correct_than_wrong_samples",
+    "boundary_shrink_candidate_below_original_final_score"
+  ]
+}

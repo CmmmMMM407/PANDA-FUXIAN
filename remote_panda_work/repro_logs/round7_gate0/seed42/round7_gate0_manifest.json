@@ -1,0 +1,17 @@
+{
+  "protocol_version": "round7_gate0_d2_d3_v1",
+  "status": "COMPLETED_D2_D3_OFFLINE",
+  "dataset": "weibo21",
+  "seed": 42,
+  "input_dir": "remote_panda_work/repro_logs/round6_r6b_branch_features/seed42",
+  "output_dir": "remote_panda_work/repro_logs/round7_gate0/seed42",
+  "allowed_splits": [
+    "train",
+    "val"
+  ],
+  "test_split_exported": false,
+  "test_used_for_decision": false,
+  "training_allowed": false,
+  "d4_smoke_allowed": false,
+  "decision_scope": "D2/D3 only; no training implementation No-Go decisions."
+}

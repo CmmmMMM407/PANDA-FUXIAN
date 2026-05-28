@@ -1,0 +1,40 @@
+{
+  "task": "round4_first_principle_boundary_rebuild_gate",
+  "dataset": "weibo21",
+  "seed": 42,
+  "candidate_order": [
+    "R4-A",
+    "R4-D",
+    "R4-C",
+    "R4-B"
+  ],
+  "allowed_splits": [
+    "train",
+    "val"
+  ],
+  "test_split_exported": false,
+  "test_used_for_decision": false,
+  "no_test_path_present": true,
+  "fit_split": "train",
+  "decision_split": "val",
+  "low_margin_threshold_source": "train_final_margin_abs_quantile_0.25",
+  "low_margin_threshold": 8.226344347000122,
+  "memory_k": 5,
+  "memory_alpha": 0.5,
+  "forbidden_feature_columns": [
+    "content",
+    "image",
+    "image_id",
+    "is_error",
+    "is_high_conf_error",
+    "post_id",
+    "post_text",
+    "y_pred",
+    "y_true"
+  ],
+  "forbidden_columns_present_but_metric_only": [
+    "y_pred",
+    "y_true"
+  ],
+  "promotion_rule": "Offline gates cannot directly become Primary-Candidate; a training-time endogenous mechanism and three-seed val pass are required."
+}

@@ -1,0 +1,1018 @@
+{
+  "dataset": "weibo21",
+  "seed": 42,
+  "split": "train",
+  "checkpoint": "param_model/MMDFND/checkpoints_by_seed/weibo21_seed42_parameter_mmdfnd.pkl",
+  "prediction_csv": "repro_logs/r6d_teacher_exports/weibo21_mmdfnd_seed42_train_predictions.csv",
+  "metrics": {
+    "overall": {
+      "y_score": {
+        "n": 4926,
+        "threshold": 0.5,
+        "positive_rate": 0.5032480714575721,
+        "accuracy": 1.0,
+        "precision_macro": 1.0,
+        "recall_macro": 1.0,
+        "f1_macro": 1.0,
+        "auc": 1.0,
+        "brier": 2.17004333721695e-05,
+        "ece": 0.0003509270524357577,
+        "per_class": {
+          "0": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "1": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          }
+        }
+      },
+      "p_fusion": {
+        "n": 4926,
+        "threshold": 0.5,
+        "positive_rate": 0.5032480714575721,
+        "accuracy": 0.9997969955339018,
+        "precision_macro": 0.9997983870967742,
+        "recall_macro": 0.9997956681651001,
+        "f1_macro": 0.9997969864229417,
+        "auc": 0.9999993405991613,
+        "brier": 0.00043182767829583386,
+        "ece": 0.002358714939072709,
+        "per_class": {
+          "0": {
+            "precision": 1.0,
+            "recall": 0.9995913363302003,
+            "f1": 0.9997956264050685
+          },
+          "1": {
+            "precision": 0.9995967741935484,
+            "recall": 1.0,
+            "f1": 0.9997983464408148
+          }
+        }
+      },
+      "p_image": {
+        "n": 4926,
+        "threshold": 0.5,
+        "positive_rate": 0.5032480714575721,
+        "accuracy": 0.9997969955339018,
+        "precision_macro": 0.9997957516339869,
+        "recall_macro": 0.999798305768455,
+        "f1_macro": 0.9997969874938775,
+        "auc": 0.9999998351497903,
+        "brier": 0.0009039220681267693,
+        "ece": 0.01181711017215821,
+        "per_class": {
+          "0": {
+            "precision": 0.9995915032679739,
+            "recall": 1.0,
+            "f1": 0.9997957099080694
+          },
+          "1": {
+            "precision": 1.0,
+            "recall": 0.99959661153691,
+            "f1": 0.9997982650796854
+          }
+        }
+      },
+      "p_text": {
+        "n": 4926,
+        "threshold": 0.5,
+        "positive_rate": 0.5032480714575721,
+        "accuracy": 1.0,
+        "precision_macro": 1.0,
+        "recall_macro": 1.0,
+        "f1_macro": 1.0,
+        "auc": 1.0,
+        "brier": 5.846678797331998e-06,
+        "ece": 0.0008633361166734522,
+        "per_class": {
+          "0": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "1": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          }
+        }
+      }
+    },
+    "by_category": {
+      "0": {
+        "category_name": "科技",
+        "scores": {
+          "y_score": {
+            "n": 126,
+            "threshold": 0.5,
+            "positive_rate": 0.6190476190476191,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 9.247561248706459e-06,
+            "ece": 0.0011944971607474875,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          },
+          "p_fusion": {
+            "n": 126,
+            "threshold": 0.5,
+            "positive_rate": 0.6190476190476191,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 0.0003011925819409632,
+            "ece": 0.005070667951330873,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          },
+          "p_image": {
+            "n": 126,
+            "threshold": 0.5,
+            "positive_rate": 0.6190476190476191,
+            "accuracy": 0.9920634920634921,
+            "precision_macro": 0.9897959183673469,
+            "recall_macro": 0.9935897435897436,
+            "f1_macro": 0.9916195543731294,
+            "auc": 0.999732905982906,
+            "brier": 0.02464377932493252,
+            "ece": 0.10934680138551998,
+            "per_class": {
+              "0": {
+                "precision": 0.9795918367346939,
+                "recall": 1.0,
+                "f1": 0.9896907216494846
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 0.9871794871794872,
+                "f1": 0.9935483870967742
+              }
+            }
+          },
+          "p_text": {
+            "n": 126,
+            "threshold": 0.5,
+            "positive_rate": 0.6190476190476191,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 2.289956897581854e-05,
+            "ece": 0.002098361162444773,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          }
+        }
+      },
+      "1": {
+        "category_name": "军事",
+        "scores": {
+          "y_score": {
+            "n": 181,
+            "threshold": 0.5,
+            "positive_rate": 0.39226519337016574,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 3.304642213974014e-08,
+            "ece": 0.0001157078460178873,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          },
+          "p_fusion": {
+            "n": 181,
+            "threshold": 0.5,
+            "positive_rate": 0.39226519337016574,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 4.5828718957442025e-05,
+            "ece": 0.0012206166578424549,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          },
+          "p_image": {
+            "n": 181,
+            "threshold": 0.5,
+            "positive_rate": 0.39226519337016574,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 0.0003680582414360811,
+            "ece": 0.013244338777038123,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          },
+          "p_text": {
+            "n": 181,
+            "threshold": 0.5,
+            "positive_rate": 0.39226519337016574,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 6.252842160145725e-06,
+            "ece": 0.001150903697253014,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          }
+        }
+      },
+      "2": {
+        "category_name": "教育考试",
+        "scores": {
+          "y_score": {
+            "n": 293,
+            "threshold": 0.5,
+            "positive_rate": 0.49146757679180886,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 2.057732610155634e-06,
+            "ece": 0.0010058716281318159,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          },
+          "p_fusion": {
+            "n": 293,
+            "threshold": 0.5,
+            "positive_rate": 0.49146757679180886,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 4.4257160346238145e-05,
+            "ece": 0.0018294661064382934,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          },
+          "p_image": {
+            "n": 293,
+            "threshold": 0.5,
+            "positive_rate": 0.49146757679180886,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 0.0004341350056625723,
+            "ece": 0.013926940470142896,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          },
+          "p_text": {
+            "n": 293,
+            "threshold": 0.5,
+            "positive_rate": 0.49146757679180886,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 4.175104855393593e-07,
+            "ece": 0.000287415864436924,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          }
+        }
+      },
+      "3": {
+        "category_name": "灾难事故",
+        "scores": {
+          "y_score": {
+            "n": 305,
+            "threshold": 0.5,
+            "positive_rate": 0.3475409836065574,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 1.544203564368324e-08,
+            "ece": 9.198589062586748e-05,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          },
+          "p_fusion": {
+            "n": 305,
+            "threshold": 0.5,
+            "positive_rate": 0.3475409836065574,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 0.0004119337855837781,
+            "ece": 0.0031241660036439326,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          },
+          "p_image": {
+            "n": 305,
+            "threshold": 0.5,
+            "positive_rate": 0.3475409836065574,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 0.0002485861211284908,
+            "ece": 0.008346436287230603,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          },
+          "p_text": {
+            "n": 305,
+            "threshold": 0.5,
+            "positive_rate": 0.3475409836065574,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 3.4657245662990857e-07,
+            "ece": 0.00023804147025507927,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          }
+        }
+      },
+      "4": {
+        "category_name": "政治",
+        "scores": {
+          "y_score": {
+            "n": 529,
+            "threshold": 0.5,
+            "positive_rate": 0.332703213610586,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 8.928197224453149e-06,
+            "ece": 0.0004819798097418504,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          },
+          "p_fusion": {
+            "n": 529,
+            "threshold": 0.5,
+            "positive_rate": 0.332703213610586,
+            "accuracy": 0.998109640831758,
+            "precision_macro": 0.9971751412429379,
+            "recall_macro": 0.9985835694050991,
+            "f1_macro": 0.9978743495469431,
+            "auc": 0.9999517125933557,
+            "brier": 0.002330825019888604,
+            "ece": 0.004173454810845428,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 0.9971671388101983,
+                "f1": 0.9985815602836879
+              },
+              "1": {
+                "precision": 0.9943502824858758,
+                "recall": 1.0,
+                "f1": 0.9971671388101983
+              }
+            }
+          },
+          "p_image": {
+            "n": 529,
+            "threshold": 0.5,
+            "positive_rate": 0.332703213610586,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 0.00010694663790149573,
+            "ece": 0.005411892571837314,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          },
+          "p_text": {
+            "n": 529,
+            "threshold": 0.5,
+            "positive_rate": 0.332703213610586,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 1.6473407743358845e-05,
+            "ece": 0.0009631515225087691,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          }
+        }
+      },
+      "5": {
+        "category_name": "医药健康",
+        "scores": {
+          "y_score": {
+            "n": 489,
+            "threshold": 0.5,
+            "positive_rate": 0.5112474437627812,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 4.097063862379849e-05,
+            "ece": 0.0004137353887365728,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          },
+          "p_fusion": {
+            "n": 489,
+            "threshold": 0.5,
+            "positive_rate": 0.5112474437627812,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 0.0002583454876410271,
+            "ece": 0.0020579582486208504,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          },
+          "p_image": {
+            "n": 489,
+            "threshold": 0.5,
+            "positive_rate": 0.5112474437627812,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 0.000942541922110348,
+            "ece": 0.01821959346038321,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          },
+          "p_text": {
+            "n": 489,
+            "threshold": 0.5,
+            "positive_rate": 0.5112474437627812,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 4.836059678013353e-06,
+            "ece": 0.0010150991882806881,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          }
+        }
+      },
+      "6": {
+        "category_name": "财经商业",
+        "scores": {
+          "y_score": {
+            "n": 638,
+            "threshold": 0.5,
+            "positive_rate": 0.6661442006269592,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 6.433701324142296e-07,
+            "ece": 0.00013516063571217263,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          },
+          "p_fusion": {
+            "n": 638,
+            "threshold": 0.5,
+            "positive_rate": 0.6661442006269592,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 0.00013721388103134458,
+            "ece": 0.0013129392542416641,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          },
+          "p_image": {
+            "n": 638,
+            "threshold": 0.5,
+            "positive_rate": 0.6661442006269592,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 0.0006959744050249297,
+            "ece": 0.017781245994499654,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          },
+          "p_text": {
+            "n": 638,
+            "threshold": 0.5,
+            "positive_rate": 0.6661442006269592,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 1.5038795499116996e-06,
+            "ece": 0.0005474047756925948,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          }
+        }
+      },
+      "7": {
+        "category_name": "文体娱乐",
+        "scores": {
+          "y_score": {
+            "n": 818,
+            "threshold": 0.5,
+            "positive_rate": 0.6821515892420538,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 8.112527029509337e-09,
+            "ece": 4.397318785720472e-05,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          },
+          "p_fusion": {
+            "n": 818,
+            "threshold": 0.5,
+            "positive_rate": 0.6821515892420538,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 0.0002022438623675299,
+            "ece": 0.00208920940609327,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          },
+          "p_image": {
+            "n": 818,
+            "threshold": 0.5,
+            "positive_rate": 0.6821515892420538,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 4.1333010233469676e-05,
+            "ece": 0.004785961192272037,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          },
+          "p_text": {
+            "n": 818,
+            "threshold": 0.5,
+            "positive_rate": 0.6821515892420538,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 2.5153606248696953e-06,
+            "ece": 0.0006944088579950991,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          }
+        }
+      },
+      "8": {
+        "category_name": "社会生活",
+        "scores": {
+          "y_score": {
+            "n": 1547,
+            "threshold": 0.5,
+            "positive_rate": 0.43374272786037493,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 5.167599895640085e-05,
+            "ece": 0.00042337061185162715,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          },
+          "p_fusion": {
+            "n": 1547,
+            "threshold": 0.5,
+            "positive_rate": 0.43374272786037493,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 0.0002133260586637027,
+            "ece": 0.0024558117465784787,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          },
+          "p_image": {
+            "n": 1547,
+            "threshold": 0.5,
+            "positive_rate": 0.43374272786037493,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 5.342288507367823e-05,
+            "ece": 0.005415825608969664,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          },
+          "p_text": {
+            "n": 1547,
+            "threshold": 0.5,
+            "positive_rate": 0.43374272786037493,
+            "accuracy": 1.0,
+            "precision_macro": 1.0,
+            "recall_macro": 1.0,
+            "f1_macro": 1.0,
+            "auc": 1.0,
+            "brier": 6.761013858700917e-06,
+            "ece": 0.0010989720666755298,
+            "per_class": {
+              "0": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              },
+              "1": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

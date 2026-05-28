@@ -1,0 +1,73 @@
+{
+  "runs": [
+    {
+      "candidate_id": "R6-H",
+      "status": "FROZEN_PROMPT_RESPONSE_GATE0_COMPLETED",
+      "created_by": "tools/run_panda_round6_r6h_prompt_response_gate0.py",
+      "dataset": "weibo21",
+      "seed": 42,
+      "allowed_splits": [
+        "train",
+        "val"
+      ],
+      "test_split_exported": false,
+      "test_used_for_decision": false,
+      "training_allowed": false,
+      "checkpoint": "/root/autodl-tmp/panda_repro/panda/param_model/FTmodel/checkpoints_by_seed/weibo21_seed42_parameter_panda.pkl",
+      "checkpoint_sha256": "4bb5e2b5a0f00c441cb06eb3e0c981617975a66a1bdad5a88ab4be86a873d981",
+      "input_summary": {
+        "train": {
+          "rows": 4926,
+          "prompt_tensor_fields": [
+            "input_ids",
+            "attention_mask",
+            "text_loss_ids"
+          ],
+          "batch_tensor_count": 10
+        },
+        "val": {
+          "rows": 615,
+          "prompt_tensor_fields": [
+            "input_ids",
+            "attention_mask",
+            "text_loss_ids"
+          ],
+          "batch_tensor_count": 10
+        }
+      },
+      "primary_views": [
+        "prompt_text_fusion"
+      ],
+      "controls": [
+        "prompt_text_only",
+        "shuffled_prompt_text_fusion",
+        "random_prompt_text_fusion"
+      ],
+      "decision": {
+        "candidate_id": "R6-H",
+        "status": "No-Go",
+        "training_allowed": false,
+        "test_used_for_decision": false,
+        "claim_scope": "direct D2/D3 frozen prompt-response probe with prompt tensors passed through BERT/text path outside PANDA.py",
+        "level_reached": "D2/D3",
+        "required_level_for_training_exclusion": "D4",
+        "best_primary": "prompt_text_fusion",
+        "best_control": "content_baseline",
+        "reference_macro_f1": 0.9560859504132231,
+        "reference_accuracy": 0.9560975609756097,
+        "best_primary_macro_f1": 0.9364536444106496,
+        "best_primary_accuracy": 0.9365853658536586,
+        "best_primary_wrong_to_correct": 4,
+        "best_primary_correct_to_wrong": 16,
+        "best_primary_abs_diff_mean": 0.038104210048913956,
+        "best_control_macro_f1": 0.9560859504132231,
+        "best_control_accuracy": 0.9560975609756097,
+        "reasons": [
+          "best_primary_below_content_baseline",
+          "best_primary_flip_not_net_positive",
+          "best_control_matches_or_beats_primary"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "candidate_id": "R6-F",
+  "status": "FROZEN_GATE0_VIEW_DELTA_COMPLETED",
+  "created_by": "tools/run_panda_round6_r6f_gate0.py",
+  "dataset": "weibo21",
+  "seed": 42,
+  "allowed_splits": [
+    "train",
+    "val"
+  ],
+  "test_split_exported": false,
+  "test_used_for_decision": false,
+  "training_allowed": false,
+  "checkpoint": {
+    "path": "/root/autodl-tmp/panda_repro/panda/param_model/FTmodel/checkpoints_by_seed/weibo21_seed42_parameter_panda.pkl",
+    "sha256": "4bb5e2b5a0f00c441cb06eb3e0c981617975a66a1bdad5a88ab4be86a873d981"
+  },
+  "input_files": {
+    "train_metadata": {
+      "path": "/root/autodl-tmp/panda_repro/panda/repro_logs/round6_r6b_branch_features/seed42/round6_r6b_branch_metadata_weibo21_seed42_train.csv",
+      "rows": 4926,
+      "sha256": "c200fa21f0a63d58ddb3aecb26ce12c46d712ccc997644e28a2d75f47774957f"
+    },
+    "val_metadata": {
+      "path": "/root/autodl-tmp/panda_repro/panda/repro_logs/round6_r6b_branch_features/seed42/round6_r6b_branch_metadata_weibo21_seed42_val.csv",
+      "rows": 615,
+      "sha256": "0343e8ba2910fcf8c5e3e0118480a6825e56149b86b3db67f7f3332d943382c1"
+    },
+    "train_features": {
+      "path": "/root/autodl-tmp/panda_repro/panda/repro_logs/round6_r6b_branch_features/seed42/round6_r6b_branch_features_weibo21_seed42_train.npz",
+      "sha256": "fc4284b917b76ade2daeb9a70746e1f1fb25a6fccb00742da0408d0a797175e3"
+    },
+    "val_features": {
+      "path": "/root/autodl-tmp/panda_repro/panda/repro_logs/round6_r6b_branch_features/seed42/round6_r6b_branch_features_weibo21_seed42_val.npz",
+      "sha256": "603cb1a1dc608cf31880471ce2a57afbd5a05565f0f260bf6c7341af3a4fb311"
+    }
+  },
+  "feature_arrays_used": [
+    "h_text",
+    "h_image",
+    "h_fusion",
+    "h_collab"
+  ],
+  "target_or_metric_only_columns": [
+    "y_true"
+  ],
+  "forbidden_inputs": [
+    "test_split",
+    "cross_sample_modality_replacement",
+    "test_correctness",
+    "test_derived_thresholds"
+  ],
+  "low_margin_threshold_fit_split": "train",
+  "low_margin_threshold": 8.226344347000122,
+  "decision": {
+    "candidate_id": "R6-F",
+    "gate": "label_preserving_modality_robustness_view_delta",
+    "status": "No-Go",
+    "training_allowed": false,
+    "test_used_for_decision": false,
+    "best_primary": "mean_rescaled_drop",
+    "best_control": "control_shuffled_mask_drop_disagreeing_branch_high_disagreement",
+    "reference_macro_f1": 0.9560859504132231,
+    "reference_accuracy": 0.9560975609756097,
+    "best_primary_macro_f1": 0.9560859504132231,
+    "best_primary_accuracy": 0.9560975609756097,
+    "best_primary_wrong_to_correct": 0,
+    "best_primary_correct_to_wrong": 0,
+    "best_primary_low_margin_delta_f1": 0.0,
+    "best_primary_high_disagreement_delta_f1": 0.0,
+    "best_control_macro_f1": 0.938211218748678,
+    "best_control_accuracy": 0.9382113821138212,
+    "drop_delta_error_auc": 0.5378558830939784,
+    "reasons": [
+      "best_primary_flip_not_net_positive",
+      "no_positive_low_margin_or_high_disagreement_bin",
+      "drop_delta_error_auc_below_0p65"
+    ]
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "candidate_id": "R6-E",
+  "status": "FROZEN_GATE0_OFFLINE_COMPLETED",
+  "allowed_splits": [
+    "train",
+    "val"
+  ],
+  "test_split_exported": false,
+  "test_used_for_decision": false,
+  "training_allowed": false,
+  "input_files": {
+    "train_metadata": {
+      "path": "repro_logs/round4_first_principle/common_frozen/round4_common_metadata_weibo21_seed42_train.csv",
+      "rows": 4926,
+      "sha256": "2552e41b6a1e6bea31355fdca372ee980f91a3ffe3934fd7634ea441e8e6c707"
+    },
+    "val_metadata": {
+      "path": "repro_logs/round4_first_principle/common_frozen/round4_common_metadata_weibo21_seed42_val.csv",
+      "rows": 615,
+      "sha256": "9bd647a26cd42be00f88a685d680deed4f3d0bd1aa3c6f675e3ed9594a08d7d0"
+    }
+  },
+  "decision": {
+    "candidate_id": "R6-E",
+    "status": "No-Go",
+    "training_allowed": false,
+    "test_used_for_decision": false,
+    "best_primary": "branch_consensus_cov1",
+    "best_control": "shuffled_confidence_cov0.1",
+    "reference_macro_f1": 0.9560859504132231,
+    "reference_accuracy": 0.9560975609756097,
+    "best_primary_macro_f1": 0.9560859504132231,
+    "best_primary_accuracy": 0.9560975609756097,
+    "best_primary_coverage": 0.7300813008130081,
+    "best_primary_wrong_to_correct": 0,
+    "best_primary_correct_to_wrong": 0,
+    "best_control_macro_f1": 0.9560859504132231,
+    "best_control_accuracy": 0.9560975609756097,
+    "reasons": [
+      "best_primary_flip_not_net_positive",
+      "best_control_matches_or_beats_primary"
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "candidate_id": "R6-G",
+  "status": "No-Go",
+  "training_allowed": false,
+  "test_used_for_decision": false,
+  "claim_scope": "direct D2/D3 soft/EMA prototype frozen probe",
+  "level_reached": "D2/D3",
+  "required_level_for_training_exclusion": "D4",
+  "best_primary": "learned_softmin_top2_nonself",
+  "best_control": "current_pad_top2_nonself",
+  "reference_macro_f1": 0.49606299212598426,
+  "reference_accuracy": 0.984375,
+  "best_primary_macro_f1": 0.49606299212598426,
+  "best_primary_accuracy": 0.984375,
+  "best_primary_wrong_to_correct": 0,
+  "best_primary_correct_to_wrong": 0,
+  "best_primary_overlap_with_pad_top2": 0.5078125,
+  "best_control_macro_f1": 0.49606299212598426,
+  "best_control_accuracy": 0.984375,
+  "reasons": [
+    "best_primary_flip_not_net_positive",
+    "best_control_matches_or_beats_primary"
+  ]
+}

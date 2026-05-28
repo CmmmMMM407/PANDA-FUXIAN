@@ -22,6 +22,18 @@ param_model/
 *.pth
 *.ckpt
 *.safetensors
+*.npz
+*.tar.gz
+
+# Public sync safety: avoid raw/sample-level tables
+*predictions*.csv
+*extended_predictions*
+*matched_inputs*
+*high_confidence_errors*
+*features*.csv
+docs/archive/full_snapshots_*/
+*.docx
+*.docx.bak
 
 # Temporary local outputs
 tmp/

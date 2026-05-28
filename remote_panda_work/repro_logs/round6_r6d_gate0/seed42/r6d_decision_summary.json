@@ -1,0 +1,96 @@
+{
+  "candidate_id": "R6-D",
+  "decision": "No-Go",
+  "claim_scope": "D3 train/val-only cross-architecture complementarity gate",
+  "allowed_splits": [
+    "train",
+    "val"
+  ],
+  "forbidden_splits": [
+    "test"
+  ],
+  "training_allowed": false,
+  "test_used_for_decision": false,
+  "inputs": {
+    "panda_dir": "repro_logs/round4_first_principle/common_frozen",
+    "mmdfnd_dir": "../MMDFND/repro_logs/r6d_teacher_exports",
+    "dammfnd_dir": "../DAMMFND/repro_logs/r6d_teacher_exports"
+  },
+  "input_hashes": {
+    "mmdfnd_train": "d98ac5e5ca9099d5dc7f9606c593082fccc27e87cbb7a626c520a99df38822c3",
+    "mmdfnd_val": "000459b300ada1635edace3d53055a458034c1e62daa2c62b98937a6feed6d12",
+    "dammfnd_train": "158191fa1d896403fd7d6dd2edcaff3d26748c0d8c6722ff581307276e8dc34e",
+    "dammfnd_val": "e96a032f0c5e343d2c61de8672e451e8392abd4c6618ce72430624787a67966b"
+  },
+  "row_counts": {
+    "train": 4926,
+    "val": 615
+  },
+  "best_primary": {
+    "candidate": "confidence_gate_dammfnd",
+    "role": "primary",
+    "macro_f1": 0.9511904761904761,
+    "accuracy": 0.9512195121951219,
+    "auc": 0.9851189846641989,
+    "nll": 0.20199450290221801,
+    "changed_count": 19,
+    "wrong_to_correct": 8,
+    "correct_to_wrong": 11,
+    "meta_classifier": null,
+    "meta_fit_split": null
+  },
+  "panda_baseline": {
+    "candidate": "panda_original",
+    "role": "primary_baseline",
+    "macro_f1": 0.9560859504132231,
+    "accuracy": 0.9560975609756097,
+    "auc": 0.9873717609730301,
+    "nll": 0.15835834398009085,
+    "changed_count": 0,
+    "wrong_to_correct": 0,
+    "correct_to_wrong": 0,
+    "meta_classifier": null,
+    "meta_fit_split": null
+  },
+  "best_control": {
+    "candidate": "mean_probability_ensemble",
+    "role": "ordinary_ensemble_control",
+    "macro_f1": 0.9479365079365079,
+    "accuracy": 0.9479674796747968,
+    "auc": 0.9879851930195662,
+    "nll": 0.15315779020739606,
+    "changed_count": 13,
+    "wrong_to_correct": 4,
+    "correct_to_wrong": 9,
+    "meta_classifier": null,
+    "meta_fit_split": null
+  },
+  "oracle": {
+    "oracle_accuracy": 0.975609756097561,
+    "oracle_macro_f1": 0.9756033057851239,
+    "recoverable_panda_errors": 12,
+    "panda_error_count": 27
+  },
+  "coverage": [
+    {
+      "teacher": "mmdfnd",
+      "teacher_correct_panda_wrong": 8,
+      "teacher_wrong_panda_correct": 23,
+      "both_correct": 565,
+      "both_wrong": 19,
+      "teacher_error_overlap_with_panda_error_rate": 0.7037037037037037
+    },
+    {
+      "teacher": "dammfnd",
+      "teacher_correct_panda_wrong": 8,
+      "teacher_wrong_panda_correct": 22,
+      "both_correct": 566,
+      "both_wrong": 19,
+      "teacher_error_overlap_with_panda_error_rate": 0.7037037037037037
+    }
+  ],
+  "decision_reasons": [
+    "best_primary_below_panda",
+    "best_primary_flip_not_net_positive"
+  ]
+}

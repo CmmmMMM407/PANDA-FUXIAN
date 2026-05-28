@@ -1,0 +1,40 @@
+{
+  "candidate_id": "R6-H",
+  "gate": "sample_conditioned_prompt_memory_interface_audit",
+  "status": "Blocked",
+  "training_allowed": false,
+  "test_used_for_decision": false,
+  "test_split_exported": false,
+  "interface_checks": {
+    "weibo21_dataloader_builds_prompt_fields": true,
+    "clipdata2gpu_drops_prompt_fields": true,
+    "panda_forward_consumes_prompt_kwargs": false
+  },
+  "reasons": [
+    "prompt_fields_are_created_by_dataloader_but_not_passed_to_panda",
+    "panda_forward_has_no_sample_conditioned_prompt_memory_interface",
+    "frozen_prompt_response_gate_would_require_code_patch_or_new_untrained_modules"
+  ],
+  "evidence_notes": [
+    "utils/weibo21_clip_prompt.py builds input_ids/attention_mask/text_loss_ids.",
+    "utils/utils.py::clipdata2gpu only forwards content/content_masks/label/category/image/clip_image/clip_text.",
+    "model/PANDA.py consumes ordinary BERT inputs and static domain_modal_prompts, not OpenPrompt fields."
+  ],
+  "input_evidence": {
+    "utils_py": {
+      "path": "/root/autodl-tmp/panda_repro/panda/utils/utils.py",
+      "exists": true,
+      "sha256": "13bf93ddf4fb70e841605c5bfcb2e6eb0dff42c956ae479e412b0a8d6ad7381c"
+    },
+    "weibo21_clip_prompt_py": {
+      "path": "/root/autodl-tmp/panda_repro/panda/utils/weibo21_clip_prompt.py",
+      "exists": true,
+      "sha256": "40c46a262c606065d7bb2b6ad259c7a75fc00bc5ebdc903cafff174c0241e5b5"
+    },
+    "panda_py": {
+      "path": "/root/autodl-tmp/panda_repro/panda/model/PANDA.py",
+      "exists": true,
+      "sha256": "80f681da4b6b2c583ec44a65b1b941da312909eea79fbf4dd67ddfc9719cb351"
+    }
+  }
+}

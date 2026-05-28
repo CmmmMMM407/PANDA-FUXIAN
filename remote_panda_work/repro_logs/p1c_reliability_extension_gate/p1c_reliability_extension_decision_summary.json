@@ -1,0 +1,77 @@
+{
+  "gate": "P1-C evidential / reliability extension",
+  "created_from_existing_evidence": true,
+  "decision": "No-Go",
+  "retained_use": "diagnostic/calibration analysis only",
+  "decision_basis_splits": [
+    "val"
+  ],
+  "test_used_for_decision": false,
+  "new_training_run": false,
+  "winner_seed42_val_tag": "reliability_confidence_uncertainty_stable_source_reward_pre_epoch_l0p2",
+  "seed42_val_pass_count": 1,
+  "seed42_val_passing_tags": [
+    "reliability_confidence_uncertainty_stable_source_reward_pre_epoch_l0p2"
+  ],
+  "seed_recheck_val": {
+    "candidate_tag": "reliability_confidence_uncertainty_stable_source_reward_pre_epoch_l0p2",
+    "n_seeds": 3,
+    "pass_count": 2,
+    "candidate_macro_f1_mean": 0.9360175763242268,
+    "reference_macro_f1_mean": 0.9370925745259209,
+    "delta_macro_f1_vs_ref_mean": -0.0010749982016941366,
+    "candidate_accuracy_mean": 0.9360433604336044,
+    "reference_accuracy_mean": 0.9371273712737128,
+    "delta_accuracy_vs_ref_mean": -0.0010840108401084143,
+    "delta_auc_vs_ref_mean": 0.001364357482813272,
+    "delta_ece_vs_ref_mean": -0.000648952707174081,
+    "delta_brier_vs_ref_mean": -0.0016521331319307604,
+    "delta_high_conf_error_rate_vs_ref_mean": -0.0037940379403794047,
+    "delta_weak_macro_f1_vs_ref_mean": 0.014442187976173582,
+    "worst_seed_delta_macro_f1": -0.006512750310701976,
+    "failed_seed_rows": [
+      {
+        "macro_f1": 0.931698468437976,
+        "accuracy": 0.9317073170731708,
+        "auc": 0.9825912215758857,
+        "brier": 0.0520852641769616,
+        "ece": 0.02700635114780766,
+        "high_conf_error_rate": 0.01951219512195122,
+        "selector_margin_mean": 0.039203045620181697,
+        "dataset": "weibo21",
+        "seed": 2024.0,
+        "split": "val",
+        "selector_mode": "reliability",
+        "reliability_signal": "confidence_uncertainty",
+        "reliability_lambda": 0.2,
+        "reliability_gating": "stable_source_reward",
+        "reliability_stats_mode": "pre_epoch",
+        "tag": "reliability_confidence_uncertainty_stable_source_reward_pre_epoch_l0p2",
+        "weak_macro_f1": 0.930952380952381,
+        "delta_macro_f1_vs_ref": -0.006512750310701976,
+        "delta_accuracy_vs_ref": -0.006504065040650375,
+        "delta_auc_vs_ref": -0.0027815970386039224,
+        "delta_ece_vs_ref": 0.00040176111423483735,
+        "delta_brier_vs_ref": 0.0054577213316093914,
+        "delta_high_conf_error_rate_vs_ref": 0.0032520325203252015,
+        "delta_weak_macro_f1_vs_ref": -0.01718472784046554,
+        "support_metric_better_count": 0.0,
+        "passes_seed_recheck_vs_ref": "False"
+      }
+    ]
+  },
+  "no_go_reasons": [
+    "Three-seed validation mean Macro-F1 and Accuracy are below deterministic_eval_l0.",
+    "Seed 2024 is a strong negative recheck and fails all support metrics.",
+    "Calibration, high-confidence-error, AUC, and weak-domain gains do not rescue the primary F1/Acc gate.",
+    "Overconfidence/random/branch-fusion controls show that support-metric gains can appear without stable overall performance."
+  ],
+  "method_insight": "Uncertainty/reliability is a strong diagnostic signal for errors and weak-domain behavior, but the current extension converts that signal into unstable selection benefits. It should be reported as calibration/diagnostic evidence, not as a primary method.",
+  "source_files": [
+    "remote_panda_work/repro_logs/innovation_training_v2_go_nogo_eval/go_nogo_decision_summary.csv",
+    "remote_panda_work/repro_logs/innovation_training_v2_seed_recheck_eval/seed_recheck_aggregate_summary.csv",
+    "remote_panda_work/repro_logs/innovation_training_v2_seed_recheck_eval/seed_recheck_run_level_summary.csv",
+    "remote_panda_work/repro_logs/panda_diagnostics/gate_signal_significance.csv",
+    "remote_panda_work/repro_logs/panda_diagnostics/reliability_summary.csv"
+  ]
+}

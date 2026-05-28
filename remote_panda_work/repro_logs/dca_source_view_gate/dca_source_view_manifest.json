@@ -1,0 +1,71 @@
+{
+  "task": "p0b_dca_source_view_sensitivity",
+  "datasets": [
+    "weibo21"
+  ],
+  "seeds": [
+    42
+  ],
+  "splits": [
+    "train",
+    "val"
+  ],
+  "random_view_seeds": [
+    1,
+    2,
+    3
+  ],
+  "test_split_exported": false,
+  "outputs": [
+    {
+      "dataset": "weibo21",
+      "seed": 42,
+      "split": "train",
+      "metrics_json": "/root/autodl-tmp/panda_repro/panda/repro_logs/dca_source_view_gate/dca_source_view_summary_weibo21_seed42_train.json",
+      "gate_checks": {
+        "dca_removal_changes_logits": true,
+        "mean_prompt_changes_logits": true,
+        "forced_top2_changes_logits": true,
+        "top2_not_equivalent_to_random_absdiff": true,
+        "top2_ce_not_worse_than_random": false,
+        "top2_ce_not_worse_than_bottom2": false,
+        "top2_ce_not_worse_than_shuffled": false,
+        "no_collab_abs_diff": 1.8819596318046283e-05,
+        "no_collab_jsd": 2.699409872674951e-07,
+        "top2_abs_diff": 1.79498176353609e-05,
+        "top2_jsd": 2.5652375204604924e-07,
+        "top2_ce": 0.00025812417777966136,
+        "bottom2_ce": 0.0002466201005506871,
+        "shuffled_ce": 0.00025625068824541706,
+        "random_abs_diff_mean": 2.9038045191449397e-05,
+        "random_ce_mean": 0.00024700633185441046,
+        "p0b_preliminary_pass": false
+      }
+    },
+    {
+      "dataset": "weibo21",
+      "seed": 42,
+      "split": "val",
+      "metrics_json": "/root/autodl-tmp/panda_repro/panda/repro_logs/dca_source_view_gate/dca_source_view_summary_weibo21_seed42_val.json",
+      "gate_checks": {
+        "dca_removal_changes_logits": true,
+        "mean_prompt_changes_logits": true,
+        "forced_top2_changes_logits": true,
+        "top2_not_equivalent_to_random_absdiff": true,
+        "top2_ce_not_worse_than_random": true,
+        "top2_ce_not_worse_than_bottom2": true,
+        "top2_ce_not_worse_than_shuffled": false,
+        "no_collab_abs_diff": 0.0010437633465390326,
+        "no_collab_jsd": 1.078696711885287e-05,
+        "top2_abs_diff": 0.0013182222170857634,
+        "top2_jsd": 1.4239589238460727e-05,
+        "top2_ce": 0.15778331337186874,
+        "bottom2_ce": 0.158167083670277,
+        "shuffled_ce": 0.1568494839919968,
+        "random_abs_diff_mean": 0.0016959525036658759,
+        "random_ce_mean": 0.15864899531485277,
+        "p0b_preliminary_pass": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "candidate_id": "R6-C",
+  "status": "Feasible-B",
+  "training_allowed": false,
+  "test_used_for_decision": false,
+  "best_primary": "r6c_low_margin_h_di_adapter",
+  "best_control": "original_final",
+  "reference_macro_f1": 0.9560859504132231,
+  "reference_accuracy": 0.9560975609756097,
+  "best_primary_macro_f1": 0.9577145214521452,
+  "best_primary_accuracy": 0.9577235772357724,
+  "best_primary_wrong_to_correct": 1,
+  "best_primary_correct_to_wrong": 0,
+  "best_primary_low_margin_delta_f1": 0.0024238905687478107,
+  "best_control_macro_f1": 0.9560859504132231,
+  "best_control_accuracy": 0.9560975609756097,
+  "reasons": []
+}

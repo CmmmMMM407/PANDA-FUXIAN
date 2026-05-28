@@ -1,0 +1,21 @@
+{
+  "candidate_id": "R6-E",
+  "status": "No-Go",
+  "training_allowed": false,
+  "test_used_for_decision": false,
+  "best_primary": "branch_consensus_cov1",
+  "best_control": "shuffled_confidence_cov0.1",
+  "reference_macro_f1": 0.9560859504132231,
+  "reference_accuracy": 0.9560975609756097,
+  "best_primary_macro_f1": 0.9560859504132231,
+  "best_primary_accuracy": 0.9560975609756097,
+  "best_primary_coverage": 0.7300813008130081,
+  "best_primary_wrong_to_correct": 0,
+  "best_primary_correct_to_wrong": 0,
+  "best_control_macro_f1": 0.9560859504132231,
+  "best_control_accuracy": 0.9560975609756097,
+  "reasons": [
+    "best_primary_flip_not_net_positive",
+    "best_control_matches_or_beats_primary"
+  ]
+}

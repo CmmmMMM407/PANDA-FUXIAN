@@ -1,0 +1,25 @@
+{
+  "candidate_id": "R6-B",
+  "status": "No-Go",
+  "training_allowed": false,
+  "test_used_for_decision": false,
+  "best_primary": "r6b_confidence_evidence_gate",
+  "best_control": "shuffled_confidence_evidence_gate",
+  "reference_macro_f1": 0.9560859504132231,
+  "reference_accuracy": 0.9560975609756097,
+  "best_primary_macro_f1": 0.949567361234191,
+  "best_primary_accuracy": 0.9495934959349593,
+  "best_primary_wrong_to_correct": 3,
+  "best_primary_correct_to_wrong": 7,
+  "best_primary_low_margin_delta_f1": -0.00972193412532496,
+  "best_primary_high_disagreement_delta_f1": -0.019183768828452963,
+  "best_control_macro_f1": 0.9609705533931292,
+  "best_control_accuracy": 0.9609756097560975,
+  "reasons": [
+    "best_primary_below_original_final",
+    "best_primary_flip_not_net_positive",
+    "no_positive_low_margin_or_high_disagreement_bin",
+    "best_control_matches_or_beats_primary",
+    "best_control_is_shuffled_confidence_control"
+  ]
+}

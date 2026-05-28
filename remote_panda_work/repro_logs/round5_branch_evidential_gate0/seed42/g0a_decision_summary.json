@@ -1,0 +1,10 @@
+{
+  "status": "Feasible-A",
+  "best_branch": "image_branch",
+  "best_branch_conflict_rate": 0.33766233766233766,
+  "best_branch_mean_cosine": 0.07268379095785381,
+  "low_margin_enriched": true,
+  "batches_used": 154,
+  "max_batches_arg": 0,
+  "reasons": []
+}

@@ -1,0 +1,25 @@
+{
+  "candidate_id": "R6-F",
+  "gate": "label_preserving_modality_robustness_view_delta",
+  "status": "No-Go",
+  "training_allowed": false,
+  "test_used_for_decision": false,
+  "best_primary": "mean_rescaled_drop",
+  "best_control": "control_shuffled_mask_drop_disagreeing_branch_high_disagreement",
+  "reference_macro_f1": 0.9560859504132231,
+  "reference_accuracy": 0.9560975609756097,
+  "best_primary_macro_f1": 0.9560859504132231,
+  "best_primary_accuracy": 0.9560975609756097,
+  "best_primary_wrong_to_correct": 0,
+  "best_primary_correct_to_wrong": 0,
+  "best_primary_low_margin_delta_f1": 0.0,
+  "best_primary_high_disagreement_delta_f1": 0.0,
+  "best_control_macro_f1": 0.938211218748678,
+  "best_control_accuracy": 0.9382113821138212,
+  "drop_delta_error_auc": 0.5378558830939784,
+  "reasons": [
+    "best_primary_flip_not_net_positive",
+    "no_positive_low_margin_or_high_disagreement_bin",
+    "drop_delta_error_auc_below_0p65"
+  ]
+}

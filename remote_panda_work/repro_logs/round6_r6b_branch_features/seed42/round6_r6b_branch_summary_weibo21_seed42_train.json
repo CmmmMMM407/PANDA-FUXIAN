@@ -1,0 +1,78 @@
+{
+  "dataset": "weibo21",
+  "seed": 42,
+  "split": "train",
+  "rows": 4926,
+  "metadata_csv": {
+    "path": "/root/autodl-tmp/panda_repro/panda/repro_logs/round6_r6b_branch_features/seed42/round6_r6b_branch_metadata_weibo21_seed42_train.csv",
+    "rows": 4926,
+    "sha256": "c200fa21f0a63d58ddb3aecb26ce12c46d712ccc997644e28a2d75f47774957f",
+    "columns": [
+      "sample_id",
+      "dataset_key",
+      "seed",
+      "split",
+      "category_id",
+      "category_name",
+      "y_true",
+      "y_score",
+      "y_pred",
+      "final_logit",
+      "p_text",
+      "p_image",
+      "p_fusion",
+      "text_logit",
+      "image_logit",
+      "fusion_logit",
+      "branch_disagreement",
+      "fusion_uncertainty",
+      "confidence",
+      "confidence_uncertainty",
+      "final_margin_abs",
+      "selected_source_ids",
+      "selected_source_domains",
+      "neighbor_logits",
+      "pad_similarity"
+    ]
+  },
+  "feature_npz": {
+    "path": "/root/autodl-tmp/panda_repro/panda/repro_logs/round6_r6b_branch_features/seed42/round6_r6b_branch_features_weibo21_seed42_train.npz",
+    "rows": 4926,
+    "sha256": "fc4284b917b76ade2daeb9a70746e1f1fb25a6fccb00742da0408d0a797175e3"
+  },
+  "feature_arrays": {
+    "h_text": [
+      4926,
+      320
+    ],
+    "h_image": [
+      4926,
+      320
+    ],
+    "h_fusion": [
+      4926,
+      320
+    ],
+    "h_di": [
+      4926,
+      320
+    ],
+    "h_collab": [
+      4926,
+      320
+    ],
+    "h_final": [
+      4926,
+      640
+    ]
+  },
+  "anchor_direct_verification": [
+    {
+      "batch_idx": 0,
+      "direct_score_vs_recomputed_max_abs_diff": 0.0,
+      "h_di_sum_finite": true
+    }
+  ],
+  "max_abs_h_di_minus_sum_branches": 0.0,
+  "test_split_exported": false
+}

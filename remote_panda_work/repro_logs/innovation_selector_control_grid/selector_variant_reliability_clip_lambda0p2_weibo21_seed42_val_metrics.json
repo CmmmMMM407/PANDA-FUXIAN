@@ -1,0 +1,18 @@
+{
+  "rows": 615,
+  "macro_f1": 0.9560859504132231,
+  "accuracy": 0.9560975609756097,
+  "auc": 0.98737176097303,
+  "brier": 0.03872100898811292,
+  "ece": 0.02688551295162519,
+  "high_conf_error_rate": 0.024390243902439025,
+  "dataset": "weibo21",
+  "seed": 42,
+  "split": "val",
+  "selector_mode": "reliability",
+  "reliability_signal": "clip",
+  "reliability_lambda": 0.2,
+  "variant_tag": "reliability_clip_lambda0p2",
+  "checkpoint": "/root/autodl-tmp/panda_repro/panda/param_model/FTmodel/checkpoints_by_seed/weibo21_seed42_parameter_panda.pkl",
+  "reliability_stats_count": 4926.0
+}

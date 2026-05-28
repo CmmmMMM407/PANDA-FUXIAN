@@ -1,0 +1,23 @@
+{
+  "candidate_id": "R6-C",
+  "status": "No-Go",
+  "training_allowed": false,
+  "test_used_for_decision": false,
+  "best_primary": "r6c_low_margin_h_di_adapter",
+  "best_control": "original_final",
+  "reference_macro_f1": 0.943040637627315,
+  "reference_accuracy": 0.943089430894309,
+  "best_primary_macro_f1": 0.9398272164501363,
+  "best_primary_accuracy": 0.9398373983739837,
+  "best_primary_wrong_to_correct": 4,
+  "best_primary_correct_to_wrong": 6,
+  "best_primary_low_margin_delta_f1": -0.0054867379189803556,
+  "best_control_macro_f1": 0.943040637627315,
+  "best_control_accuracy": 0.943089430894309,
+  "reasons": [
+    "best_primary_below_original_final",
+    "best_primary_flip_not_net_positive",
+    "no_positive_low_margin_delta",
+    "best_control_matches_or_beats_primary"
+  ]
+}

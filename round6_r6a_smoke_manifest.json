@@ -1,0 +1,76 @@
+{
+  "protocol_version": "round6_r6a_smoke_v1",
+  "status": "FROZEN_SMOKE",
+  "frozen_date": "2026-05-27",
+  "candidate_id": "R6-A",
+  "candidate_name": "Auxiliary Supervision Sensitivity and Alignment Probe",
+  "training_allowed": true,
+  "training_scope": "D4 seed42 smoke only",
+  "allowed_splits": [
+    "train",
+    "val"
+  ],
+  "forbidden_splits": [
+    "test"
+  ],
+  "test_split_exported": false,
+  "test_used_for_decision": false,
+  "dataset": "weibo21",
+  "seed": 42,
+  "model_name": "FTmodel",
+  "selector_mode": "deterministic_train",
+  "batchsize": 32,
+  "lr": 0.0001,
+  "epoch": 5,
+  "early_stop": 6,
+  "num_workers": 0,
+  "skip_final_test": true,
+  "runner": "tools/run_panda_round6_r6a_smoke.sh",
+  "summarizer": "tools/summarize_panda_round6_r6a_smoke.py",
+  "output_root": "repro_logs/round6_r6a_smoke/seed42",
+  "checkpoint_root": "param_model/round6_r6a_smoke",
+  "checkpoint_lifecycle": {
+    "No-Go": "delete or treat checkpoints as recyclable after summaries/logs are preserved",
+    "Feasible-A_or_Feasible-B": "retain temporarily for review; no test export until separate confirmatory manifest"
+  },
+  "reference_variant": "deterministic_train_l0",
+  "primary_variants": [
+    "r6a_late_aux_ramp_0p5_to_2p0",
+    "r6a_warm_aux_ramp_2p0_to_1p0",
+    "r6a_branch_specific_image_2p0",
+    "r6a_branch_specific_text_2p0",
+    "r6a_branch_specific_fusion_2p0"
+  ],
+  "control_variants": [
+    "deterministic_train_l0",
+    "same_budget_noop_l0",
+    "static_aux_weight_0p0",
+    "static_aux_weight_0p5",
+    "static_aux_weight_1p0",
+    "static_aux_weight_1p5",
+    "static_aux_weight_2p0_anchor_control",
+    "static_aux_weight_3p0",
+    "random_aux_labels",
+    "shuffled_aux_labels",
+    "detached_aux_no_feature_update",
+    "generic_pcgrad",
+    "generic_cagrad",
+    "random_sign_gradient_control"
+  ],
+  "go_rule": {
+    "minimum": "best primary val Macro-F1 and Accuracy must not be below deterministic_train_l0",
+    "control_moat": "best primary must beat the best static/control variant on Macro-F1 and Accuracy",
+    "support": "support metrics should not indicate pure calibration or telemetry-only gain",
+    "promotion": "Feasible-A requires roughly +0.3pp Macro-F1 and Accuracy over deterministic_train_l0; Feasible-B may be smaller but must clear controls"
+  },
+  "no_go_rule": [
+    "best primary below deterministic_train_l0",
+    "best primary matched or beaten by best static/control variant",
+    "gain appears only in calibration/telemetry",
+    "random/shuffled/detached/same-budget/generic-gradient control matches the primary"
+  ],
+  "known_limitations": [
+    "GradNorm/DWA controls are not implemented in the current PANDA runner; this smoke uses implemented generic PCGrad/CAGrad plus same-budget, detached, random-label, shuffled-label, static-weight, and random-sign controls.",
+    "This manifest authorizes only seed42 train/val smoke, not three-seed validation and not confirmatory test."
+  ]
+}

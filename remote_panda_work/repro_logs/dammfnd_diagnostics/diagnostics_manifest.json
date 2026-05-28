@@ -1,0 +1,89 @@
+{
+  "inputs": {
+    "input_dir": "remote_panda_work/repro_logs",
+    "recursive": false,
+    "model_name": "DAMMFND",
+    "model_name_normalized": "dammfnd",
+    "datasets": [
+      "weibo21",
+      "weibo"
+    ],
+    "seeds": [
+      42,
+      2024,
+      2026
+    ],
+    "threshold": 0.5,
+    "ece_bins": 15,
+    "high_conf_threshold": 0.9,
+    "near_threshold_width": 0.1
+  },
+  "matched_inputs": [
+    {
+      "dataset": "weibo21",
+      "model": "DAMMFND",
+      "seed": 42,
+      "prediction_path": "remote_panda_work/repro_logs/20260523_weibo21_dammfnd_seed42_test_predictions.csv",
+      "metrics_path": "remote_panda_work/repro_logs/20260523_weibo21_dammfnd_seed42_test_metrics.json"
+    },
+    {
+      "dataset": "weibo21",
+      "model": "DAMMFND",
+      "seed": 2024,
+      "prediction_path": "remote_panda_work/repro_logs/20260523_weibo21_dammfnd_seed2024_test_predictions.csv",
+      "metrics_path": "remote_panda_work/repro_logs/20260523_weibo21_dammfnd_seed2024_test_metrics.json"
+    },
+    {
+      "dataset": "weibo21",
+      "model": "DAMMFND",
+      "seed": 2026,
+      "prediction_path": "remote_panda_work/repro_logs/20260523_weibo21_dammfnd_seed2026_test_predictions.csv",
+      "metrics_path": "remote_panda_work/repro_logs/20260523_weibo21_dammfnd_seed2026_test_metrics.json"
+    },
+    {
+      "dataset": "weibo",
+      "model": "DAMMFND",
+      "seed": 42,
+      "prediction_path": "remote_panda_work/repro_logs/20260523_weibo_dammfnd_seed42_test_predictions.csv",
+      "metrics_path": "remote_panda_work/repro_logs/20260523_weibo_dammfnd_seed42_test_metrics.json"
+    },
+    {
+      "dataset": "weibo",
+      "model": "DAMMFND",
+      "seed": 2024,
+      "prediction_path": "remote_panda_work/repro_logs/20260523_weibo_dammfnd_seed2024_test_predictions.csv",
+      "metrics_path": "remote_panda_work/repro_logs/20260523_weibo_dammfnd_seed2024_test_metrics.json"
+    },
+    {
+      "dataset": "weibo",
+      "model": "DAMMFND",
+      "seed": 2026,
+      "prediction_path": "remote_panda_work/repro_logs/20260523_weibo_dammfnd_seed2026_test_predictions.csv",
+      "metrics_path": "remote_panda_work/repro_logs/20260523_weibo_dammfnd_seed2026_test_metrics.json"
+    }
+  ],
+  "missing_inputs": [],
+  "missing_dataset_seed_pairs": [],
+  "duplicate_candidates": [],
+  "warnings": [],
+  "outputs": [
+    "baseline_test_predictions_merged.csv",
+    "diagnostic_warnings.csv",
+    "diagnostics_manifest.json",
+    "high_confidence_errors.csv",
+    "matched_inputs.csv",
+    "missing_inputs.csv",
+    "overall_metrics_by_seed.csv",
+    "overall_metrics_summary.csv",
+    "overall_metrics_summary.json",
+    "per_domain_metrics_by_seed.csv",
+    "per_domain_metrics_summary.csv",
+    "reliability_by_seed.csv",
+    "reliability_summary.csv"
+  ],
+  "notes": [
+    "Prediction CSV metrics are independently recomputed when y_true/y_score/y_pred are present.",
+    "Metrics JSON values are used only when prediction inputs or columns are missing.",
+    "Missing files are recorded in missing_inputs and do not cause a non-zero exit."
+  ]
+}

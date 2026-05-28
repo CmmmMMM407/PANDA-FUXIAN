@@ -1,0 +1,16 @@
+{
+  "status": "No-Go",
+  "best_primary": "g0e_branch_evidential_arbitration",
+  "best_control": "original_final_score",
+  "original_macro_f1": 0.9560859504132231,
+  "original_accuracy": 0.9560975609756097,
+  "best_primary_macro_f1": 0.9331289498738957,
+  "best_primary_accuracy": 0.9333333333333333,
+  "best_control_macro_f1": 0.9560859504132231,
+  "best_control_accuracy": 0.9560975609756097,
+  "reasons": [
+    "best_primary_below_original_final_score",
+    "best_primary_not_above_best_control",
+    "flip_audit_not_net_positive"
+  ]
+}

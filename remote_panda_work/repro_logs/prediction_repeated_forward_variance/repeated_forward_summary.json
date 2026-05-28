@@ -1,0 +1,24 @@
+{
+  "datasets": [
+    "weibo21"
+  ],
+  "seeds": [
+    42,
+    2024,
+    2026
+  ],
+  "splits": [
+    "val",
+    "test"
+  ],
+  "variants": [
+    "panda_gumbel_reproduced",
+    "deterministic_reproduced",
+    "deterministic_short5",
+    "winning_control_short5"
+  ],
+  "repeats": 30,
+  "max_batches": null,
+  "run_level_summary": "/root/autodl-tmp/panda_repro/panda/repro_logs/prediction_repeated_forward_variance/repeated_forward_run_level_summary.csv",
+  "aggregate_summary": "/root/autodl-tmp/panda_repro/panda/repro_logs/prediction_repeated_forward_variance/repeated_forward_aggregate_summary.csv"
+}

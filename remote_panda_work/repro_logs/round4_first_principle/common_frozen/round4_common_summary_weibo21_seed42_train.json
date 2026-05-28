@@ -1,0 +1,66 @@
+{
+  "dataset": "weibo21",
+  "seed": 42,
+  "split": "train",
+  "rows": 4926,
+  "metadata_csv": {
+    "path": "/root/autodl-tmp/panda_repro/panda/repro_logs/round4_first_principle/common_frozen/round4_common_metadata_weibo21_seed42_train.csv",
+    "rows": 4926,
+    "sha256": "2552e41b6a1e6bea31355fdca372ee980f91a3ffe3934fd7634ea441e8e6c707",
+    "columns": [
+      "sample_id",
+      "dataset_key",
+      "seed",
+      "split",
+      "category_id",
+      "category_name",
+      "y_true",
+      "y_score",
+      "y_pred",
+      "final_logit",
+      "p_text",
+      "p_image",
+      "p_fusion",
+      "text_logit",
+      "image_logit",
+      "fusion_logit",
+      "branch_disagreement",
+      "fusion_uncertainty",
+      "confidence",
+      "confidence_uncertainty",
+      "final_margin_abs",
+      "anchor_source_ids",
+      "anchor_source_domains",
+      "pad_top1_top2_margin",
+      "pad_top_s_margin",
+      "neighbor_logits",
+      "pad_similarity"
+    ]
+  },
+  "feature_npz": {
+    "path": "/root/autodl-tmp/panda_repro/panda/repro_logs/round4_first_principle/common_frozen/round4_common_features_weibo21_seed42_train.npz",
+    "rows": 4926,
+    "sha256": "e042bb7ece03daeeae8d293cc866f7d85bb58ad4bd0329eac28a3bdbea2bf124"
+  },
+  "feature_arrays": {
+    "h_di": [
+      4926,
+      320
+    ],
+    "h_collab": [
+      4926,
+      320
+    ],
+    "h_final": [
+      4926,
+      640
+    ]
+  },
+  "anchor_direct_verification": [
+    {
+      "batch_idx": 0,
+      "max_abs_diff": 0.0
+    }
+  ],
+  "test_split_exported": false
+}

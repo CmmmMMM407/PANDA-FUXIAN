@@ -1,0 +1,21 @@
+{
+  "status": "No-Go",
+  "reference_tag": "deterministic_train_l0",
+  "best_primary_tag": "r6a_late_aux_ramp_0p5_to_2p0",
+  "best_control_tag": "static_aux_weight_2p0_anchor_control",
+  "reference_macro_f1": 0.9365846951914356,
+  "reference_accuracy": 0.9365853658536586,
+  "best_primary_macro_f1": 0.9381837611359164,
+  "best_primary_accuracy": 0.9382113821138212,
+  "best_control_macro_f1": 0.9398373983739837,
+  "best_control_accuracy": 0.9398373983739837,
+  "best_primary_wrong_to_correct": 13,
+  "best_primary_correct_to_wrong": 12,
+  "best_control_wrong_to_correct": 17,
+  "best_control_correct_to_wrong": 15,
+  "best_primary_support_better_count": 2,
+  "reasons": [
+    "best_primary_not_above_best_control"
+  ],
+  "training_allowed": false
+}

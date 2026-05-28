@@ -1,0 +1,63 @@
+{
+  "task": "round5_gate0_summary",
+  "dataset": "weibo21",
+  "seed": 42,
+  "allowed_splits": [
+    "train",
+    "val"
+  ],
+  "test_split_exported": false,
+  "test_used_for_decision": false,
+  "decisions": {
+    "G0-E": {
+      "status": "No-Go",
+      "best_primary": "g0e_branch_evidential_arbitration",
+      "best_control": "original_final_score",
+      "original_macro_f1": 0.9560859504132231,
+      "original_accuracy": 0.9560975609756097,
+      "best_primary_macro_f1": 0.9331289498738957,
+      "best_primary_accuracy": 0.9333333333333333,
+      "best_control_macro_f1": 0.9560859504132231,
+      "best_control_accuracy": 0.9560975609756097,
+      "reasons": [
+        "best_primary_below_original_final_score",
+        "best_primary_not_above_best_control",
+        "flip_audit_not_net_positive"
+      ]
+    },
+    "G0-D": {
+      "status": "Feasible-B",
+      "best_primary": "g0d_h_di_boundary_shrink_eps0p02",
+      "best_control": "g0d_h_final_random_same_norm_eps0p02",
+      "head_reconstruction_max_abs_diff": 2.073971835381272e-07,
+      "localized_low_margin_sensitivity": true,
+      "destructive_correct_flip_risk": true,
+      "reasons": [
+        "boundary_shrink_flips_more_correct_than_wrong_samples",
+        "boundary_shrink_candidate_below_original_final_score"
+      ]
+    },
+    "G0-S": {
+      "status": "No-Go",
+      "forced_pad_top2_ce": 0.1577833133718687,
+      "forced_shuffled_pad_top2_ce": 0.1568494839919968,
+      "forced_random_pair_ce_mean": 0.15864899531485274,
+      "forced_pad_bottom2_ce": 0.158167083670277,
+      "mean_all_domain_prompt_ce": 0.1580128335124324,
+      "reasons": [
+        "pad_top2_not_better_than_shuffled"
+      ]
+    },
+    "G0-A": {
+      "status": "Feasible-A",
+      "best_branch": "image_branch",
+      "best_branch_conflict_rate": 0.33766233766233766,
+      "best_branch_mean_cosine": 0.07268379095785381,
+      "low_margin_enriched": true,
+      "batches_used": 154,
+      "max_batches_arg": 0,
+      "reasons": []
+    }
+  },
+  "all_active_gate0_requested": true
+}

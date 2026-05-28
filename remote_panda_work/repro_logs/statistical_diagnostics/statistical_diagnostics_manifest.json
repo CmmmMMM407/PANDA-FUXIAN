@@ -1,0 +1,14 @@
+{
+  "outputs": [
+    "paired_bootstrap_model_comparisons.csv",
+    "paired_match_coverage.csv",
+    "uncertainty_gate_significance_extract.csv",
+    "statistical_diagnostics_summary.md"
+  ],
+  "n_bootstrap": 2000,
+  "notes": [
+    "Positive deltas are PANDA minus baseline.",
+    "For ECE/Brier/HCE, negative deltas are better for PANDA.",
+    "Pairing uses dataset, seed, content, title, image, category, label and duplicate index."
+  ]
+}

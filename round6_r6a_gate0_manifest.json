@@ -1,0 +1,318 @@
+{
+  "protocol_version": "round6_r6a_gate0_frozen_v1",
+  "status": "FROZEN_GATE0_NONTRAINING",
+  "frozen_date": "2026-05-27",
+  "candidate_id": "R6-A",
+  "candidate_name": "Auxiliary Supervision Sensitivity and Alignment Probe",
+  "candidate_name_if_promoted": "Branch-to-Final Supervision Alignment for PANDA",
+  "candidate_positioning": "high_review_risk_probe_until_it_beats_static_aux_calibration_and_generic_controls",
+  "training_allowed": false,
+  "gate0_training_allowed": false,
+  "smoke_training_allowed": false,
+  "reason_training_not_allowed": "This file freezes the non-training Gate-0 protocol only. It does not grant permission to run seed42 smoke. Smoke requires all active Gate-0 candidates to finish, a Feasible-A/B status, and a separate FROZEN_SMOKE manifest.",
+  "repo": {
+    "remote_path": "/root/autodl-tmp/panda_repro/panda",
+    "branch_observed": "innovation/reliability-disagreement",
+    "working_tree_note": "Remote working tree contains uncommitted compatibility and experiment patches in main.py, run.py, model/PANDA.py, and utils/utils.py; protocol is based on the observed live working tree, not only commit 03e4c00.",
+    "required_model_name": "FTmodel",
+    "default_model_name_warning": "main.py defaults to clean_vib; every PANDA run must explicitly pass --model_name FTmodel."
+  },
+  "stage_boundaries": {
+    "gate0_freeze": {
+      "purpose": "Freeze non-training checks, code-gap requirements, allowed artifacts, active candidate set, and promotion rules.",
+      "allowed_actions": [
+        "read existing train/val artifacts",
+        "audit source paths and tensor availability",
+        "design minimal R6-A code changes and runner outputs",
+        "run non-training syntax/import/interface checks after code is edited",
+        "write notes and manifests"
+      ],
+      "forbidden_actions": [
+        "train any R6-A variant",
+        "create smoke checkpoints",
+        "export or inspect test split",
+        "choose primary variant from stdout-only metrics"
+      ]
+    },
+    "smoke_after_gate0": {
+      "blocked_until": [
+        "active_gate0_set reaches All-Active-Gate0-Done",
+        "R6-A status is Feasible-A or Feasible-B",
+        "R6-A implementation gap checks pass",
+        "round6_r6a_smoke_manifest.json is created with status FROZEN_SMOKE",
+        "the smoke manifest repeats train/val-only and no-test constraints"
+      ],
+      "planned_but_not_authorized": true
+    }
+  },
+  "active_gate0_set": [
+    "R6-A",
+    "R6-B",
+    "R6-C",
+    "R6-D",
+    "R6-E",
+    "R6-F"
+  ],
+  "reserve_gate0_set": [
+    "R6-G",
+    "R6-H",
+    "R6-I",
+    "R6-J"
+  ],
+  "data_policy": {
+    "allowed_splits": [
+      "train",
+      "val"
+    ],
+    "forbidden_splits_before_three_seed_val_pass": [
+      "test"
+    ],
+    "test_split_exported": false,
+    "test_used_for_decision": false,
+    "test_may_be_used_only_for": "final confirmatory evaluation after all active candidates are gated, one primary config is selected by three-seed val, and a confirmatory-test manifest is frozen"
+  },
+  "allowed_artifacts": [
+    {
+      "path": "remote_panda_work/repro_logs/round5_r5a_smoke/seed42/round5_r5a_smoke_manifest.json",
+      "sha256": "9103cb7c79bb71f7203aea3d2dde617b91d5d651bd018a24ea22f2e4e1698f6f",
+      "split_scope": [
+        "train",
+        "val"
+      ],
+      "contains_test": false,
+      "purpose": "R5-A smoke protocol and variant inventory"
+    },
+    {
+      "path": "remote_panda_work/repro_logs/round5_r5a_smoke/seed42/r5a_decision_summary.json",
+      "sha256": "780e8f7485e3418024740bced61eb18637dde3c5a3d53a8f6e68abacbf776b18",
+      "split_scope": [
+        "val"
+      ],
+      "contains_test": false,
+      "purpose": "R5-A No-Go decision and best-control relationship"
+    },
+    {
+      "path": "remote_panda_work/repro_logs/round5_r5a_smoke/seed42/round5_r5a_smoke_summary.csv",
+      "sha256": "acc025f924a63c7d955f05ebaccac8449fdddc971b5a36106e6d68bb47a82d23",
+      "split_scope": [
+        "val"
+      ],
+      "contains_test": false,
+      "purpose": "R5-A variant metrics for aux-weight anchor and controls"
+    },
+    {
+      "path": "remote_panda_work/repro_logs/round5_r5a_smoke/seed42/round5_r5a_flip_audit_vs_deterministic_train.csv",
+      "sha256": "ff2fbd732fffc4038d48441178ab07dea68cd401dc7bbed7a833a4a318eb6ea7",
+      "split_scope": [
+        "val"
+      ],
+      "contains_test": false,
+      "purpose": "R5-A flip audit; confirms image_project net-negative and aux_weight_2p0 weak net-positive signal"
+    },
+    {
+      "path": "remote_panda_work/repro_logs/round5_r5a_smoke/seed42/round5_r5a_gradient_telemetry_compact.csv",
+      "sha256": "a6ce6208369c745efb5e405f199ff39d32243591c4a30fe9d75042bb4ab292d4",
+      "split_scope": [
+        "train"
+      ],
+      "contains_test": false,
+      "purpose": "Existing branch/final gradient telemetry for non-training R6-A feasibility analysis"
+    },
+    {
+      "path": "remote_panda_work/repro_logs/round5_branch_evidential_gate0/seed42/deep_analysis.md",
+      "sha256": "96ba4ba338d04cc566d9d948c19defac6b004219e545ce1d18951989425f6418",
+      "split_scope": [
+        "train",
+        "val"
+      ],
+      "contains_test": false,
+      "purpose": "Round 5 Gate-0 deep-review constraints and downgraded mechanism language"
+    },
+    {
+      "path": "remote_panda_work/repro_logs/round4_first_principle/common_frozen/round4_protocol_manifest.json",
+      "sha256": "c3bbd272321c72df77961b8a6f51f19145b45991242ff49675d9d564fef36f15",
+      "split_scope": [
+        "train",
+        "val"
+      ],
+      "contains_test": false,
+      "purpose": "Train/val-only frozen feature protocol precedent and no-test policy"
+    }
+  ],
+  "source_audit_facts": [
+    "OpenPrompt fields are generated by dataloaders but dropped by clipdata2gpu before PANDA.forward.",
+    "Current text/image/fusion expert gates use task_num=2 and forward hardcodes index 0; they are not 9-domain experts.",
+    "PAD/GNS uses hard top-k source indices; DCA is late static prompt-to-prompt bias.",
+    "Trainer.test reports final metrics only; branch/flip/selector diagnostics require dedicated export tools.",
+    "R5-A image projection is No-Go; aux_weight_2p0 is only a candidate signal and control anchor.",
+    "Current code supports only global --aux_loss_weight for R6-A-like behavior.",
+    "R6-A branch-specific weights, aux schedules, detached/no-feature-update controls, random aux labels, and shuffled branch-label mapping are not yet implemented."
+  ],
+  "implementation_gap_checks": {
+    "current_direct_support": [
+      "global aux_loss_weight CLI and Trainer loss path",
+      "text/image/fusion auxiliary BCE computation",
+      "R5-A gradient telemetry and generic PCGrad/CAGrad/random-sign controls as references"
+    ],
+    "required_before_smoke_manifest": [
+      "add CLI/config/run/Trainer pass-through for branch-specific aux weights",
+      "add aux schedule mode and epoch/step schedule computation",
+      "add detached/no-feature-update aux control with explicit semantics",
+      "add train-only random aux label and shuffled branch-label mapping controls",
+      "add R6-A runner and summarizer that write manifest, notes, per-variant metrics JSON/CSV, flip audit, telemetry compact, and decision JSON",
+      "run py_compile/import/argparse sanity checks for all new R6-A CLI flags"
+    ],
+    "not_acceptable_substitutions": [
+      "do not use R3 regret shuffled mode as R6-A shuffled aux label control",
+      "do not use r5a_grad_mode=random_sign as random aux label control",
+      "do not treat aux_weight_2p0 as a primary method variant"
+    ]
+  },
+  "r6a_variant_taxonomy_for_future_smoke": {
+    "control_family": [
+      "deterministic_train_l0",
+      "same_budget_noop_l0",
+      "static_aux_weight_sweep_0p0_0p5_1p0_1p5_2p0_3p0",
+      "static_aux_weight_2p0_anchor_control",
+      "random_aux_labels",
+      "shuffled_branch_label_mapping",
+      "detached_aux_no_feature_update",
+      "generic_pcgrad",
+      "generic_cagrad",
+      "gradnorm_or_dwa",
+      "random_sign_gradient_control",
+      "final_only_longer_epoch"
+    ],
+    "primary_family": [
+      "r6a_late_aux_ramp_0p5_to_2p0",
+      "r6a_warm_aux_ramp_2p0_to_1p0",
+      "r6a_branch_specific_aux",
+      "r6a_final_aligned_aux_gate",
+      "r6a_final_branch_consistency",
+      "r6a_low_margin_gated_aux"
+    ],
+    "primary_family_rule": "A future primary must be a schedule, branch-specific, final-aligned, or consistency mechanism and must beat best static aux/control. static_aux_weight_2p0 is never a primary."
+  },
+  "required_future_smoke_budget_if_authorized": {
+    "dataset": "weibo21",
+    "seed": 42,
+    "model_name": "FTmodel",
+    "selector_mode": "deterministic_train",
+    "batchsize": 32,
+    "lr": 0.0001,
+    "epoch": 5,
+    "early_stop": 6,
+    "num_workers": 0,
+    "skip_final_test": true
+  },
+  "required_metrics_for_future_smoke": {
+    "final": [
+      "macro_f1",
+      "accuracy",
+      "auc",
+      "ece",
+      "nll_or_log_loss",
+      "brier",
+      "high_conf_error_rate"
+    ],
+    "branch": [
+      "text_macro_f1",
+      "image_macro_f1",
+      "fusion_macro_f1",
+      "text_ece",
+      "image_ece",
+      "fusion_ece",
+      "branch_final_gap",
+      "branch_disagreement",
+      "fusion_uncertainty"
+    ],
+    "flip_audit": [
+      "wrong_to_correct",
+      "correct_to_wrong",
+      "high_conf_correct_to_wrong",
+      "changed_count"
+    ],
+    "bins": [
+      "low_margin",
+      "weak_domain",
+      "high_disagreement",
+      "high_confidence_correct"
+    ],
+    "control_boundary": [
+      "best_primary",
+      "best_static_aux",
+      "best_control",
+      "best_random",
+      "best_shuffled",
+      "primary_control_margin"
+    ],
+    "cost": [
+      "wall_time",
+      "gpu",
+      "peak_memory",
+      "epoch_to_best",
+      "checkpoint_path",
+      "log_path"
+    ]
+  },
+  "go_rule": {
+    "feasible_a": [
+      "primary val Macro-F1 >= deterministic_train_l0 + 0.003",
+      "primary val accuracy >= deterministic_train_l0 + 0.003",
+      "primary beats best static aux sweep and aux_weight_2p0 anchor on Macro-F1 and accuracy",
+      "primary beats random/shuffled/detached/same-budget controls",
+      "wrong_to_correct > correct_to_wrong",
+      "at least two support metrics among ECE/Brier/HCE/weak-domain do not degrade"
+    ],
+    "feasible_b": [
+      "final Macro-F1 and accuracy do not drop below deterministic_train_l0",
+      "mechanism signal exists, but improvement is below +0.003 or control moat is incomplete",
+      "candidate may be retained only as diagnostic, ablation, or second-stage fallback"
+    ],
+    "diagnostic_only": [
+      "static aux sweep is best",
+      "only calibration or telemetry improves",
+      "review-risk language must be downgraded to auxiliary-supervision sensitivity"
+    ]
+  },
+  "no_go_rule": [
+    "primary below deterministic_train_l0 on final Macro-F1 or accuracy",
+    "primary not above best static aux/control variant",
+    "primary not above aux_weight_2p0 anchor",
+    "only calibration or conflict telemetry improves",
+    "correct_to_wrong >= wrong_to_correct",
+    "random aux, shuffled branch labels, detached aux, or same-budget controls match the gain",
+    "any later seed validation falls below deterministic after promotion"
+  ],
+  "blocked_rule": [
+    "If required CLI flags, code paths, tensors, summaries, or allowed artifacts are missing, mark R6-A Blocked.",
+    "Blocked means do not train, record the missing path or tensor, and switch to the next active candidate Gate-0.",
+    "Do not paper over Blocked status by using R3/R5 controls as substitutes for R6-A mechanisms."
+  ],
+  "checkpoint_lifecycle": {
+    "gate0_nontraining": "no checkpoint",
+    "smoke_if_separately_frozen": "param_model/round6_r6a_smoke/<variant>",
+    "keep_until_decision": "smoke checkpoints may be kept only until r6a_decision_summary.json is written",
+    "cleanup_trigger": "No-Go decision written or R6-A demoted to diagnostic-only",
+    "cleanup_deadline": "within 24h of the decision",
+    "no_go_cleanup": "delete smoke checkpoints; keep manifest, notes, train/eval logs, summary csv/json/md, decision json, flip audit, telemetry compact, and per-variant eval metrics/csv",
+    "retention_exception_requires": "Primary-Candidate decision id after all active candidates are gated and deep-validated",
+    "public_sync_rule": "do not push checkpoints, raw datasets, credentials, or complete SSH connection strings to the public log repository"
+  },
+  "promotion_rule": [
+    "Protocol freeze is not smoke permission.",
+    "Run active_gate0_set candidates before any smoke training.",
+    "If R6-A is Blocked or No-Go, switch immediately to the next active candidate.",
+    "If R6-A is Feasible-A/B, mark it and continue Gate-0 for every other active candidate.",
+    "After All-Active-Gate0-Done, write a separate smoke manifest for selected Feasible candidates.",
+    "Only a FROZEN_SMOKE manifest may authorize seed42 5-epoch train/val-only smoke.",
+    "Only after all smoke runs finish may one candidate be selected for three-seed val.",
+    "Confirmatory test remains locked until three-seed val freezes the primary config."
+  ],
+  "blue_team_summary": {
+    "source_path_audit": "R6-A requires new CLI/config/run/Trainer parameters for branch weights, schedule, detach mode, and aux label controls; current code only supports global aux_loss_weight.",
+    "protocol_audit": "Gate-0 and smoke must be split; active candidates must be explicit; aux_weight_2p0 must be a control anchor, not primary.",
+    "runner_audit": "Future smoke must write manifest, notes, per-variant metrics JSON/CSV, summary, decision, flip audit, telemetry compact, and logs; stdout-only metrics are invalid.",
+    "review_audit": "R6-A is high review-risk as ordinary aux loss weighting unless it beats static sweep, calibration, stacking, detached, random/shuffled, same-budget, and generic gradient controls."
+  }
+}

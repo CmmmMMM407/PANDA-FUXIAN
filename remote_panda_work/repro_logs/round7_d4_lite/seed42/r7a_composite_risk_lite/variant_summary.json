@@ -1,0 +1,19 @@
+{
+  "variant": "r7a_composite_risk_lite",
+  "family": "R7-A",
+  "train_batches": 40,
+  "train_loss_first": 1.0052744150161743,
+  "train_loss_last": 0.567130982875824,
+  "train_loss_mean": 0.8787564918398857,
+  "metrics": {
+    "rows": 615,
+    "macro_f1": 0.7323293871866295,
+    "accuracy": 0.7398373983739838,
+    "auc": 0.8663670015864622,
+    "nll": 0.5230745906340756,
+    "ece": 0.06507919920169238,
+    "brier": 0.17379412990578716,
+    "high_conf_error_rate": 0.0,
+    "weak_domain_macro_f1": 0.6979166666666667
+  }
+}

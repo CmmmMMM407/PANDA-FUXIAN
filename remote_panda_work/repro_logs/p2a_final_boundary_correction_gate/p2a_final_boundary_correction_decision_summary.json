@@ -1,0 +1,47 @@
+{
+  "dataset": "weibo21",
+  "seed": 42,
+  "decision": "No-Go",
+  "test_file_exists_but_not_read": true,
+  "test_used_for_decision": false,
+  "train_path": "repro_logs/conflict_gate/extended_predictions_weibo21_seed42_train.csv",
+  "val_path": "repro_logs/conflict_gate/extended_predictions_weibo21_seed42_val.csv",
+  "baseline_variant": "original_final_score_threshold_0p5",
+  "baseline": {
+    "macro_f1": 0.9560859504132231,
+    "accuracy": 0.9560975609756097,
+    "auc": 0.9873823373876256,
+    "ece": 0.03489726617958571,
+    "brier": 0.0387069766720739,
+    "high_conf_error_rate": 0.026690391459074734,
+    "weak_domain_macro_f1": 0.930849478390462
+  },
+  "best_primary_variant": "final_plus_aux_reliability_domain",
+  "best_primary": {
+    "macro_f1": 0.9298408984185351,
+    "accuracy": 0.9300813008130081,
+    "auc": 0.9492332099418297,
+    "ece": 0.06123270847821739,
+    "brier": 0.06361359668307055,
+    "high_conf_error_rate": 0.06208053691275168,
+    "weak_domain_macro_f1": 0.8706031085000372,
+    "support_better_count": 0.0
+  },
+  "best_control_variant": "final_plus_random_features_seed1",
+  "best_control": {
+    "macro_f1": 0.9544511924159385,
+    "accuracy": 0.9544715447154472,
+    "auc": 0.9874246430460074,
+    "ece": 0.021731181381003127,
+    "brier": 0.03839216814743441,
+    "high_conf_error_rate": 0.022018348623853212,
+    "weak_domain_macro_f1": 0.9136904761904762,
+    "support_better_count": 4.0
+  },
+  "go_criteria": [
+    "val Macro-F1 and Accuracy do not fall below original final score",
+    "at least one primary metric improves by >=0.1pp",
+    "at least two support metrics improve",
+    "random/shuffled/domain/calibration controls do not match or exceed the primary candidate"
+  ]
+}

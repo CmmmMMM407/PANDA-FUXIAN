@@ -1,0 +1,49 @@
+{
+  "dataset": "weibo21",
+  "seed": 42,
+  "epochs": 5,
+  "decision": "No-Go",
+  "test_file_exists_but_not_read": true,
+  "test_used_for_decision": false,
+  "baseline": {
+    "macro_f1": 0.9560859504132231,
+    "accuracy": 0.9560975609756097,
+    "auc": 0.9873823373876256,
+    "ece": 0.025949349838563875,
+    "brier": 0.0387069766720739,
+    "high_conf_error_rate": 0.026690391459074734,
+    "weak_domain_macro_f1": 0.930849478390462
+  },
+  "primary_variant": "true_domain_expert_final_aux_residual",
+  "primary": {
+    "macro_f1": 0.9512090632140137,
+    "accuracy": 0.9512195121951219,
+    "auc": 0.9873400317292438,
+    "ece": 0.02793717490948313,
+    "brier": 0.04022838197061492,
+    "high_conf_error_rate": 0.02491103202846975,
+    "weak_domain_macro_f1": 0.9222693768148313,
+    "support_better_count": 1.0,
+    "param_count": 729.0,
+    "adapter_delta_abs_mean": 0.3631524443626404
+  },
+  "best_control_variant": "random_route_domain_expert_seed2",
+  "best_control": {
+    "macro_f1": 0.9577145214521452,
+    "accuracy": 0.9577235772357724,
+    "auc": 0.9874563722897938,
+    "ece": 0.030344672997792567,
+    "brier": 0.03903567053507366,
+    "high_conf_error_rate": 0.02857142857142857,
+    "weak_domain_macro_f1": 0.9394346237040352,
+    "support_better_count": 2.0,
+    "param_count": 729.0,
+    "adapter_delta_abs_mean": 0.3302961587905884
+  },
+  "go_criteria": [
+    "true-domain expert val Macro-F1 and Accuracy do not fall below original final score",
+    "at least one primary metric improves by >=0.1pp",
+    "at least two support metrics improve",
+    "shared, parameter-matched, domain-bias, random-feature, sample-shuffled, and random-route controls do not match or exceed the true-domain expert"
+  ]
+}

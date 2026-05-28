@@ -1,0 +1,18 @@
+{
+  "rows": 615,
+  "macro_f1": 0.9299360694784086,
+  "accuracy": 0.9300813008130081,
+  "auc": 0.9800105764145955,
+  "brier": 0.05668851177015188,
+  "ece": 0.029194761881920984,
+  "high_conf_error_rate": 0.030894308943089432,
+  "dataset": "weibo21",
+  "seed": 42,
+  "split": "val",
+  "selector_mode": "reliability",
+  "reliability_signal": "fusion",
+  "reliability_lambda": 1.0,
+  "variant_tag": "reliability_fusion_lambda1p0",
+  "checkpoint": "/root/autodl-tmp/panda_repro/panda/repro_logs/innovation_training_eval_ckpts/weibo21_seed42_fusion_l1p0_epoch5/weibo21_seed42_parameter_panda.pkl",
+  "reliability_stats_count": 4926.0
+}

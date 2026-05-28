@@ -1,0 +1,19 @@
+{
+  "variant": "deterministic_lite",
+  "family": "baseline",
+  "train_batches": 40,
+  "train_loss_first": 0.989104151725769,
+  "train_loss_last": 0.6078928112983704,
+  "train_loss_mean": 0.8737754181027413,
+  "metrics": {
+    "rows": 615,
+    "macro_f1": 0.6081640922049744,
+    "accuracy": 0.6471544715447154,
+    "auc": 0.8310206240084611,
+    "nll": 0.6048502535426659,
+    "ece": 0.08008607485430026,
+    "brier": 0.2116194639366036,
+    "high_conf_error_rate": 0.0,
+    "weak_domain_macro_f1": 0.5993421052631579
+  }
+}

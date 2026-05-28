@@ -1,0 +1,46 @@
+{
+  "repo": "/root/autodl-tmp/panda_repro/DAMMFND",
+  "commit": "ff73ba6cc4bd923c21fc13899018169e41fcf010",
+  "data_files": {
+    "data/train_2_domain.csv": true,
+    "data/val_2_domain.csv": true,
+    "data/test_2_domain.csv": true,
+    "Weibo_21/train_2_domain.xlsx": true,
+    "Weibo_21/val_2_domain.xlsx": true,
+    "Weibo_21/test_2_domain.xlsx": true
+  },
+  "symlinks": {
+    "data/train_loader.pkl": "/root/autodl-tmp/panda_repro/panda/data/train_loader.pkl",
+    "data/val_loader.pkl": "/root/autodl-tmp/panda_repro/panda/data/val_loader.pkl",
+    "data/test_loader.pkl": "/root/autodl-tmp/panda_repro/panda/data/test_loader.pkl",
+    "data/train_clip_loader.pkl": "/root/autodl-tmp/panda_repro/panda/data/train_clip_loader.pkl",
+    "data/val_clip_loader.pkl": "/root/autodl-tmp/panda_repro/panda/data/val_clip_loader.pkl",
+    "data/test_clip_loader.pkl": "/root/autodl-tmp/panda_repro/panda/data/test_clip_loader.pkl",
+    "Weibo_21/train_loader.pkl": "/root/autodl-tmp/panda_repro/panda/Weibo_21/train_loader.pkl",
+    "Weibo_21/val_loader.pkl": "/root/autodl-tmp/panda_repro/panda/Weibo_21/val_loader.pkl",
+    "Weibo_21/test_loader.pkl": "/root/autodl-tmp/panda_repro/panda/Weibo_21/test_loader.pkl",
+    "Weibo_21/train_clip_loader.pkl": "/root/autodl-tmp/panda_repro/panda/Weibo_21/train_clip_loader.pkl",
+    "Weibo_21/val_clip_loader.pkl": "/root/autodl-tmp/panda_repro/panda/Weibo_21/val_clip_loader.pkl",
+    "Weibo_21/test_clip_loader.pkl": "/root/autodl-tmp/panda_repro/panda/Weibo_21/test_clip_loader.pkl",
+    "src/pretrained_model/chinese_roberta_wwm_base_ext_pytorch": "/root/autodl-tmp/panda_repro/panda/pretrained_model/chinese_roberta_wwm_base_ext_pytorch",
+    "src/mae_pretrain_vit_base.pth": "../../panda/mae_pretrain_vit_base.pth",
+    "src/clip_cn_vit-b-16.pt": "../../panda/clip_cn_vit-b-16.pt"
+  },
+  "exists": {
+    "data/train_loader.pkl": true,
+    "data/val_loader.pkl": true,
+    "data/test_loader.pkl": true,
+    "data/train_clip_loader.pkl": true,
+    "data/val_clip_loader.pkl": true,
+    "data/test_clip_loader.pkl": true,
+    "Weibo_21/train_loader.pkl": true,
+    "Weibo_21/val_loader.pkl": true,
+    "Weibo_21/test_loader.pkl": true,
+    "Weibo_21/train_clip_loader.pkl": true,
+    "Weibo_21/val_clip_loader.pkl": true,
+    "Weibo_21/test_clip_loader.pkl": true,
+    "src/pretrained_model/chinese_roberta_wwm_base_ext_pytorch": true,
+    "src/mae_pretrain_vit_base.pth": true,
+    "src/clip_cn_vit-b-16.pt": true
+  }
+}

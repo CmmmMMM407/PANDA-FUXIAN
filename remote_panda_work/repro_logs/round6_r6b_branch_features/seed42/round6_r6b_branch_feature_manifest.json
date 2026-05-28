@@ -1,0 +1,59 @@
+{
+  "task": "round6_r6b_branch_feature_train_val_export",
+  "status": "COMPLETED",
+  "datasets": [
+    "weibo21"
+  ],
+  "seeds": [
+    42
+  ],
+  "splits": [
+    "train",
+    "val"
+  ],
+  "allowed_splits": [
+    "train",
+    "val"
+  ],
+  "test_split_exported": false,
+  "test_used_for_decision": false,
+  "training_allowed": false,
+  "feature_arrays": [
+    "h_text",
+    "h_image",
+    "h_fusion",
+    "h_di",
+    "h_collab",
+    "h_final"
+  ],
+  "outputs": [
+    {
+      "dataset": "weibo21",
+      "seed": 42,
+      "split": "train",
+      "metadata_csv": "/root/autodl-tmp/panda_repro/panda/repro_logs/round6_r6b_branch_features/seed42/round6_r6b_branch_metadata_weibo21_seed42_train.csv",
+      "feature_npz": "/root/autodl-tmp/panda_repro/panda/repro_logs/round6_r6b_branch_features/seed42/round6_r6b_branch_features_weibo21_seed42_train.npz",
+      "anchor_direct_verification": [
+        {
+          "batch_idx": 0,
+          "direct_score_vs_recomputed_max_abs_diff": 0.0,
+          "h_di_sum_finite": true
+        }
+      ]
+    },
+    {
+      "dataset": "weibo21",
+      "seed": 42,
+      "split": "val",
+      "metadata_csv": "/root/autodl-tmp/panda_repro/panda/repro_logs/round6_r6b_branch_features/seed42/round6_r6b_branch_metadata_weibo21_seed42_val.csv",
+      "feature_npz": "/root/autodl-tmp/panda_repro/panda/repro_logs/round6_r6b_branch_features/seed42/round6_r6b_branch_features_weibo21_seed42_val.npz",
+      "anchor_direct_verification": [
+        {
+          "batch_idx": 0,
+          "direct_score_vs_recomputed_max_abs_diff": 0.0,
+          "h_di_sum_finite": true
+        }
+      ]
+    }
+  ]
+}

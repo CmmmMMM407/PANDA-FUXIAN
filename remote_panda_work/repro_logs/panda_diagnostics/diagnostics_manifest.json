@@ -1,0 +1,56 @@
+{
+  "inputs": {
+    "prediction_dir": "repro_logs",
+    "gate_dir": "repro_logs/conflict_gate",
+    "datasets": [
+      "weibo21",
+      "weibo"
+    ],
+    "seeds": [
+      42,
+      2024,
+      2026
+    ],
+    "high_conf_threshold": 0.9,
+    "near_threshold_width": 0.1,
+    "ece_bins": 15
+  },
+  "outputs": [
+    "domain_to_neighbor_frequency.csv",
+    "gate_signal_significance.csv",
+    "high_confidence_errors.csv",
+    "high_confidence_errors_extended.csv",
+    "overall_metrics_by_seed.csv",
+    "overall_metrics_summary.csv",
+    "pad_margin_by_domain.csv",
+    "per_domain_metrics_by_seed.csv",
+    "per_domain_metrics_summary.csv",
+    "reliability_by_seed.csv",
+    "reliability_summary.csv",
+    "repeated_eval_variance_diagnostics.csv",
+    "repeated_selection_frequency_by_domain.csv",
+    "selected_lambda_selector_summary.csv",
+    "selector_behavior_summary.csv",
+    "panda_reproduced_test_predictions_merged.csv",
+    "per_domain_macro_f1.svg",
+    "reliability_brier.svg",
+    "selector_jaccard_change.svg",
+    "domain_neighbor_heatmap_weibo_test_deterministic_topk.svg",
+    "domain_neighbor_heatmap_weibo_test_selected_gumbel.svg",
+    "domain_neighbor_heatmap_weibo_val_deterministic_topk.svg",
+    "domain_neighbor_heatmap_weibo_val_selected_gumbel.svg",
+    "domain_neighbor_heatmap_weibo21_test_deterministic_topk.svg",
+    "domain_neighbor_heatmap_weibo21_test_selected_gumbel.svg",
+    "domain_neighbor_heatmap_weibo21_val_deterministic_topk.svg",
+    "domain_neighbor_heatmap_weibo21_val_selected_gumbel.svg",
+    "reliability_disagreement_conclusion.md",
+    "diagnostics_manifest.json",
+    "diagnostics_summary.json"
+  ],
+  "notes": [
+    "Per-domain and reliability diagnostics are computed from reproduced PANDA test predictions.",
+    "Repeated-eval diagnostics use neighbor_selection_diagnostics.csv when extended prediction CSVs are not present locally.",
+    "Domain-to-neighbor heatmaps and extended high-confidence error tables are generated when extended prediction CSVs are present.",
+    "Test confirmatory gate rows are summarized but not used to choose weights, weak domains, lambda, or thresholds."
+  ]
+}

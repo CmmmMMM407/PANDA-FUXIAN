@@ -1,0 +1,44 @@
+{
+  "candidate_id": "R6-J",
+  "gate": "differentiable_nonself_source_mixture_reserve_audit",
+  "status": "No-Go",
+  "training_allowed": false,
+  "test_used_for_decision": false,
+  "test_split_exported": false,
+  "best_existing_regret_val_variant": "regret_soft_adapter_neg_shuffled_l0p03",
+  "best_existing_regret_val_macro_f1": 0.9446509116320437,
+  "p2d_best_primary_macro_f1": 0.951216287678477,
+  "p2d_baseline_macro_f1": 0.9560859504132231,
+  "p2d_best_primary_accuracy": 0.9512195121951219,
+  "p2d_baseline_accuracy": 0.9560975609756097,
+  "dca_top2_val_ce": 0.15778331337186874,
+  "dca_shuffled_val_ce": 0.1568494839919968,
+  "reasons": [
+    "existing_r3_soft_source_router_collapsed_to_self_domain",
+    "source_utility_residual_offline_gate_below_anchor",
+    "pad_top2_source_view_not_cleanly_better_than_shuffled_control",
+    "reopening_source_mixture_requires_new_protocol_not_current_smoke"
+  ],
+  "evidence_notes": [
+    "R3 mechanism notes report r3_effective_source_num_mean≈1.000006 and self_top1_ratio=1.0.",
+    "P2-D best source residual F1/Acc 0.951216/0.951220 below anchor 0.956086/0.956098.",
+    "DCA/source view PAD top2 CE 0.157783 vs shuffled CE 0.156849."
+  ],
+  "input_evidence": {
+    "r3_go_nogo_decision": {
+      "path": "/root/autodl-tmp/panda_repro/panda/repro_logs/r3_panda/gate_seed42_eval/r3_go_nogo_decision_summary.json",
+      "exists": true,
+      "sha256": "162dd322e8bb81dd22d4dc201a0983011eb5fb124d4de6e4b6510d0a068adfef"
+    },
+    "p2d_source_utility_summary": {
+      "path": "/root/autodl-tmp/panda_repro/panda/repro_logs/p2d_source_utility_offline_gate/p2d_source_utility_offline_summary.json",
+      "exists": true,
+      "sha256": "b4610904b4eab66d0b1d5eca504ea1a6e888c9b08dc5287ea373b58d651f201b"
+    },
+    "dca_source_view_decision": {
+      "path": "/root/autodl-tmp/panda_repro/panda/repro_logs/dca_source_view_gate/dca_source_view_decision_summary.json",
+      "exists": true,
+      "sha256": "9827f24f5344d3cb76dc72582983f5a28bea27b24e2a86fe83046d09a9b34bc2"
+    }
+  }
+}

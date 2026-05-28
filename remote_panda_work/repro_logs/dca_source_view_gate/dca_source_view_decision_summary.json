@@ -1,0 +1,207 @@
+{
+  "dataset": "weibo21",
+  "seed": 42,
+  "splits_exported": [
+    "train",
+    "val"
+  ],
+  "test_split_exported": false,
+  "anchor_direct_max_abs_diff_train": 0.0,
+  "anchor_direct_max_abs_diff_val": 0.0,
+  "train_gate_checks": {
+    "dca_removal_changes_logits": true,
+    "mean_prompt_changes_logits": true,
+    "forced_top2_changes_logits": true,
+    "top2_not_equivalent_to_random_absdiff": true,
+    "top2_ce_not_worse_than_random": false,
+    "top2_ce_not_worse_than_bottom2": false,
+    "top2_ce_not_worse_than_shuffled": false,
+    "no_collab_abs_diff": 1.8819596318046283e-05,
+    "no_collab_jsd": 2.699409872674951e-07,
+    "top2_abs_diff": 1.79498176353609e-05,
+    "top2_jsd": 2.5652375204604924e-07,
+    "top2_ce": 0.00025812417777966136,
+    "bottom2_ce": 0.0002466201005506871,
+    "shuffled_ce": 0.00025625068824541706,
+    "random_abs_diff_mean": 2.9038045191449397e-05,
+    "random_ce_mean": 0.00024700633185441046,
+    "p0b_preliminary_pass": false
+  },
+  "val_gate_checks": {
+    "dca_removal_changes_logits": true,
+    "mean_prompt_changes_logits": true,
+    "forced_top2_changes_logits": true,
+    "top2_not_equivalent_to_random_absdiff": true,
+    "top2_ce_not_worse_than_random": true,
+    "top2_ce_not_worse_than_bottom2": true,
+    "top2_ce_not_worse_than_shuffled": false,
+    "no_collab_abs_diff": 0.0010437633465390326,
+    "no_collab_jsd": 1.078696711885287e-05,
+    "top2_abs_diff": 0.0013182222170857634,
+    "top2_jsd": 1.4239589238460727e-05,
+    "top2_ce": 0.15778331337186874,
+    "bottom2_ce": 0.158167083670277,
+    "shuffled_ce": 0.1568494839919968,
+    "random_abs_diff_mean": 0.0016959525036658759,
+    "random_ce_mean": 0.15864899531485277,
+    "p0b_preliminary_pass": false
+  },
+  "selected_view_metrics": {
+    "train": {
+      "anchor_deterministic_dca": {
+        "ce": 0.00026026858336784537,
+        "abs_diff": 0.0,
+        "jsd": 0.0,
+        "flip": 0.0,
+        "h_collab_shift": 0.0,
+        "h_collab_cosine": 1.0000000615890463
+      },
+      "no_collab_zero": {
+        "ce": 0.0002505744391960444,
+        "abs_diff": 1.8819596318046283e-05,
+        "jsd": 2.699409872674951e-07,
+        "flip": 0.0,
+        "h_collab_shift": 0.7345028198980191,
+        "h_collab_cosine": 0.0
+      },
+      "mean_all_domain_prompts": {
+        "ce": 0.0002480278881379624,
+        "abs_diff": 2.0207945441459698e-05,
+        "jsd": 3.0041451744855985e-07,
+        "flip": 0.0,
+        "h_collab_shift": 0.6237399818763664,
+        "h_collab_cosine": 0.5291589319439763
+      },
+      "forced_pad_top2": {
+        "ce": 0.00025812417777966136,
+        "abs_diff": 1.79498176353609e-05,
+        "jsd": 2.5652375204604924e-07,
+        "flip": 0.0,
+        "h_collab_shift": 0.6869898860138991,
+        "h_collab_cosine": 0.5686575347906295
+      },
+      "forced_pad_bottom2": {
+        "ce": 0.0002466201005506871,
+        "abs_diff": 3.3259620179124745e-05,
+        "jsd": 7.603965303152115e-07,
+        "flip": 0.0,
+        "h_collab_shift": 1.0004617975971053,
+        "h_collab_cosine": 0.10835044016328785
+      },
+      "forced_shuffled_pad_top2": {
+        "ce": 0.00025625068824541706,
+        "abs_diff": 2.1160868487478322e-05,
+        "jsd": 3.860863728379275e-07,
+        "flip": 0.0,
+        "h_collab_shift": 0.7193236414901232,
+        "h_collab_cosine": 0.5211527512253383
+      },
+      "forced_random_pair_seed1": {
+        "ce": 0.0002470045898887165,
+        "abs_diff": 2.9941800190167806e-05,
+        "jsd": 6.536286379555641e-07,
+        "flip": 0.0,
+        "h_collab_shift": 0.9100160032474457,
+        "h_collab_cosine": 0.2206861674314848
+      },
+      "forced_random_pair_seed2": {
+        "ce": 0.00024680021434689747,
+        "abs_diff": 2.811524236800797e-05,
+        "jsd": 6.056319053847478e-07,
+        "flip": 0.0,
+        "h_collab_shift": 0.9151844977243518,
+        "h_collab_cosine": 0.21356024391673334
+      },
+      "forced_random_pair_seed3": {
+        "ce": 0.0002472141913276174,
+        "abs_diff": 2.9057093016172418e-05,
+        "jsd": 6.253776397183566e-07,
+        "flip": 0.0,
+        "h_collab_shift": 0.9152194054640748,
+        "h_collab_cosine": 0.21435936528922203
+      }
+    },
+    "val": {
+      "anchor_deterministic_dca": {
+        "ce": 0.15835834386303682,
+        "abs_diff": 0.0,
+        "jsd": 0.0,
+        "flip": 0.0,
+        "h_collab_shift": 0.0,
+        "h_collab_cosine": 1.0000000639659603
+      },
+      "no_collab_zero": {
+        "ce": 0.15784543714357416,
+        "abs_diff": 0.0010437633465390326,
+        "jsd": 1.078696711885287e-05,
+        "flip": 0.0,
+        "h_collab_shift": 0.7315218745208368,
+        "h_collab_cosine": 0.0
+      },
+      "mean_all_domain_prompts": {
+        "ce": 0.15801283351243242,
+        "abs_diff": 0.0010617746693075854,
+        "jsd": 1.1090945718130415e-05,
+        "flip": 0.0,
+        "h_collab_shift": 0.6242546603931645,
+        "h_collab_cosine": 0.5231570955699052
+      },
+      "forced_pad_top2": {
+        "ce": 0.15778331337186874,
+        "abs_diff": 0.0013182222170857634,
+        "jsd": 1.4239589238460727e-05,
+        "flip": 0.0016260162601626016,
+        "h_collab_shift": 0.6881601476087803,
+        "h_collab_cosine": 0.5642624976189156
+      },
+      "forced_pad_bottom2": {
+        "ce": 0.158167083670277,
+        "abs_diff": 0.002446932070870574,
+        "jsd": 5.681334092298596e-05,
+        "flip": 0.0,
+        "h_collab_shift": 1.003926895401342,
+        "h_collab_cosine": 0.10321739978664289
+      },
+      "forced_shuffled_pad_top2": {
+        "ce": 0.1568494839919968,
+        "abs_diff": 0.001528755821460081,
+        "jsd": 2.0034898825899195e-05,
+        "flip": 0.0032520325203252032,
+        "h_collab_shift": 0.7287859256674604,
+        "h_collab_cosine": 0.5037179939145965
+      },
+      "forced_random_pair_seed1": {
+        "ce": 0.15894671432754626,
+        "abs_diff": 0.001706845809720965,
+        "jsd": 2.7035949865931083e-05,
+        "flip": 0.0,
+        "h_collab_shift": 0.9153731302517216,
+        "h_collab_cosine": 0.21136712813106312
+      },
+      "forced_random_pair_seed2": {
+        "ce": 0.15829171188366833,
+        "abs_diff": 0.0017061137406165108,
+        "jsd": 2.8572481422157663e-05,
+        "flip": 0.0,
+        "h_collab_shift": 0.9210140347480774,
+        "h_collab_cosine": 0.20178086566133047
+      },
+      "forced_random_pair_seed3": {
+        "ce": 0.15870855973334372,
+        "abs_diff": 0.0016748979606601517,
+        "jsd": 2.6486562539851378e-05,
+        "flip": 0.0,
+        "h_collab_shift": 0.9226782716386687,
+        "h_collab_cosine": 0.20060163124812752
+      }
+    }
+  },
+  "decision": "No-Go for DCA boundary-strengthening training under current source-view evidence",
+  "reasoning": [
+    "DCA/no-collab ablation changes final logits, but the effect is weak and not uniquely tied to PAD source knowledge.",
+    "On train, forced PAD top2 CE is worse than bottom2/random and shuffled; on val, shuffled PAD top2 CE is lower than PAD top2.",
+    "Random source views produce larger mean absolute score perturbation than PAD top2 on both train and val.",
+    "Thus h_collab/source-prompt perturbations exist, but PAD-ranked source-domain knowledge does not cleanly explain final-boundary behavior."
+  ],
+  "recommended_next_step": "Do not start DCA boundary-strengthening training. Continue the candidate race with feature-aware PAD/prototype refinement or domain-gate ablation as frozen train/val gates; retain DCA results as boundary-condition evidence."
+}

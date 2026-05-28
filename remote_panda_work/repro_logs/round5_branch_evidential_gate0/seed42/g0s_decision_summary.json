@@ -1,0 +1,11 @@
+{
+  "status": "No-Go",
+  "forced_pad_top2_ce": 0.1577833133718687,
+  "forced_shuffled_pad_top2_ce": 0.1568494839919968,
+  "forced_random_pair_ce_mean": 0.15864899531485274,
+  "forced_pad_bottom2_ce": 0.158167083670277,
+  "mean_all_domain_prompt_ce": 0.1580128335124324,
+  "reasons": [
+    "pad_top2_not_better_than_shuffled"
+  ]
+}

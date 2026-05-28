@@ -1,0 +1,115 @@
+{
+  "task": "round4_first_principle_boundary_rebuild_protocol",
+  "status": "frozen_before_gate",
+  "allowed_splits": [
+    "train",
+    "val"
+  ],
+  "forbidden_splits_before_three_seed_val_pass": [
+    "test"
+  ],
+  "test_split_exported": false,
+  "test_used_for_decision": false,
+  "common_feature_arrays": [
+    "h_di",
+    "h_collab",
+    "h_final"
+  ],
+  "metadata_allowed_for_primary_features": [
+    "final_logit",
+    "y_score",
+    "category_id",
+    "final_margin_abs"
+  ],
+  "metadata_exported_for_audit_not_primary_features": [
+    "p_text",
+    "p_image",
+    "p_fusion",
+    "text_logit",
+    "image_logit",
+    "fusion_logit",
+    "branch_disagreement",
+    "fusion_uncertainty",
+    "confidence_uncertainty",
+    "pad_top_s_margin",
+    "neighbor_logits",
+    "pad_similarity",
+    "anchor_source_ids"
+  ],
+  "metadata_for_targets_or_metrics_only": [
+    "y_true",
+    "y_pred"
+  ],
+  "forbidden_feature_columns": [
+    "y_true",
+    "y_pred",
+    "is_error",
+    "is_high_conf_error",
+    "content",
+    "post_text",
+    "image",
+    "post_id",
+    "image_id"
+  ],
+  "candidate_order": [
+    "R4-A class-conditional boundary geometry",
+    "R4-D error subspace / low-rank boundary correction",
+    "R4-C supervised sample-memory boundary diagnostic",
+    "R4-B domain shortcut / invariance audit"
+  ],
+  "promotion_rule": "Offline gates can only mark Feasible-A/B. A Primary-Candidate requires all Round 4 gates to finish, then a training-time endogenous mechanism and three-seed val confirmation.",
+  "control_moat": [
+    "original final score",
+    "final-only Platt/logistic calibration",
+    "final-representation linear/MLP control",
+    "domain-only prototype control",
+    "shuffled-label/prototype controls",
+    "same-parameter random feature controls",
+    "random/PCA subspace controls",
+    "plain kNN/class-prior memory controls"
+  ],
+  "go_no_go_rule": "A family is No-Go if its best primary is below original F1/Acc, is not above the best matched control, has negative flip audit, or has no low-margin/bin-localized gain.",
+  "manifest_source": {
+    "task": "round4_common_frozen_train_val_export",
+    "datasets": [
+      "weibo21"
+    ],
+    "seeds": [
+      42
+    ],
+    "splits": [
+      "train",
+      "val"
+    ],
+    "test_split_exported": false,
+    "test_used_for_decision": false,
+    "outputs": [
+      {
+        "dataset": "weibo21",
+        "seed": 42,
+        "split": "train",
+        "metadata_csv": "/root/autodl-tmp/panda_repro/panda/repro_logs/round4_first_principle/common_frozen/round4_common_metadata_weibo21_seed42_train.csv",
+        "feature_npz": "/root/autodl-tmp/panda_repro/panda/repro_logs/round4_first_principle/common_frozen/round4_common_features_weibo21_seed42_train.npz",
+        "anchor_direct_verification": [
+          {
+            "batch_idx": 0,
+            "max_abs_diff": 0.0
+          }
+        ]
+      },
+      {
+        "dataset": "weibo21",
+        "seed": 42,
+        "split": "val",
+        "metadata_csv": "/root/autodl-tmp/panda_repro/panda/repro_logs/round4_first_principle/common_frozen/round4_common_metadata_weibo21_seed42_val.csv",
+        "feature_npz": "/root/autodl-tmp/panda_repro/panda/repro_logs/round4_first_principle/common_frozen/round4_common_features_weibo21_seed42_val.npz",
+        "anchor_direct_verification": [
+          {
+            "batch_idx": 0,
+            "max_abs_diff": 0.0
+          }
+        ]
+      }
+    ]
+  }
+}

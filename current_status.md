@@ -1,136 +1,72 @@
 # 当前状态
 
-最后更新：2026-05-22
+最后更新：2026-05-28  
+完整旧版快照：`docs/archive/full_snapshots_20260528/root/current_status.md`
 
-## 当前阶段
+## 一句话结论
 
-阶段：Weibo-21 与 Weibo paper-aligned 三 seed 复现实验、主表整理、论文 reported baseline 对比和阶段报告均已完成。
+复现、baseline、诊断和 R2-R7 当前作用域方法验证已经闭环；当前没有 `Primary-Candidate`。下一步只推荐推进 R8 队列中有正向线索的方法，优先 R8-A 与 R8-B，并继续禁止 test 参与方法选择。
 
-当前目标是按需补充更多 seeds、deterministic eval 或可复现 baseline 实跑；若不补实验，本阶段已可进入论文写作。
+## 已完成
 
-## 当前假设
+- PANDA Weibo-21 / Weibo paper-aligned 三 seed 复现完成。
+- MMDFND / DAMMFND 两数据集三 seed reproduced baseline 完成。
+- per-domain、reliability、uncertainty、high-confidence error、selector stability、statistical diagnostics 完成。
+- CS-PANDA / CLIP 图文冲突强因果线降级；CLIP-only 信号弱，confidence-uncertainty 与 fusion/branch uncertainty 更能解释错误。
+- Reliability-aware selector / uncertainty stable-source 已经经过 seed-recheck，不稳定，不能写成正式方法。
+- R3、历史 R4、P0/P1、Round 2、Round 3 branch-boundary residual、Round 4 first-principle boundary rebuild、Round 5、Round 6 当前作用域均完成对应 gate 或 smoke。
+- Round 7 已完成 artifact audit、R7-A/B/C/D 的 D2/D3、D3.5 gradient sanity，以及 R7-A/R7-D D4-lite。
 
-1. 单张 RTX 4090 24GB 足够复现 PANDA 在 Weibo-21 和 Weibo 上的主实验。
-2. AutoDL 镜像使用 Python 3.10 + PyTorch 2.1.x + CUDA 12.1 最稳。
-3. 第一阶段应先跑 Weibo-21，且必须使用 paper-aligned 参数：batch size 32，lr 1e-4，epoch 50。
-4. 必须显式指定 `--model_name FTmodel`，否则默认跑到 `clean_vib`，不是 PANDA。
-5. 复现成败的主要风险不在算力，而在数据集获取、预训练权重准备、代码默认参数不一致、数据路径对齐和官方当前代码的兼容性问题。
+## 关键复现数字
 
-## 已确认事实
+| Dataset | Method | Macro-F1 | Accuracy | AUC |
+| --- | --- | ---: | ---: | ---: |
+| Weibo-21 | PANDA | 0.9474 +/- 0.0073 | 0.9474 +/- 0.0073 | 0.9879 +/- 0.0014 |
+| Weibo-21 | DAMMFND | 0.9436 +/- 0.0075 | 0.9436 +/- 0.0075 | 0.9839 +/- 0.0049 |
+| Weibo-21 | MMDFND | 0.9262 +/- 0.0147 | 0.9263 +/- 0.0147 | 0.9676 +/- 0.0114 |
+| Weibo | PANDA | 0.9415 +/- 0.0034 | 0.9415 +/- 0.0034 | 0.9866 +/- 0.0011 |
+| Weibo | DAMMFND | 0.9374 +/- 0.0028 | 0.9374 +/- 0.0028 | 0.9856 +/- 0.0012 |
+| Weibo | MMDFND | 0.9094 +/- 0.0243 | 0.9094 +/- 0.0243 | 0.9719 +/- 0.0089 |
 
-- PANDA 官方仓库：https://github.com/lu-wayne/panda
-- AutoDL 已配置本机 SSH 密钥别名：`ssh panda-autodl`。
-- 远端工作目录：`/root/autodl-tmp/panda_repro/panda`。
-- 远端 GPU：NVIDIA GeForce RTX 4090 24GB，driver 580.105.08。
-- 远端环境：Python 3.10.8，PyTorch 2.1.2+cu118，CUDA 11.8 可用。
-- 已启用 AutoDL 学术加速：`source /etc/network_turbo`。
-- PANDA 官方仓库已 clone，commit 为 `03e4c003e83480fe94ac52120522b34e4224f17b`。
-- MMDFND 参考仓库已 clone，commit 为 `a8a79b776845fc684d0269f5341235c0b1ea5c02`。
-- 依赖已安装；`cn_clip` 通过 OFA-Sys/Chinese-CLIP 官方仓库安装为 `cn-clip==1.5.1`。
-- `FTmodel` 构造函数 sanity 已命中官方阻断：`Trainer.__init__()` 不接受 `dataset_type`。
-- 已在远端打最小 code-compat patch：接收 `dataset_type`、修复共享专家列表 append、修复 `save_param_dir` 被 `os.makedirs()` 写成 `None`。
-- patch 证据保存在远端：`repro_logs/20260521_code_compat_patch.diff`。
-- mock 构造和真实权重构造均通过，PANDA 参数量记录为 514,266,705。
-- RoBERTa、MAE、CN-CLIP 权重已下载并生成 hash manifest：`repro_logs/20260521_weight_manifest.txt`。
-- MAE checkpoint sanity 通过：含 `model` key，150 个 tensor，关键 tensor 非零。
-- CN-CLIP blank/noise image sanity 通过：embedding finite，L2 距离约 8.194。
-- PANDA 依赖 MMDFND 的环境与数据准备方式。
-- PANDA 自带 requirements 中固定了 `transformers==4.31.0`、`pandas==1.4.2`、`numpy==1.23.2`、`openprompt==1.0.1`。
-- Python 3.11/3.12 可能和旧依赖不兼容，推荐 Python 3.10。
-- 2026-05-21 核验 PANDA 官方 main 分支 commit：`03e4c003e83480fe94ac52120522b34e4224f17b`。
-- 当前官方代码可能存在两个运行前阻断点：`run.py` 传入 `dataset_type` 但 `model/PANDA.py::Trainer.__init__` 不接收；`model/PANDA.py` 的共享专家列表可能在初始化前被 `.append()` 使用。
-- PANDA 的 Gumbel neighbor selector 在 forward 中带随机性，重复 forward sanity 不能简单要求 eval 模式 bitwise 一致。
-- RAMM 的论文代码链接目前 404，不作为可复现 baseline。
-- 本项目文件夹中已有 Word 规划文档：`PANDA复现实验规划与日志规范.docx`。
-- 本项目文件夹中已有官方代码审计记录：`official_code_audit.md`。
-- Weibo 数据集 `data.zip` 已上传到远端并解压为 `/root/autodl-tmp/panda_repro/panda/data/`。
-- 远端已建立软链接：`/root/autodl-tmp/panda_repro/panda/Weibo -> data`，对齐 PANDA `run.py` 的 Weibo 路径。
-- Weibo 数据校验通过：train/val/test 行数分别为 5415/843/1465，普通图片 pkl 与 CLIP 图片 pkl 第一维均一致。
-- Weibo dataloader sanity 和小 batch forward 通过：`remote_panda_work/repro_logs/20260521_weibo_dataloader_forward_sanity.log`。
-- Weibo-21 数据已上传到远端 `/root/autodl-tmp/panda_repro/panda/Weibo_21/`。
-- Weibo-21 当前包含 `train_datasets.xlsx`、`val_datasets.xlsx`、`test_datasets.xlsx`、`nonrumor_images/`、`rumor_images/`。
-- Weibo-21 图片命中率检查通过：train/val/test 缺图行数均为 0。
-- Weibo-21 已生成 `train_loader.pkl`、`val_loader.pkl`、`test_loader.pkl`、`train_clip_loader.pkl`、`val_clip_loader.pkl`、`test_clip_loader.pkl`。
-- Weibo-21 数据校验通过：train/val/test 行数分别为 4926/615/615，普通图片 pkl 与 CLIP 图片 pkl 第一维均一致。
-- Weibo-21 图片预处理时发现 1 张截断图片 `bd4ef405gw1ey8wovbkpzj20hs0hst9p.jpg`，但 xlsx 样本未依赖它作为命中图片，不影响当前 split 校验。
-- Weibo-21 dataloader sanity 通过：train/val/test batch 张量形状正常，图像 tensor finite。
-- Weibo-21 小 batch forward 通过：主输出、text/image/fusion 辅助输出、`loss_rec` 均 finite，主输出非全常数。
-- Gumbel/PANDA 随机性 sanity 通过：固定 seed 重复 forward 主输出 max diff 为 0；换 seed 后主输出和 neighbor selection 发生变化。
-- 正式训练首次尝试在 epoch 1 验证时命中官方兼容性阻断：`roc_auc_score(...).round(4).tolist()` 对 Python float 不兼容。
-- 已在远端打最小 metrics float code-compat patch：活动 `utils/utils.py::metrics` 中 `auc`、per-category precision/recall/fscore 改为 `round(float(...), 4)`；证据：`repro_logs/20260521_metrics_float_patch.diff`。
-- Weibo-21 seed 42 paper-aligned 首跑已完成：batch size 32，lr 1e-4，epoch 50，early_stop 6，实际 early stop 于 epoch 25 后触发。
-- Weibo-21 seed 42 最佳验证集出现在 epoch 19：Macro-F1 0.9560859504，Acc 0.9560975610，AUC 0.9874352195。
-- Weibo-21 seed 42 最终测试结果：Macro-F1 0.9544656456，Acc 0.9544715447，AUC 0.9885563194。
-- 已导出并独立重算 Weibo-21 seed 42 test 结果：`remote_panda_work/repro_logs/20260521_weibo21_seed42_test_metrics.json`，独立 AUC 0.9885986251，Macro-F1 0.9544656456，Acc 0.9544715447。
-- 已导出 Weibo-21 seed 42 predictions：`remote_panda_work/repro_logs/20260521_weibo21_seed42_test_predictions.csv`，共 615 条预测。
-- 首跑训练 stdout log 已同步：`remote_panda_work/logs/weibo21_panda_seed42_bs32_lr1e-4_rerun1.log`。
-- Weibo-21 seed 2024 已完成：最佳验证集出现在 epoch 14，Macro-F1 0.9463051203，Acc 0.9463414634，AUC 0.9852141724。
-- Weibo-21 seed 2024 最终测试结果：官方 log Macro-F1 0.9479607379，Acc 0.9479674797，AUC 0.9887149656；独立重算 AUC 0.9887466949，Macro-F1 0.9479607379，Acc 0.9479674797。
-- Weibo-21 seed 2026 已完成：最佳验证集出现在 epoch 11，Macro-F1 0.9430888290，Acc 0.9430894309，AUC 0.9841882602。
-- Weibo-21 seed 2026 最终测试结果：官方 log Macro-F1 0.9398272165，Acc 0.9398373984，AUC 0.9860602856；独立重算 AUC 0.9862506610，Macro-F1 0.9398272165，Acc 0.9398373984。
-- Weibo-21 三 seed 独立重算汇总：
-  - Macro-F1：0.9474178666 ± 0.0073342985 sample std。
-  - Acc：0.9474254743 ± 0.0073321134 sample std。
-  - AUC：0.9878653270 ± 0.0014003003 sample std。
-- Weibo-21 三 seed 汇总已保存：`remote_panda_work/repro_logs/20260521_weibo21_three_seed_summary.json` 和 `remote_panda_work/repro_logs/20260521_weibo21_three_seed_summary.csv`。
-- 已导出 Weibo-21 seed 2024/2026 predictions 和 metrics；本地证据位于 `remote_panda_work/repro_logs/`。
-- Weibo seed 42 已完成：最佳验证集出现在 epoch 12，Macro-F1 0.9451457574，Acc 0.9454329775，AUC 0.9824354778。
-- Weibo seed 42 最终测试结果：官方 log Macro-F1 0.9460606092，Acc 0.9460750853，AUC 0.9867426362；独立重算 AUC 0.9867687555，Macro-F1 0.9446950550，Acc 0.9447098976。
-- Weibo seed 2024 已完成：最佳验证集出现在 epoch 15，Macro-F1 0.9381392671，Acc 0.9383155397，AUC 0.9826676330。
-- Weibo seed 2024 最终测试结果：官方 log Macro-F1 0.9385662953，Acc 0.9385665529，AUC 0.9852575727；独立重算 AUC 0.9854012283，Macro-F1 0.9378829171，Acc 0.9378839590。
-- Weibo seed 2026 已完成：最佳验证集出现在 epoch 27，Macro-F1 0.9452906321，Acc 0.9454329775，AUC 0.9836981756。
-- Weibo seed 2026 最终测试结果：官方 log Macro-F1 0.9426614481，Acc 0.9426621160，AUC 0.9874954291；独立重算 AUC 0.9874870337，Macro-F1 0.9419785490，Acc 0.9419795222。
-- Weibo 三 seed 独立重算汇总：
-  - Macro-F1：0.9415188403 ± 0.0034292571 sample std。
-  - Acc：0.9415244596 ± 0.0034356471 sample std。
-  - AUC：0.9865523392 ± 0.0010596098 sample std。
-- Weibo 三 seed 汇总已保存：`remote_panda_work/repro_logs/20260521_weibo_three_seed_summary.json` 和 `remote_panda_work/repro_logs/20260521_weibo_three_seed_summary.csv`。
-- 实验日志、metrics、predictions、summary 和状态文档已同步到 GitHub 日志仓库 `CmmmMMM407/PANDA-FUXIAN`；最新 commit 以仓库 `main` 分支为准。
-- 2026-05-22 阶段报告 `final_reproduction_report.md` 和状态文档已同步到 GitHub 日志仓库，commit：`6783787`。
-- 已导出 Weibo seeds 42/2024/2026 predictions 和 metrics；本地证据位于 `remote_panda_work/repro_logs/`。
-- 远端 checkpoint 已按 seed 备份：
-  - `/root/autodl-tmp/panda_repro/panda/param_model/FTmodel/checkpoints_by_seed/weibo21_seed42_parameter_panda.pkl`
-  - `/root/autodl-tmp/panda_repro/panda/param_model/FTmodel/checkpoints_by_seed/weibo21_seed2024_parameter_panda.pkl`
-  - `/root/autodl-tmp/panda_repro/panda/param_model/FTmodel/checkpoints_by_seed/weibo21_seed2026_parameter_panda.pkl`
-  - `/root/autodl-tmp/panda_repro/panda/param_model/FTmodel/checkpoints_by_seed/weibo_seed42_parameter_panda.pkl`
-  - `/root/autodl-tmp/panda_repro/panda/param_model/FTmodel/checkpoints_by_seed/weibo_seed2024_parameter_panda.pkl`
-  - `/root/autodl-tmp/panda_repro/panda/param_model/FTmodel/checkpoints_by_seed/weibo_seed2026_parameter_panda.pkl`
+## 当前方法判断
 
-## 当前卡点
+### R6
 
-1. Weibo-21 与 Weibo 三 seed 均值均略低于 PANDA 论文报告的 F1/Acc，但 AUC 基本对齐；阶段报告已解释 seed 波动、官方代码兼容补丁和复现边界。
-2. Weibo 上本复现 PANDA 的 F1/Acc 与 DAMMFND reported 基本持平或略低，若论文需要更强结论，应实跑 DAMMFND/MMDFND 或补 deterministic eval。
-3. 当前使用了必要 code-compat patch，所有公开写作必须清楚区分 official commit、compat patch 和非算法性修改。
+R6-A seed42 D4 smoke 已完成，当前训练实现 No-Go。Best primary `r6a_late_aux_ramp_0p5_to_2p0` val F1/Acc 为 `0.938184/0.938211`，低于 static control `static_aux_weight_2p0_anchor_control` 的 `0.939837/0.939837`。
+
+R6-C 三 seed offline 复核不稳定；R6-D/G/H/J 已由旧 Blocked/Provisional 推进到当前作用域 direct/complementarity/frozen-response No-Go；R6-B/R6-E/R6-F/R6-I 当前 frozen/offline 变体也已 No-Go。R6 关闭的是当前作用域，不永久排除本质不同训练期机制。
+
+### R7
+
+R7-A 是唯一保留正向趋势的候选：composite risk 对 val error 有弱富集，D4-lite 中 `r7a_composite_risk_lite` F1/Acc/AUC 为 `0.732329/0.739837/0.866367`，优于 deterministic-lite、confidence-only、random risk、shuffled risk controls。限制是 D3 offline proxy 明显低于 original final，且 D3.5 显示 `risk_margin` 很像 CE/hard-sample reweighting，`risk_consistency` 与 CE 冲突。
+
+R7-D 当前 sample aux curriculum 被 static aux 2.0 打穿；R7-B/R7-C 只有 loss-path 或 representation-path 证据，不解锁正式 D4。
+
+这些都不能写成正式训练实现成功或失败。正式判断至少需要 D4 seed42 smoke；稳定性至少需要 D5 三 seed val。
 
 ## 下一步最高优先级
 
-1. 若继续补实验：补跑更多 seeds 或固定 Gumbel neighbor selection 做 deterministic eval。
-2. 若继续补 baseline：实跑 DAMMFND/MMDFND 官方代码，避免只引用 reported baseline。
-3. 若进入写作：基于 `final_reproduction_report.md` 扩展论文实验章节。
-4. 同步新增报告和状态文档到 GitHub 日志仓库。
+1. 冻结 R8-A / R7-A formal D4 manifest：只做 Weibo-21 seed42 train/val-only 5-epoch，强 controls 必须包括 deterministic、same-budget CE、static aux 2.0、focal loss、class-balanced CE、confidence-only risk、random risk、shuffled risk、risk-margin only、risk-consistency only、risk-margin + consistency。
+2. 把 `aux_weight_2p0` 从历史 control 独立登记为 R8-B：Static/Adaptive Auxiliary-Supervision Strength。必须打过 deterministic、random/shuffled labels、same-budget、generic gradient controls，不能事后包装成 R5-A/R6-A 成功。
+3. R8-C/R8-D 只在前两项未出路或资源允许时推进；R8-E 只能作为已有 primary 的 calibration/add-on。
 
-## 当前推荐下一跑命令
+## 不建议继续做
 
-```bash
-mkdir -p param_model/FTmodel logs
+- 不直接启动两数据集三 seed新方法主表。
+- 不用 test 选 risk、aux weight、margin threshold、teacher、memory、branch subset、lambda 或弱域定义。
+- 不继续沿旧 source、prompt、prototype、offline adapter、inference selector、clean reliability selector、R5-A image projection、R6-A 当前 aux rebalancing 续参。
+- 不把 R7 的 D3.5/D4-lite 写成正式 D4 结论。
 
-python main.py \
-  --dataset weibo21 \
-  --model_name FTmodel \
-  --gpu 0 \
-  --batchsize 32 \
-  --lr 1e-4 \
-  --epoch 50 \
-  --seed 42 \
-  --early_stop 6
-```
+## 证据位置
 
-当前不建议继续启动新训练，优先完成日志同步和结果写作。
+- Round 7：`remote_panda_work/repro_logs/round7_gate0/seed42/`、`remote_panda_work/repro_logs/round7_d35_gradient_sanity/seed42/`、`remote_panda_work/repro_logs/round7_d4_lite/seed42/`
+- Round 6：`remote_panda_work/repro_logs/round6_r6a_smoke/seed42/`、`remote_panda_work/repro_logs/round6_*`
+- Reproduced baselines：`remote_panda_work/repro_logs/reproduced_baseline_main_table/`
+- Reliability / diagnostics：`remote_panda_work/repro_logs/panda_diagnostics/`、`remote_panda_work/repro_logs/statistical_diagnostics/`
+- 完整历史文档：`docs/archive/`
 
-## 本文件维护规则
+## 维护规则
 
-- 只保留当前最重要状态，不写长篇流水账。
-- 每次实验后更新当前卡点和下一步。
-- 详细过程写入 `experiment_log.md`。
-- 每次实验后将新增日志、metrics、predictions、summary 和状态文档同步到 GitHub 日志仓库 `https://github.com/CmmmMMM407/PANDA-FUXIAN`。
-- 同步前确认不包含服务器密码、token、私钥、完整连接凭据、checkpoint、权重或原始数据集。
+- 本文件只保留当前最重要状态，不写流水账。
+- 详细实验过程写入 `experiment_log.md`，完整旧日志在 `docs/archive/full_snapshots_20260528/root/experiment_log.md`。
+- 每次实验后同步 `current_status.md`、`todo.md`、`experiment_log.md` 和新增日志摘要到 GitHub 日志仓库。

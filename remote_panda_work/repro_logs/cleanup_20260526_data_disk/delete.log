@@ -1,0 +1,68 @@
+## deletion started Tue May 26 23:06:11 CST 2026
+## df before
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/md0        200G  190G   11G  95% /root/autodl-tmp
+## deletion resumed Tue May 26 23:06:40 CST 2026
+## df before
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/md0        200G  190G   11G  95% /root/autodl-tmp
+DELETE_DIR 18G param_model/innovation
+DELETE_DIR 1.6G param_model/innovation_v2
+DELETE_DIR 54G param_model/innovation_v2_go_nogo
+DELETE_DIR 6.3G param_model/innovation_v2_seed_recheck
+DELETE_DIR 24G param_model/r3_panda_gate_seed42
+DELETE_DIR 16G param_model/round5_r5a_smoke
+DELETE_DIR 1.6G param_model/r5a_tmp_generic_cagrad
+DELETE_DIR 1.6G param_model/r5a_tmp_generic_pcgrad
+DELETE_DIR 1.6G param_model/r5a_tmp_image_project
+DELETE_DIR 1.6G param_model/r5a_tmp_random_sign
+DELETE_DIR 1.6G param_model/r5a_tmp_sanity
+## df after
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/md0        200G   64G  137G  32% /root/autodl-tmp
+## param_model after
+11G	param_model
+11G	param_model/FTmodel
+## deletion finished Tue May 26 23:06:41 CST 2026
+## restored tracked git deletions Tue May 26 23:07:45 CST 2026
+## git short after restore
+ M main.py
+ M model/PANDA.py
+ M run.py
+ M utils/utils.py
+?? Weibo
+?? Weibo_21/
+?? _codex_upload/
+?? clip_cn_vit-b-16.pt
+?? data/
+?? logs/
+?? mae_pretrain_vit_base.pth
+?? param_model/
+?? pretrained_model/
+?? repro_logs/
+?? tools/
+## pycache size after restore
+360K	total
+## df after restore
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/md0        200G   64G  137G  32% /root/autodl-tmp
+## final cleanup status Tue May 26 23:11:33 CST 2026
+## df
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/md0        200G   64G  137G  32% /root/autodl-tmp
+## git status
+ M main.py
+ M model/PANDA.py
+ M run.py
+ M utils/utils.py
+?? Weibo
+?? Weibo_21/
+?? _codex_upload/
+?? clip_cn_vit-b-16.pt
+?? data/
+?? logs/
+?? mae_pretrain_vit_base.pth
+?? param_model/
+?? pretrained_model/
+?? repro_logs/
+?? tools/

@@ -1,0 +1,25 @@
+{
+  "candidate_id": "R6-B",
+  "gate": "feature_level_branch_aggregation",
+  "status": "No-Go",
+  "training_allowed": false,
+  "test_used_for_decision": false,
+  "best_primary": "r6b_entropy_feature_gate",
+  "best_control": "original_equal_sum",
+  "reference_macro_f1": 0.9560859504132231,
+  "reference_accuracy": 0.9560975609756097,
+  "best_primary_macro_f1": 0.951216287678477,
+  "best_primary_accuracy": 0.9512195121951219,
+  "best_primary_wrong_to_correct": 2,
+  "best_primary_correct_to_wrong": 5,
+  "best_primary_low_margin_delta_f1": -0.007083059300599048,
+  "best_primary_high_disagreement_delta_f1": -0.0075557179393496154,
+  "best_control_macro_f1": 0.9560859504132231,
+  "best_control_accuracy": 0.9560975609756097,
+  "reasons": [
+    "best_primary_below_original_equal_sum",
+    "best_primary_flip_not_net_positive",
+    "no_positive_low_margin_or_high_disagreement_bin",
+    "best_control_matches_or_beats_primary"
+  ]
+}

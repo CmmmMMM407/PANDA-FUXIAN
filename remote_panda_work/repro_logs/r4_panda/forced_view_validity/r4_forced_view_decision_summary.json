@@ -1,0 +1,54 @@
+{
+  "dataset": "weibo21",
+  "seed": 42,
+  "splits_exported": [
+    "train",
+    "val"
+  ],
+  "test_split_exported": false,
+  "anchor_direct_max_abs_diff_train": 0.0,
+  "anchor_direct_max_abs_diff_val": 0.0,
+  "train_gate_checks": {
+    "nonzero_top2_perturbation": true,
+    "top2_ce_not_worse_than_bottom2": false,
+    "top2_ce_not_worse_than_random_mean": false,
+    "self_differs_from_top2": true,
+    "duplicate_anchor_close": true,
+    "top2_ce": 0.00025812417777966136,
+    "bottom2_ce": 0.0002466201005506871,
+    "random_pair_ce_mean": 0.00024700633185441046,
+    "top2_jsd": 2.5652375204604924e-07,
+    "self_jsd": 2.019010091679455e-07,
+    "duplicate_abs": 0.0,
+    "validity_gate_pass_preliminary": false
+  },
+  "val_gate_checks": {
+    "nonzero_top2_perturbation": true,
+    "top2_ce_not_worse_than_bottom2": true,
+    "top2_ce_not_worse_than_random_mean": true,
+    "self_differs_from_top2": true,
+    "duplicate_anchor_close": true,
+    "top2_ce": 0.15778331337186874,
+    "bottom2_ce": 0.158167083670277,
+    "random_pair_ce_mean": 0.15864899531485277,
+    "top2_jsd": 1.4239589238460727e-05,
+    "self_jsd": 1.158589845553558e-05,
+    "duplicate_abs": 0.0,
+    "validity_gate_pass_preliminary": true
+  },
+  "shuffled_control": {
+    "train_shuffled_ce": 0.00025625068824541706,
+    "train_pad_top2_ce": 0.00025812417777966136,
+    "val_shuffled_ce": 0.1568494839919968,
+    "val_pad_top2_ce": 0.15778331337186874,
+    "shuffled_beats_pad_top2_on_val_ce": true
+  },
+  "decision": "No-Go for R4 training under the pre-registered PAD-top2 neighbor-domain-knowledge claim",
+  "reasoning": [
+    "Train split preliminary gate fails because PAD top2 non-self CE is worse than bottom2 and random mean, though train CE is saturated near zero.",
+    "Val split preliminary checks pass, but shuffled PAD top2 has lower CE than PAD top2, so the apparent gain is not uniquely attributable to PAD ranking.",
+    "All forced-view perturbations are nonzero but small; top2 val anchor-view JSD is about 1.42e-05 and train top2 JSD is about 2.57e-07.",
+    "Duplicate anchor is exactly identical to anchor, validating the scoring path; anchor direct verification max abs diff is 0.0 on checked batches."
+  ],
+  "recommended_next_step": "Do not freeze r4_gate_config.yaml or start R4 seed42 training. Record R4 forced-view validity as No-Go/Feasible-B-at-most and continue candidate race with DCA/source-view sensitivity or feature-aware PAD frozen gates."
+}

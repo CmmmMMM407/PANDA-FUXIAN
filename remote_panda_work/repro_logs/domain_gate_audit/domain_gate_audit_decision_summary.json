@@ -1,0 +1,94 @@
+{
+  "task": "p1b_domain_conditioned_expert_gate_audit",
+  "test_split_exported": false,
+  "static_audit": {
+    "counts": {
+      "domain_num": 9,
+      "task_num": 2,
+      "text_gate_count": 2,
+      "image_gate_count": 2,
+      "fusion_gate_count": 2,
+      "fusion_gate0_count": 2,
+      "final_gate_count": 2,
+      "text_expert_group_count": 2,
+      "image_expert_group_count": 2,
+      "fusion_expert_group_count": 2,
+      "text_share_group_count": 1,
+      "image_share_group_count": 1,
+      "fusion_share_group_count": 1
+    },
+    "can_index_by_domain_without_new_modules": false,
+    "can_compare_unused_task_index_1": true,
+    "forward_uses_hardcoded_index0": true,
+    "domain_conditioned_gate_is_frozen_checkpoint_compatible": false,
+    "interpretation": "The checkpoint contains task_num=2 gate/expert groups, not domain_num=9 domain gate groups. The PANDA forward path hardcodes index 0 for text/image/fusion gates and experts, so category-indexed domain gate routing cannot be evaluated without adding new untrained modules or repurposing unused task-index modules."
+  },
+  "train_summary": {
+    "rows": 4926,
+    "gate0_ce_mean": 0.00026026858336784537,
+    "gate1_ce_mean": 0.07480774271495334,
+    "gate1_minus_gate0_ce_mean": 0.0745474741315855,
+    "gate0_correct_rate": 1.0,
+    "gate1_correct_rate": 0.9671132764920828,
+    "gate1_flip_rate": 0.03288672350791717,
+    "gate1_abs_diff_mean": 0.04192277638399445,
+    "gate1_jsd_mean": 0.019505081830992626,
+    "h_di_shift_norm_mean": 3.717059468501862,
+    "h_collab_shift_norm_mean": 0.0,
+    "gate0_text_entropy_mean": 2.844958696769981,
+    "gate1_text_entropy_mean": 2.885765676618445,
+    "gate0_fusion_entropy_mean": 1.7144891927840238,
+    "gate1_fusion_entropy_mean": 2.8866892075374073
+  },
+  "val_summary": {
+    "rows": 615,
+    "gate0_ce_mean": 0.15835834386303682,
+    "gate1_ce_mean": 0.32733330297099467,
+    "gate1_minus_gate0_ce_mean": 0.16897495910795785,
+    "gate0_correct_rate": 0.9560975609756097,
+    "gate1_correct_rate": 0.8959349593495934,
+    "gate1_flip_rate": 0.08292682926829269,
+    "gate1_abs_diff_mean": 0.09513010112835225,
+    "gate1_jsd_mean": 0.03751551426664136,
+    "h_di_shift_norm_mean": 3.5364573334290728,
+    "h_collab_shift_norm_mean": 0.0,
+    "gate0_text_entropy_mean": 2.8444458821924723,
+    "gate1_text_entropy_mean": 2.885810983471754,
+    "gate0_fusion_entropy_mean": 2.1144994280778056,
+    "gate1_fusion_entropy_mean": 2.88764783153689
+  },
+  "decision": "No-Go for domain-conditioned expert gate training under current checkpoint",
+  "reasoning": [
+    "The frozen PANDA checkpoint has task_num=2 gate/expert groups, not domain_num=9 domain-specific groups.",
+    "The official forward path hardcodes gate/expert index 0; category-indexed routing cannot be evaluated without adding untrained modules.",
+    "Comparing index 0 with unused task index 1 is only a sanity/control, not evidence for a domain-conditioned method."
+  ],
+  "recommended_next_step": "Do not start domain-conditioned expert gate training from this checkpoint. If this idea is revisited, define it as an implementation-analysis ablation with newly trained modules, not as a frozen gate success.",
+  "manifest": {
+    "datasets": [
+      "weibo21"
+    ],
+    "seeds": [
+      42
+    ],
+    "splits": [
+      "train",
+      "val"
+    ],
+    "test_split_exported": false,
+    "outputs": [
+      {
+        "dataset": "weibo21",
+        "seed": 42,
+        "split": "train",
+        "metrics_json": "/root/autodl-tmp/panda_repro/panda/repro_logs/domain_gate_audit/domain_gate_audit_summary_weibo21_seed42_train.json"
+      },
+      {
+        "dataset": "weibo21",
+        "seed": 42,
+        "split": "val",
+        "metrics_json": "/root/autodl-tmp/panda_repro/panda/repro_logs/domain_gate_audit/domain_gate_audit_summary_weibo21_seed42_val.json"
+      }
+    ]
+  }
+}

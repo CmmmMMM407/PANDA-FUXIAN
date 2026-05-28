@@ -1,0 +1,214 @@
+{
+  "protocol_version": "round5_gate0_branch_evidential_v1",
+  "freeze_date": "2026-05-26",
+  "task": "round5_branch_evidential_boundary_rebuilding_gate0",
+  "status": "frozen_before_gate0_decision",
+  "authoritative_docs": [
+    "PANDA源码第一性原理审计与Round5方案升级.md",
+    "创新方案赛马总控与实施协议.md",
+    "todo.md"
+  ],
+  "supersedes": {
+    "old_round5_first_stage": [
+      "G0-A",
+      "G0-B",
+      "G0-C",
+      "G0-D"
+    ],
+    "reason": "Source audit tightened Round 5 to branch-evidential Gate-0."
+  },
+  "allowed_splits": [
+    "train",
+    "val"
+  ],
+  "forbidden_splits_before_three_seed_val_pass": [
+    "test"
+  ],
+  "test_split_exported": false,
+  "test_used_for_decision": false,
+  "skip_final_test_required_for_future_training": true,
+  "active_gate0": [
+    "G0-A",
+    "G0-D",
+    "G0-E",
+    "G0-S"
+  ],
+  "reserve_candidates": [
+    "G0-B",
+    "G0-C",
+    "R5-P",
+    "R5-I"
+  ],
+  "state_machine": [
+    "Pending",
+    "Running-Gate0",
+    "No-Go/Feasible-A/Feasible-B",
+    "All-Gate0-Done",
+    "Deep-Validation",
+    "Primary-Candidate"
+  ],
+  "run_guards": {
+    "model_name": "FTmodel",
+    "selector_mode_for_future_training": "deterministic_train",
+    "gate0_num_workers": 0,
+    "threshold_rule": ">=0.5",
+    "does_not_call_trainer_train": true,
+    "does_not_call_test_loader": true
+  },
+  "forbidden_feature_columns": [
+    "content",
+    "image",
+    "image_id",
+    "is_error",
+    "is_high_conf_error",
+    "post_id",
+    "post_text",
+    "y_pred",
+    "y_true"
+  ],
+  "gate0_no_go_rules": {
+    "G0-A": "No-Go if branch-final conflict rate < 10-15% or not enriched in low-margin/error batches.",
+    "G0-D": "No-Go if low-margin sensitivity is not stronger than random/non-low-margin or perturbation is only destructive.",
+    "G0-E": "No-Go if branch arbitration is below original, not above Platt/ordinary final+aux controls, or flip audit is not net positive.",
+    "G0-S": "No-Go if source/prompt interaction is beaten by shuffled/random/static late DCA controls."
+  },
+  "promotion_rule": "Gate-0 may only assign No-Go/Feasible-A/Feasible-B. Primary-Candidate requires all active Gate-0 candidates complete, deep validation, and three-seed val confirmation.",
+  "args": {
+    "dataset": "weibo21",
+    "seed": 42,
+    "input_dir": "repro_logs/round4_first_principle/common_frozen",
+    "dca_view_dir": "repro_logs/dca_source_view_gate",
+    "forced_view_dir": "repro_logs/r4_panda/forced_view_validity",
+    "output_dir": "repro_logs/round5_branch_evidential_gate0/seed42",
+    "checkpoint_dir": "param_model/FTmodel/checkpoints_by_seed",
+    "bert": "./pretrained_model/chinese_roberta_wwm_base_ext_pytorch",
+    "vocab_file": "./pretrained_model/chinese_roberta_wwm_base_ext_pytorch/vocab.txt",
+    "max_len": 197,
+    "batch_size": 32,
+    "num_workers": 0,
+    "gpu": "0",
+    "gates": [
+      "G0-A",
+      "G0-D",
+      "G0-E",
+      "G0-S"
+    ],
+    "g0a_max_batches": 0,
+    "g0d_eps_ratio": 0.02,
+    "random_seed": 42
+  },
+  "common_frozen_manifest": {
+    "input_dir": "/root/autodl-tmp/panda_repro/panda/repro_logs/round4_first_principle/common_frozen",
+    "no_test_path_present": true,
+    "files": {
+      "train_csv": {
+        "path": "/root/autodl-tmp/panda_repro/panda/repro_logs/round4_first_principle/common_frozen/round4_common_metadata_weibo21_seed42_train.csv",
+        "sha256": "2552e41b6a1e6bea31355fdca372ee980f91a3ffe3934fd7634ea441e8e6c707",
+        "rows": 4926,
+        "columns": [
+          "sample_id",
+          "dataset_key",
+          "seed",
+          "split",
+          "category_id",
+          "category_name",
+          "y_true",
+          "y_score",
+          "y_pred",
+          "final_logit",
+          "p_text",
+          "p_image",
+          "p_fusion",
+          "text_logit",
+          "image_logit",
+          "fusion_logit",
+          "branch_disagreement",
+          "fusion_uncertainty",
+          "confidence",
+          "confidence_uncertainty",
+          "final_margin_abs",
+          "anchor_source_ids",
+          "anchor_source_domains",
+          "pad_top1_top2_margin",
+          "pad_top_s_margin",
+          "neighbor_logits",
+          "pad_similarity"
+        ]
+      },
+      "val_csv": {
+        "path": "/root/autodl-tmp/panda_repro/panda/repro_logs/round4_first_principle/common_frozen/round4_common_metadata_weibo21_seed42_val.csv",
+        "sha256": "9bd647a26cd42be00f88a685d680deed4f3d0bd1aa3c6f675e3ed9594a08d7d0",
+        "rows": 615,
+        "columns": [
+          "sample_id",
+          "dataset_key",
+          "seed",
+          "split",
+          "category_id",
+          "category_name",
+          "y_true",
+          "y_score",
+          "y_pred",
+          "final_logit",
+          "p_text",
+          "p_image",
+          "p_fusion",
+          "text_logit",
+          "image_logit",
+          "fusion_logit",
+          "branch_disagreement",
+          "fusion_uncertainty",
+          "confidence",
+          "confidence_uncertainty",
+          "final_margin_abs",
+          "anchor_source_ids",
+          "anchor_source_domains",
+          "pad_top1_top2_margin",
+          "pad_top_s_margin",
+          "neighbor_logits",
+          "pad_similarity"
+        ]
+      },
+      "train_npz": {
+        "path": "/root/autodl-tmp/panda_repro/panda/repro_logs/round4_first_principle/common_frozen/round4_common_features_weibo21_seed42_train.npz",
+        "sha256": "e042bb7ece03daeeae8d293cc866f7d85bb58ad4bd0329eac28a3bdbea2bf124",
+        "arrays": {
+          "h_di": [
+            4926,
+            320
+          ],
+          "h_collab": [
+            4926,
+            320
+          ],
+          "h_final": [
+            4926,
+            640
+          ]
+        }
+      },
+      "val_npz": {
+        "path": "/root/autodl-tmp/panda_repro/panda/repro_logs/round4_first_principle/common_frozen/round4_common_features_weibo21_seed42_val.npz",
+        "sha256": "da232e96d43c70abb775529a771730424c2a5a67fbc5dc814ee6118968c08b39",
+        "arrays": {
+          "h_di": [
+            615,
+            320
+          ],
+          "h_collab": [
+            615,
+            320
+          ],
+          "h_final": [
+            615,
+            640
+          ]
+        }
+      }
+    },
+    "forbidden_columns_present_but_metric_only": [
+      "y_pred",
+      "y_true"
+    ]
+  }
+}

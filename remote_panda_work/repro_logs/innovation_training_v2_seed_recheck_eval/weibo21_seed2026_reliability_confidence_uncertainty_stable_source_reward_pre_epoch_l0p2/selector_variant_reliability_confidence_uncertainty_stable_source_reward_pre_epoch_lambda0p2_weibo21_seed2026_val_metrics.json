@@ -1,0 +1,22 @@
+{
+  "rows": 615,
+  "macro_f1": 0.9349591776301873,
+  "accuracy": 0.9349593495934959,
+  "auc": 0.9850132205182442,
+  "brier": 0.047871166332403896,
+  "ece": 0.02033185283014568,
+  "high_conf_error_rate": 0.016260162601626018,
+  "selector_margin_mean": 0.01128403462045561,
+  "dataset": "weibo21",
+  "seed": 2026,
+  "split": "val",
+  "selector_mode": "reliability",
+  "reliability_signal": "confidence_uncertainty",
+  "reliability_lambda": 0.2,
+  "reliability_gating": "stable_source_reward",
+  "reliability_stats_mode": "pre_epoch",
+  "reliability_ema_momentum": 0.9,
+  "variant_tag": "reliability_confidence_uncertainty_stable_source_reward_pre_epoch_lambda0p2",
+  "checkpoint": "/root/autodl-tmp/panda_repro/panda/repro_logs/innovation_training_v2_seed_recheck_eval/checkpoints_weibo21_seed2026_reliability_confidence_uncertainty_stable_source_reward_pre_epoch_l0p2/weibo21_seed2026_parameter_panda.pkl",
+  "reliability_stats_count": 4926.0
+}

@@ -1,0 +1,31 @@
+{
+  "dataset": "weibo21",
+  "seed": 42,
+  "split": "val",
+  "rows": 615,
+  "long_csv": "/root/autodl-tmp/panda_repro/panda/repro_logs/domain_gate_audit/domain_gate_audit_long_weibo21_seed42_val.csv",
+  "summary": {
+    "rows": 615,
+    "gate0_ce_mean": 0.15835834386303682,
+    "gate1_ce_mean": 0.32733330297099467,
+    "gate1_minus_gate0_ce_mean": 0.16897495910795785,
+    "gate0_correct_rate": 0.9560975609756097,
+    "gate1_correct_rate": 0.8959349593495934,
+    "gate1_flip_rate": 0.08292682926829269,
+    "gate1_abs_diff_mean": 0.09513010112835225,
+    "gate1_jsd_mean": 0.03751551426664136,
+    "h_di_shift_norm_mean": 3.5364573334290728,
+    "h_collab_shift_norm_mean": 0.0,
+    "gate0_text_entropy_mean": 2.8444458821924723,
+    "gate1_text_entropy_mean": 2.885810983471754,
+    "gate0_fusion_entropy_mean": 2.1144994280778056,
+    "gate1_fusion_entropy_mean": 2.88764783153689
+  },
+  "anchor_direct_verification": [
+    {
+      "batch_idx": 0,
+      "max_abs_diff": 0.0
+    }
+  ],
+  "test_split_exported": false
+}

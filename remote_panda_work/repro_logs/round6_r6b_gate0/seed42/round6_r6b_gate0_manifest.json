@@ -1,0 +1,79 @@
+{
+  "candidate_id": "R6-B",
+  "status": "FROZEN_GATE0_OFFLINE_COMPLETED",
+  "created_by": "tools/run_panda_round6_r6b_gate0.py",
+  "dataset": "weibo21",
+  "seed": 42,
+  "allowed_splits": [
+    "train",
+    "val"
+  ],
+  "test_split_exported": false,
+  "test_used_for_decision": false,
+  "training_allowed": false,
+  "input_files": {
+    "train_metadata": {
+      "path": "repro_logs/round4_first_principle/common_frozen/round4_common_metadata_weibo21_seed42_train.csv",
+      "rows": 4926,
+      "sha256": "2552e41b6a1e6bea31355fdca372ee980f91a3ffe3934fd7634ea441e8e6c707"
+    },
+    "val_metadata": {
+      "path": "repro_logs/round4_first_principle/common_frozen/round4_common_metadata_weibo21_seed42_val.csv",
+      "rows": 615,
+      "sha256": "9bd647a26cd42be00f88a685d680deed4f3d0bd1aa3c6f675e3ed9594a08d7d0"
+    }
+  },
+  "feature_columns_used": [
+    "final_logit",
+    "text_logit",
+    "image_logit",
+    "fusion_logit",
+    "p_text",
+    "p_image",
+    "p_fusion",
+    "branch_disagreement",
+    "confidence_uncertainty",
+    "final_margin_abs"
+  ],
+  "forbidden_feature_columns": [
+    "content",
+    "image",
+    "image_id",
+    "is_error",
+    "is_high_conf_error",
+    "post_id",
+    "post_text",
+    "y_pred"
+  ],
+  "label_use": "train y_true only for fitting/tuning; val y_true only for metrics",
+  "decision": {
+    "candidate_id": "R6-B",
+    "status": "No-Go",
+    "training_allowed": false,
+    "test_used_for_decision": false,
+    "best_primary": "r6b_confidence_evidence_gate",
+    "best_control": "shuffled_confidence_evidence_gate",
+    "reference_macro_f1": 0.9560859504132231,
+    "reference_accuracy": 0.9560975609756097,
+    "best_primary_macro_f1": 0.949567361234191,
+    "best_primary_accuracy": 0.9495934959349593,
+    "best_primary_wrong_to_correct": 3,
+    "best_primary_correct_to_wrong": 7,
+    "best_primary_low_margin_delta_f1": -0.00972193412532496,
+    "best_primary_high_disagreement_delta_f1": -0.019183768828452963,
+    "best_control_macro_f1": 0.9609705533931292,
+    "best_control_accuracy": 0.9609756097560975,
+    "reasons": [
+      "best_primary_below_original_final",
+      "best_primary_flip_not_net_positive",
+      "no_positive_low_margin_or_high_disagreement_bin",
+      "best_control_matches_or_beats_primary",
+      "best_control_is_shuffled_confidence_control"
+    ]
+  },
+  "audit": {
+    "low_margin_threshold_fit_split": "train",
+    "low_margin_threshold": 8.226344347000122,
+    "random_seed": 42
+  }
+}

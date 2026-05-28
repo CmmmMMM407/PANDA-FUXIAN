@@ -1,0 +1,18 @@
+{
+  "task": "round7_d35_gradient_sanity",
+  "status": "COMPLETED",
+  "dataset": "weibo21",
+  "seed": 42,
+  "allowed_splits": [
+    "train"
+  ],
+  "test_split_exported": false,
+  "test_used_for_decision": false,
+  "optimization_steps": 0,
+  "checkpoint_written": false,
+  "checkpoint": "./param_model/FTmodel/checkpoints_by_seed/weibo21_seed42_parameter_panda.pkl",
+  "model_name_required": "FTmodel",
+  "selector_mode": "deterministic_train",
+  "missing_state_keys": [],
+  "unexpected_state_keys": []
+}

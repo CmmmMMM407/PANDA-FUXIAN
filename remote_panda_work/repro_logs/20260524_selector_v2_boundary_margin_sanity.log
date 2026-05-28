@@ -1,0 +1,11 @@
+/root/miniconda3/lib/python3.10/site-packages/transformers/generation_utils.py:24: FutureWarning: Importing `GenerationMixin` from `src/transformers/generation_utils.py` is deprecated and will be removed in Transformers v5. Import as `from transformers import GenerationMixin` instead.
+  warnings.warn(
+selector unit sanity ok
+Loading vision model config from /root/miniconda3/lib/python3.10/site-packages/cn_clip/clip/model_configs/ViT-B-16.json
+Loading text model config from /root/miniconda3/lib/python3.10/site-packages/cn_clip/clip/model_configs/RoBERTa-wwm-ext-base-chinese.json
+Model info {'embed_dim': 512, 'image_resolution': 224, 'vision_layers': 12, 'vision_width': 768, 'vision_patch_size': 16, 'vocab_size': 21128, 'text_attention_probs_dropout_prob': 0.1, 'text_hidden_act': 'gelu', 'text_hidden_dropout_prob': 0.1, 'text_hidden_size': 768, 'text_initializer_range': 0.02, 'text_intermediate_size': 3072, 'text_max_position_embeddings': 512, 'text_num_attention_heads': 12, 'text_num_hidden_layers': 12, 'text_type_vocab_size': 2}
+deterministic real batch sanity ok loss= 1.301406
+Loading vision model config from /root/miniconda3/lib/python3.10/site-packages/cn_clip/clip/model_configs/ViT-B-16.json
+Loading text model config from /root/miniconda3/lib/python3.10/site-packages/cn_clip/clip/model_configs/RoBERTa-wwm-ext-base-chinese.json
+Model info {'embed_dim': 512, 'image_resolution': 224, 'vision_layers': 12, 'vision_width': 768, 'vision_patch_size': 16, 'vocab_size': 21128, 'text_attention_probs_dropout_prob': 0.1, 'text_hidden_act': 'gelu', 'text_hidden_dropout_prob': 0.1, 'text_hidden_size': 768, 'text_initializer_range': 0.02, 'text_intermediate_size': 3072, 'text_max_position_embeddings': 512, 'text_num_attention_heads': 12, 'text_num_hidden_layers': 12, 'text_type_vocab_size': 2}
+reliability real batch sanity ok loss= 1.301406

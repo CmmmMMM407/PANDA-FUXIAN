@@ -1,0 +1,27 @@
+{
+  "datasets": [
+    "weibo21"
+  ],
+  "seeds": [
+    42
+  ],
+  "splits": [
+    "train",
+    "val"
+  ],
+  "test_split_exported": false,
+  "outputs": [
+    {
+      "dataset": "weibo21",
+      "seed": 42,
+      "split": "train",
+      "metrics_json": "/root/autodl-tmp/panda_repro/panda/repro_logs/domain_gate_audit/domain_gate_audit_summary_weibo21_seed42_train.json"
+    },
+    {
+      "dataset": "weibo21",
+      "seed": 42,
+      "split": "val",
+      "metrics_json": "/root/autodl-tmp/panda_repro/panda/repro_logs/domain_gate_audit/domain_gate_audit_summary_weibo21_seed42_val.json"
+    }
+  ]
+}

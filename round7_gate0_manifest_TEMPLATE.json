@@ -1,0 +1,190 @@
+{
+  "protocol_version": "round7_gate0_template_v1",
+  "status": "DRAFT_NOT_FROZEN",
+  "created_date": "2026-05-28",
+  "round": "Round 7",
+  "round_name": "Risk-Aware Final-Boundary Learning",
+  "training_allowed": false,
+  "reason_training_not_allowed": "Round 7 is currently planning-only. D2/D3 mechanism gates and a frozen D4 smoke manifest are required before any training.",
+  "repo": {
+    "remote_path": "/root/autodl-tmp/panda_repro/panda",
+    "branch_observed": "innovation/reliability-disagreement",
+    "required_model_name": "FTmodel",
+    "default_model_name_warning": "main.py defaults to clean_vib; every PANDA run must explicitly pass --model_name FTmodel."
+  },
+  "data_policy": {
+    "allowed_splits": [
+      "train",
+      "val"
+    ],
+    "forbidden_splits_before_three_seed_val_pass": [
+      "test"
+    ],
+    "test_split_exported": false,
+    "test_used_for_decision": false,
+    "test_may_be_used_only_for": "final confirmatory evaluation after a primary config is frozen by three-seed val"
+  },
+  "candidate_pool": [
+    {
+      "candidate_id": "R7-A",
+      "candidate_name": "Boundary-Risk Aware Training",
+      "claim_scope": "risk-aware final-boundary training implementation",
+      "level_reached": "D0 Planning",
+      "required_level_for_exclusion": "D4 for current training implementation; D5 for stability"
+    },
+    {
+      "candidate_id": "R7-B",
+      "candidate_name": "Branch-to-Final Disagreement Distillation",
+      "claim_scope": "disagreement-aware final-boundary distillation implementation",
+      "level_reached": "D0 Planning",
+      "required_level_for_exclusion": "D4 for current training implementation; D5 for stability"
+    },
+    {
+      "candidate_id": "R7-C",
+      "candidate_name": "Error-Region Contrastive Boundary Learning",
+      "claim_scope": "training-time hard-region contrastive boundary learning implementation",
+      "level_reached": "D0 Planning",
+      "required_level_for_exclusion": "D4 for current training implementation; D5 for stability"
+    },
+    {
+      "candidate_id": "R7-D",
+      "candidate_name": "Confidence-Calibrated Auxiliary Curriculum",
+      "claim_scope": "sample-level confidence-calibrated auxiliary curriculum implementation",
+      "level_reached": "D0 Planning",
+      "required_level_for_exclusion": "D4 for current training implementation; D5 for stability"
+    }
+  ],
+  "artifact_audit_required": [
+    "final logits / score / margin / per-sample CE",
+    "p_text / p_image / p_fusion",
+    "h_text / h_image / h_fusion / h_di / h_collab / h_final",
+    "domain/category labels",
+    "branch disagreement and branch agreement partitions",
+    "confidence uncertainty and overconfidence",
+    "train/val weak-domain definition",
+    "historical per-sample loss volatility if available"
+  ],
+  "artifact_audit_blocker_rule": "If a required artifact is missing, mark the affected candidate Blocked or create an export gate. Missing artifacts cannot be used as method No-Go evidence.",
+  "forbidden_inputs": [
+    "test split files",
+    "test predictions",
+    "test-derived weak domains or thresholds",
+    "val/test error labels used to train risk, teacher, memory, or curriculum",
+    "post-hoc variant selection using test metrics"
+  ],
+  "d2_d3_gate_requirements": {
+    "R7-A": [
+      "risk enrichment over random, shuffled, margin-only, confidence-only, branch-disagreement-only controls",
+      "risk-weighted hard-region proxy versus random/shuffled/margin-only controls"
+    ],
+    "R7-B": [
+      "branch partition validity over shuffled branch identity, random branch logits, confidence-only partitions",
+      "teacher upper-bound versus vanilla KD, weighted average, ordinary stacking, random teacher, shuffled disagreement"
+    ],
+    "R7-C": [
+      "train-only hard-region memory purity and coverage over random, label-shuffled, class-prior memory",
+      "frozen representation upper-bound versus plain kNN, class-prior memory, random memory"
+    ],
+    "R7-D": [
+      "branch-correct/final-uncertain recoverable coverage over random/shuffled reliability controls",
+      "sample-level aux-weight proxy proving effects are not just static aux loss volume"
+    ]
+  },
+  "planned_d4_smoke_budget_if_frozen": {
+    "dataset": "weibo21",
+    "seed": 42,
+    "model_name": "FTmodel",
+    "selector_mode": "deterministic_train",
+    "batchsize": 32,
+    "lr": 0.0001,
+    "epoch": 5,
+    "early_stop": 6,
+    "num_workers": 0,
+    "skip_final_test": true
+  },
+  "required_metrics": {
+    "final": [
+      "macro_f1",
+      "accuracy",
+      "auc",
+      "nll_or_log_loss",
+      "ece",
+      "brier",
+      "high_conf_error_rate"
+    ],
+    "branch": [
+      "text_macro_f1",
+      "image_macro_f1",
+      "fusion_macro_f1",
+      "branch_disagreement",
+      "branch_final_gap",
+      "branch_confidence"
+    ],
+    "flip_audit": [
+      "wrong_to_correct",
+      "correct_to_wrong",
+      "high_conf_correct_to_wrong",
+      "changed_count"
+    ],
+    "bins": [
+      "low_margin",
+      "weak_domain",
+      "high_disagreement",
+      "high_risk",
+      "branch_correct_final_uncertain"
+    ],
+    "control_boundary": [
+      "best_primary",
+      "best_control",
+      "best_random",
+      "best_shuffled",
+      "primary_control_margin"
+    ],
+    "cost": [
+      "wall_time",
+      "gpu",
+      "peak_memory",
+      "epoch_to_best",
+      "checkpoint_path",
+      "log_path"
+    ]
+  },
+  "global_go_rule": {
+    "d2_d3": [
+      "core mechanism signal is stronger than random/shuffled/simple controls",
+      "hard-region or teacher/memory/curriculum evidence is not explainable by ordinary calibration, stacking, static aux, or same-budget controls"
+    ],
+    "d4_feasible_a": [
+      "primary val Macro-F1 and Accuracy are not below deterministic_train_l0",
+      "target improvement is at least +0.003 absolute on Macro-F1 and Accuracy when possible",
+      "wrong_to_correct > correct_to_wrong",
+      "hard-bin and weak-domain metrics are not net negative",
+      "best strong control does not match or beat the primary"
+    ],
+    "d4_feasible_b": [
+      "core mechanism signal exists but gain is small or control moat is incomplete",
+      "candidate may remain as diagnostic, ablation, or second-stage fallback"
+    ]
+  },
+  "global_no_go_rule": [
+    "D0/D1 cannot produce No-Go",
+    "D2/D3 can only close current risk definition, partition, memory construction, proxy, or frozen/offline variant",
+    "D4 is required to close current training implementation",
+    "D5 is required for stability claims",
+    "test-derived evidence cannot be used for any Go/No-Go decision"
+  ],
+  "promotion_rule": [
+    "Run artifact audit before any candidate-specific gate.",
+    "Finish D2/D3 for all four candidates before choosing D4 order unless a candidate is Blocked.",
+    "If a candidate is Feasible-A/B at D2/D3, mark it and continue validating the other candidates.",
+    "Only after all candidates finish D2/D3 may a D4 smoke manifest be frozen.",
+    "Only a D4 candidate that beats deterministic and strong controls may enter D5 three-seed val.",
+    "Confirmatory test remains locked until D5 freezes the primary config."
+  ],
+  "checkpoint_lifecycle": {
+    "d0_to_d3": "no long-term checkpoint",
+    "d4_if_frozen": "use a candidate-specific recyclable checkpoint directory",
+    "no_go_cleanup": "delete or recycle checkpoints; keep manifest, summary, flip audit, telemetry, notes, logs, and metrics",
+    "long_term_keep_allowed_only_if": "candidate becomes Primary-Candidate after all active candidates are gated and deep-validated"
+  }
+}

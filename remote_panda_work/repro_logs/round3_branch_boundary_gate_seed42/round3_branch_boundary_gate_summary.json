@@ -1,0 +1,72 @@
+{
+  "dataset": "weibo21",
+  "seed": 42,
+  "decision": "No-Go",
+  "test_split_exported": false,
+  "test_used_for_decision": false,
+  "round3_gate_opened_test_file": false,
+  "baseline": {
+    "macro_f1": 0.9560859504132231,
+    "accuracy": 0.9560975609756097,
+    "auc": 0.9873823373876256,
+    "ece": 0.025949349838563875,
+    "brier": 0.0387069766720739,
+    "high_conf_error_rate": 0.026690391459074734,
+    "weak_domain_macro_f1": 0.930849478390462
+  },
+  "p2b_weak_signal": {
+    "macro_f1": 0.9593457239634151,
+    "accuracy": 0.959349593495935
+  },
+  "best_primary_variant": "r3b_gap_boundary_gated_residual",
+  "best_primary": {
+    "family": "branch_boundary_residual",
+    "macro_f1": 0.9495929628444746,
+    "accuracy": 0.9495934959349593,
+    "auc": 0.9871708090957165,
+    "ece": 0.03021269883417539,
+    "brier": 0.04045886964967621,
+    "high_conf_error_rate": 0.028119507908611598,
+    "weak_domain_macro_f1": 0.9394346237040352,
+    "support_better_count": 1.0,
+    "wrong_to_correct": 3.0,
+    "correct_to_wrong": 7.0,
+    "adapter_delta_abs_mean": 0.7802056670188904,
+    "gate_activation_rate": 0.9008130081300812
+  },
+  "best_control_variant": "weighted_average_final_aux_logits",
+  "best_control": {
+    "family": "ordinary_combiner",
+    "macro_f1": 0.9560933818804884,
+    "accuracy": 0.9560975609756097,
+    "auc": 0.9874986779481756,
+    "ece": 0.03385390727346128,
+    "brier": 0.039105365968080494,
+    "high_conf_error_rate": 0.026833631484794274,
+    "weak_domain_macro_f1": 0.9480286738351255,
+    "support_better_count": 2.0,
+    "wrong_to_correct": 3.0,
+    "correct_to_wrong": 3.0,
+    "adapter_delta_abs_mean": 0.4452764368297357,
+    "gate_activation_rate": null
+  },
+  "low_margin_delta_macro_f1_for_best_primary": -0.008849152725840082,
+  "high_mismatch_delta_macro_f1_for_best_primary": -0.005662617598322095,
+  "no_go_reasons": [
+    "best_primary_below_original_final_score",
+    "best_primary_not_above_best_control",
+    "calibration_or_ordinary_combiner_matches_or_beats_primary",
+    "flip_audit_not_net_positive",
+    "no_low_margin_or_high_mismatch_gain",
+    "support_metrics_insufficient"
+  ],
+  "gate_meta": {
+    "gate_rule": "final_margin_abs<=train_q_low OR branch_final_mismatch>=train_q_high",
+    "low_margin_quantile": 0.35,
+    "high_mismatch_quantile": 0.65,
+    "margin_cut": 8.57086360889053,
+    "mismatch_cut": 3.3092505833636694,
+    "fit_split": "train"
+  },
+  "leakage_audit_passed": true
+}

@@ -1,0 +1,26 @@
+{
+  "candidate_id": "R6-J",
+  "status": "No-Go",
+  "training_allowed": false,
+  "test_used_for_decision": false,
+  "claim_scope": "direct D2/D3 self-suppressed non-self source-mixture frozen probe",
+  "level_reached": "D2/D3",
+  "required_level_for_training_exclusion": "D4",
+  "best_primary": "pad_soft_nonself_tau1p0",
+  "best_control": "random_nonself_pair_seed2",
+  "reference_macro_f1": 0.9560859504132231,
+  "reference_accuracy": 0.9560975609756097,
+  "best_primary_macro_f1": 0.9560859504132231,
+  "best_primary_accuracy": 0.9560975609756097,
+  "best_primary_wrong_to_correct": 0,
+  "best_primary_correct_to_wrong": 0,
+  "best_primary_effective_source_num_mean": 7.99983925533067,
+  "best_primary_self_weight_mean": 0.0,
+  "best_primary_alpha_negative_regret_corr": 0.018817417389385787,
+  "best_control_macro_f1": 0.9577145214521452,
+  "best_control_accuracy": 0.9577235772357724,
+  "reasons": [
+    "best_primary_flip_not_net_positive",
+    "best_control_matches_or_beats_primary"
+  ]
+}

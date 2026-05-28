@@ -1,0 +1,17 @@
+{
+  "status": "No-Go",
+  "reference_tag": "deterministic_train_l0",
+  "primary_tag": "r5a_image_project_l1p0",
+  "best_control_tag": "aux_weight_2p0",
+  "reference_macro_f1": 0.9381746031746032,
+  "reference_accuracy": 0.9382113821138212,
+  "primary_macro_f1": 0.9365041126062568,
+  "primary_accuracy": 0.9365853658536586,
+  "best_control_macro_f1": 0.9398373983739837,
+  "best_control_accuracy": 0.9398373983739837,
+  "primary_support_better_count": 4,
+  "reasons": [
+    "primary_below_deterministic_train",
+    "primary_not_above_best_control"
+  ]
+}

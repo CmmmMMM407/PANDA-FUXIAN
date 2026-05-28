@@ -1,62 +1,58 @@
 # TODO
 
-## P0：立即要做
+最后整理：2026-05-28  
+完整旧版快照：`docs/archive/full_snapshots_20260528/root/todo.md`
 
-- [x] 在 AutoDL 租用 RTX 4090 机器。
-- [x] 选择 Python 3.10 + PyTorch 2.1.x + CUDA 12.1 镜像。
-- [x] 克隆 PANDA 官方仓库：https://github.com/lu-wayne/panda
-- [x] 克隆实验日志仓库：https://github.com/CmmmMMM407/PANDA-FUXIAN
-- [x] 创建 conda 环境并安装 PANDA / MMDFND 依赖。
-- [x] 记录环境：`nvidia-smi`、`python --version`、`torch.__version__`、`pip freeze`。
-- [x] 记录 PANDA 官方 commit，并确认是否为 `03e4c003e83480fe94ac52120522b34e4224f17b` 或更新版本。
+## P0：R8 有希望方法验证队列
 
-## P0：数据与权重准备
+这些候选只表示“已有提升线索，值得更深验证”，不表示已有 `Primary-Candidate`。所有任务默认 train/val-only；三 seed val 通过并冻结最终 primary config 前，不导出、不打开、不分析 test。
 
-- [x] 准备 Weibo-21 数据。
-- [x] 检查 `train_datasets.xlsx`、`val_datasets.xlsx`、`test_datasets.xlsx` 是否存在。
-- [x] 检查 Weibo-21 图片目录：`nonrumor_images/`、`rumor_images/`。
-- [x] 准备 `pretrained_model/chinese_roberta_wwm_base_ext_pytorch/`。
-- [x] 准备 `mae_pretrain_vit_base.pth`。
-- [x] 准备或确认 CN-CLIP ViT-B-16 权重，并记录 `load_from_name("ViT-B-16", download_root="./")` 的实际缓存文件和 hash。
-- [x] 运行 Weibo-21 图片 pkl 预处理，生成 `train_loader.pkl`、`val_loader.pkl`、`test_loader.pkl`。
-- [x] 运行 Weibo-21 CN-CLIP 图片 pkl 预处理，生成 `train_clip_loader.pkl`、`val_clip_loader.pkl`、`test_clip_loader.pkl`。
-- [x] 校验 xlsx 行数、普通图片 pkl 长度、CLIP 图片 pkl 长度三者一致。
+- [ ] **R8-A / R7-A formal D4：Boundary-Risk Aware Training**
+  冻结 Weibo-21 seed42 5-epoch manifest。现有线索：R7-A composite risk val error AUC `0.828231`，D3.5 risk-margin 可触达 final classifier / `h_final`，D4-lite `r7a_composite_risk_lite` F1/Acc/AUC `0.732329/0.739837/0.866367`，优于 deterministic-lite、confidence-only、random risk、shuffled risk controls。
 
-## P0：sanity gate
+- [ ] **R8-A 强对照**
+  必须包括 deterministic_train、same-budget CE / no-new-signal、static aux 2.0、focal loss、class-balanced CE、confidence-only risk、random risk、shuffled risk、risk-margin only、risk-consistency only、risk-margin + consistency。输出 val metrics、flip audit、hard-bin / weak-domain summary、risk-bin summary 和 manifest。
 
-- [x] 跑 import smoke test。
-- [x] 跑数据 manifest：样本数、label 分布、category 分布、图片命中率。
-- [x] 跑权重 manifest：文件大小、hash、关键 tensor 非零检查。
-- [x] 跑 MAE checkpoint sanity：确认 `mae_pretrain_vit_base.pth` 含 `model` key，关键 tensor 非零。
-- [x] 跑 CN-CLIP 图像 sanity：真实图、blank 图、noise 图 embedding 应不同。
-- [x] 跑 PANDA 代码路径 sanity：确认 `--model_name FTmodel` 调用的是 `model/PANDA.py`。
-- [x] 跑 PANDA 构造函数 sanity：确认不会被 `dataset_type` 参数或共享专家列表初始化问题阻断。
-- [x] 若必须打 code-compat patch，保存错误栈、`git diff`、补丁目的和重新运行结果。
-- [x] 跑小 batch forward：输出 finite，非 NaN，不全常数。
-- [x] 跑 Gumbel/PANDA 随机性 sanity：固定随机种子或固定 neighbor selection 后再做重复 forward 对比。
+- [ ] **R8-A Go/No-Go**
+  Seed42 D4 primary 的 Macro-F1/Acc 不低于 deterministic，理想提升 `>= +0.3pp`；wrong->correct 大于 correct->wrong；low-margin、high-disagreement、weak-domain 至少不净负；AUC/ECE/Brier/HCE 至少两个不劣化；best strong control 不能追平或打穿。过线后才进入 D5 seeds 2024/2026 val 复核。
 
-## P1：正式复现实验
+- [ ] **R8-B：Static/Adaptive Auxiliary-Supervision Strength**
+  将 `aux_weight_2p0 / static-aux-strength` 独立登记为候选。现有线索：R5-A smoke 中 `aux_weight_2p0` F1/Acc `0.939837/0.939837` 高于 deterministic `0.938175/0.938211`；R7-D D4-lite 中 static aux 2.0 F1/Acc/AUC `0.736521/0.739837/0.837197` 明显高于 sample aux curriculum。
 
-- [x] Weibo-21 seed 42，paper-aligned 参数首跑。
-- [x] 保存 stdout log、metrics.json、predictions.csv、checkpoint。
-- [x] 独立重算 macro-F1、Acc、AUC。
-- [x] 若结果合理，补 Weibo-21 seeds 2024 和 2026。
-- [x] 迁移到 Weibo，重复数据 gate 与训练。
+- [ ] **R8-B formal D4**
+  预注册 static aux `0.5/1.0/1.5/2.0/3.0`、warmup/ramp schedule、branch-specific aux weights、detached/no-feature-update aux、same-budget controls、random aux labels、shuffled aux labels、generic PCGrad/CAGrad/GradNorm/DWA controls。通过线是打过 deterministic、random/shuffled label、same-budget 和 generic gradient controls，并解释 branch-to-final alignment 是否改善。
 
-## P2：分析与写作
+- [ ] **R8-C：Training-time low-margin margin/risk regularizer**
+  只把 R6-C low-margin 线索改写为训练期 regularizer，不再做 offline adapter。先补 D3.5 gradient sanity，再决定是否开 D4 seed42。强对照包括 confidence-only low-margin、global calibration / Platt / temperature、focal loss、class-balanced CE、random low-margin mask、shuffled low-margin mask、all-sample margin regularizer。
 
-- [x] 汇总 Weibo-21 三 seed 均值和标准差。
-- [x] 汇总 Weibo 三 seed 均值和标准差。
-- [x] 与 MMDFND、DAMMFND、PANDA 论文报告结果比较。
-- [x] 写复现实验阶段复盘。
-- [x] 整理最终复现报告。
+- [ ] **R8-D：Branch Aux-Logit Endogenous Boundary Signal**
+  重新登记 P2-B `final+aux logits` 弱信号为训练期内生机制。先补 D3.5 检查 detached branch logits/features、小 residual head、branch-logit distillation loss 是否触达 final boundary；强对照必须包括 weighted average final+aux、logistic stacking、final-only MLP、parameter-matched final-only head、random/shuffled aux logits、branch identity permutation、branch-drop ablation 和 same-budget controls。
 
-## 每次会话结束前固定动作
+- [ ] **R8-E：Confidence-uncertainty stable-source calibration add-on**
+  只在 R8-A/R8-B/R8-C/R8-D 产生 D4 过线 primary 后作为 second-stage add-on。必须打过 overconfidence-only、random、deterministic、signed/asymmetric uncertainty controls。通过线为三 seed val F1/Acc 不下降且 ECE/Brier/HCE/weak-domain 至少两个稳定改善。
 
-- [x] 更新 `current_status.md`。
-- [x] 追加 `experiment_log.md`。
-- [x] 刷新本文件的 TODO 状态。
-- [x] 将新增实验日志、metrics、predictions、summary 和状态文档同步到 GitHub 日志仓库 `CmmmMMM407/PANDA-FUXIAN`。
-- [x] 同步前检查不包含 checkpoint、权重、原始数据集、服务器密码、token、私钥或完整连接凭据。
-- [x] 若读了新论文或仓库，更新 `reading_notes.md`。
-- [x] 不在任何项目文件中写入服务器密码、token、私钥或完整 SSH 凭据。
+## P0：共同执行纪律
+
+- [ ] 所有 PANDA 训练命令显式 `--model_name FTmodel`。
+- [ ] 所有正式候选先写 manifest，记录 `allowed_splits=["train","val"]`、`test_split_exported=false`、`test_used_for_decision=false`。
+- [ ] 每个结论写清 `claim_scope / level_reached / required_level_for_exclusion / status_scope`。
+- [ ] D2/D3 只否定当前 probe/offline/frozen 变体；D3.5/D4-lite 只作为梯度可达和短训趋势；D4 才能判当前训练实现；D5 才能判稳定性。
+- [ ] No-Go checkpoint 默认可回收；长期保留 manifest、stdout、metrics、summary、notes、flip audit、telemetry，不同步 checkpoint、权重、原始数据、大 `.npz` 或含样本正文的预测长表。
+
+## P1：文档与日志同步
+
+- [x] 保全 2026-05-28 整理前完整文档快照：`docs/archive/full_snapshots_20260528/root/`。
+- [x] 将历史方案、投稿规划、阅读笔记、Word 文档、候选登记表移动到 `docs/archive/`。
+- [x] 将根目录入口文档压缩为当前状态 / TODO / 精简日志 / 报告。
+- [ ] 将整理后的文档和筛选后的实验日志同步到 GitHub 仓库 `CmmmMMM407/PANDA-FUXIAN`。
+- [ ] 同步前扫描敏感信息，确认不包含服务器密码、token、私钥、完整 SSH 连接串、checkpoint、权重或原始数据集。
+
+## 已完成主线索引
+
+详细完成记录已归档到完整旧版 TODO；这里只保留索引。
+
+- [x] PANDA Weibo-21 / Weibo 三 seed 复现。
+- [x] MMDFND / DAMMFND 两数据集三 seed reproduced baseline。
+- [x] Reliability / uncertainty / selector stability / statistical diagnostics。
+- [x] CS-PANDA、Reliability-aware selector、uncertainty stable-source、R3、历史 R4、P0/P1、Round 2、Round 3、Round 4、Round 5、Round 6 当前作用域验证。
+- [x] Round 7 D2/D3、D3.5 和 R7-A/R7-D D4-lite。

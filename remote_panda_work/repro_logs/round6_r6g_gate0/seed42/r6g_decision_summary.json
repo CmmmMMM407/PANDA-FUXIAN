@@ -1,0 +1,37 @@
+{
+  "candidate_id": "R6-G",
+  "gate": "soft_prototype_memory_ema_prototype_estimator_reserve_audit",
+  "status": "No-Go",
+  "training_allowed": false,
+  "test_used_for_decision": false,
+  "test_split_exported": false,
+  "best_existing_feature_candidate": "feature_mean_top2_nonself",
+  "best_existing_feature_candidate_val_ce": 0.15686450523126927,
+  "best_existing_feature_shuffled_val_ce": 0.1560596490400202,
+  "pad_top2_val_ce": 0.15778331337186874,
+  "shuffled_pad_top2_val_ce": 0.1568494839919968,
+  "random_ce_mean": 0.15864899531485277,
+  "reasons": [
+    "existing_train_val_prototype_source_sensitivity_gates_failed_control_moat",
+    "feature_or_soft_source_ranking_signal_beaten_by_shuffled_control",
+    "pad_top2_source_view_not_cleanly_better_than_shuffled_random_bottom_controls",
+    "no_frozen_evidence_supports_new_soft_ema_prototype_smoke"
+  ],
+  "evidence_notes": [
+    "P0-B val PAD top2 CE 0.157783 vs shuffled CE 0.156849.",
+    "P1-A best feature candidate `feature_mean_top2_nonself` val CE 0.156865 vs shuffled CE 0.156060.",
+    "Both source/prototype routes used train/val only and recorded test_split_exported=false."
+  ],
+  "input_evidence": {
+    "dca_source_view_decision": {
+      "path": "/root/autodl-tmp/panda_repro/panda/repro_logs/dca_source_view_gate/dca_source_view_decision_summary.json",
+      "exists": true,
+      "sha256": "9827f24f5344d3cb76dc72582983f5a28bea27b24e2a86fe83046d09a9b34bc2"
+    },
+    "feature_aware_pad_decision": {
+      "path": "/root/autodl-tmp/panda_repro/panda/repro_logs/feature_aware_pad_gate/feature_aware_pad_decision_summary.json",
+      "exists": true,
+      "sha256": "8fefdc2a7fa1edab8125840d8d0334c6ecffa6f2d2e029b8854cb5cd221321cc"
+    }
+  }
+}

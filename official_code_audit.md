@@ -2,6 +2,8 @@
 
 审计日期：2026-05-21
 
+状态更新（2026-05-27）：本文是官方仓库早期审计记录。当前活代码审计和创新执行口径以云端仓库 `/root/autodl-tmp/panda_repro/panda` 的 Round 6/7 只读复审为准，详见 `docs/archive/method_rounds/PANDA源码第一性原理审计与Round6方案升级.md` 和 `docs/archive/registries/round6_candidate_registry.md`。
+
 审计依据：
 
 - AstraNav-Memory 实验复盘：官方配置对齐不等于实验链路正确，必须先做权重、数据、模态传导和端到端 sanity gate。
@@ -17,7 +19,7 @@
 1. `project_overview.md` 中曾写入远程服务器密码和 SSH 信息，已移除并改为凭据管理规则。
 2. `experiment_log.md` 曾记录已创建 `session_start.md`，但文件不存在；本次补建。
 3. 新增 `.gitignore`，避免 `.DS_Store`、数据集、权重、checkpoint、pkl 和本地密钥类文件进入仓库。
-4. `project_overview.md`、`current_status.md`、`todo.md`、`reading_notes.md` 已补充官方代码审计发现。
+4. `project_overview.md`、`current_status.md`、`todo.md` 已保留官方代码审计发现；旧 `reading_notes.md` 已归档到 `docs/archive/planning_and_submission/reading_notes.md`。
 
 ## 官方代码需要重点验证的点
 

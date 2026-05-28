@@ -1,0 +1,70 @@
+{
+  "candidate_id": "R6-I",
+  "status": "FROZEN_GATE0_OFFLINE_COMPLETED",
+  "created_by": "tools/run_panda_round6_r6i_gate0.py",
+  "dataset": "weibo21",
+  "seed": 42,
+  "allowed_splits": [
+    "train",
+    "val"
+  ],
+  "test_split_exported": false,
+  "test_used_for_decision": false,
+  "training_allowed": false,
+  "input_files": {
+    "train_metadata": {
+      "path": "/root/autodl-tmp/panda_repro/panda/repro_logs/round4_first_principle/common_frozen/round4_common_metadata_weibo21_seed42_train.csv",
+      "rows": 4926,
+      "sha256": "2552e41b6a1e6bea31355fdca372ee980f91a3ffe3934fd7634ea441e8e6c707"
+    },
+    "val_metadata": {
+      "path": "/root/autodl-tmp/panda_repro/panda/repro_logs/round4_first_principle/common_frozen/round4_common_metadata_weibo21_seed42_val.csv",
+      "rows": 615,
+      "sha256": "9bd647a26cd42be00f88a685d680deed4f3d0bd1aa3c6f675e3ed9594a08d7d0"
+    },
+    "train_features": {
+      "path": "/root/autodl-tmp/panda_repro/panda/repro_logs/round4_first_principle/common_frozen/round4_common_features_weibo21_seed42_train.npz",
+      "sha256": "e042bb7ece03daeeae8d293cc866f7d85bb58ad4bd0329eac28a3bdbea2bf124"
+    },
+    "val_features": {
+      "path": "/root/autodl-tmp/panda_repro/panda/repro_logs/round4_first_principle/common_frozen/round4_common_features_weibo21_seed42_val.npz",
+      "sha256": "da232e96d43c70abb775529a771730424c2a5a67fbc5dc814ee6118968c08b39"
+    }
+  },
+  "feature_arrays_used": [
+    "h_final"
+  ],
+  "target_or_metric_only_columns": [
+    "y_true"
+  ],
+  "controls": [
+    "final_only_platt",
+    "domain_bias_only",
+    "shared_h_final_adapter",
+    "random_domain_h_final_adapter"
+  ],
+  "low_margin_threshold_fit_split": "train",
+  "low_margin_threshold": 8.226344347000122,
+  "decision": {
+    "candidate_id": "R6-I",
+    "gate": "domain_conditioned_final_adapter",
+    "status": "No-Go",
+    "training_allowed": false,
+    "test_used_for_decision": false,
+    "best_primary": "r6i_true_domain_h_final_adapter",
+    "best_control": "original_final",
+    "reference_macro_f1": 0.9560859504132231,
+    "reference_accuracy": 0.9560975609756097,
+    "best_primary_macro_f1": 0.9414632598671686,
+    "best_primary_accuracy": 0.9414634146341463,
+    "best_primary_wrong_to_correct": 6,
+    "best_primary_correct_to_wrong": 15,
+    "best_control_macro_f1": 0.9560859504132231,
+    "best_control_accuracy": 0.9560975609756097,
+    "reasons": [
+      "best_primary_below_original_final",
+      "best_primary_flip_not_net_positive",
+      "best_control_matches_or_beats_primary"
+    ]
+  }
+}

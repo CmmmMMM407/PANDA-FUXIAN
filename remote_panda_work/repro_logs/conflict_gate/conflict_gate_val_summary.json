@@ -1,0 +1,982 @@
+[
+  {
+    "dataset": "weibo",
+    "split": "val",
+    "score": "clip_dissimilarity",
+    "target": "is_error",
+    "pooled_auc": 0.5087261604893847,
+    "per_seed_auc": {
+      "42": 0.49251268343243687,
+      "2024": 0.4974886166267662,
+      "2026": 0.5374211482946648
+    },
+    "domain_macro_auc": 0.5356493880310692,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.4675643579907168,
+        0.5534489348689512
+      ],
+      "mean": 0.5091223617040385
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 0.07308970099667775
+    },
+    "high_conf_error_enrichment": null
+  },
+  {
+    "dataset": "weibo",
+    "split": "val",
+    "score": "clip_dissimilarity",
+    "target": "is_high_conf_error",
+    "pooled_auc": 0.4714704832448351,
+    "per_seed_auc": {
+      "42": 0.40764309764309764,
+      "2024": 0.4758764241893076,
+      "2026": 0.5098493100944081
+    },
+    "domain_macro_auc": 0.534163688756311,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.40647167365730424,
+        0.5398156801067724
+      ],
+      "mean": 0.47133450136640326
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 0.4750830564784053
+    },
+    "high_conf_error_enrichment": {
+      "top25_n": 633,
+      "bottom25_n": 633,
+      "top25_positive": 14,
+      "bottom25_positive": 19,
+      "top25_rate": 0.022116903633491312,
+      "bottom25_rate": 0.030015797788309637,
+      "enrichment": 0.736842105263158,
+      "smoothed_odds_ratio": 0.7375882121644833,
+      "fisher_exact_greater_p": 0.8550983449096147
+    }
+  },
+  {
+    "dataset": "weibo",
+    "split": "val",
+    "score": "branch_disagreement",
+    "target": "is_error",
+    "pooled_auc": 0.6310937473226066,
+    "per_seed_auc": {
+      "42": 0.660902296655938,
+      "2024": 0.6112049946016994,
+      "2026": 0.6228215545814177
+    },
+    "domain_macro_auc": 0.7056838899561768,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.5950240122026922,
+        0.6704739858943649
+      ],
+      "mean": 0.6307445676107641
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 0.0033222591362126247
+    },
+    "high_conf_error_enrichment": null
+  },
+  {
+    "dataset": "weibo",
+    "split": "val",
+    "score": "branch_disagreement",
+    "target": "is_high_conf_error",
+    "pooled_auc": 0.5449165588327161,
+    "per_seed_auc": {
+      "42": 0.528956228956229,
+      "2024": 0.524145486415425,
+      "2026": 0.5729847494553377
+    },
+    "domain_macro_auc": 0.5911557695209877,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.4781572567927262,
+        0.6057055777467271
+      ],
+      "mean": 0.5447755906029828
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 0.23255813953488372
+    },
+    "high_conf_error_enrichment": {
+      "top25_n": 633,
+      "bottom25_n": 633,
+      "top25_positive": 21,
+      "bottom25_positive": 12,
+      "top25_rate": 0.03317535545023697,
+      "bottom25_rate": 0.018957345971563982,
+      "enrichment": 1.75,
+      "smoothed_odds_ratio": 1.7452734693877552,
+      "fisher_exact_greater_p": 0.07861878104522134
+    }
+  },
+  {
+    "dataset": "weibo",
+    "split": "val",
+    "score": "fusion_uncertainty",
+    "target": "is_error",
+    "pooled_auc": 0.855909114275433,
+    "per_seed_auc": {
+      "42": 0.8471987343843762,
+      "2024": 0.8475097404121485,
+      "2026": 0.8888591895648454
+    },
+    "domain_macro_auc": 0.8653991358641329,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.8313575063501146,
+        0.8781040338034353
+      ],
+      "mean": 0.8557000026672765
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 0.0033222591362126247
+    },
+    "high_conf_error_enrichment": null
+  },
+  {
+    "dataset": "weibo",
+    "split": "val",
+    "score": "fusion_uncertainty",
+    "target": "is_high_conf_error",
+    "pooled_auc": 0.7403172549194592,
+    "per_seed_auc": {
+      "42": 0.7025589225589226,
+      "2024": 0.7286590709903593,
+      "2026": 0.8112745098039216
+    },
+    "domain_macro_auc": 0.6197159243141063,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.703365769772357,
+        0.7703026218278366
+      ],
+      "mean": 0.7376584491670964
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 0.0033222591362126247
+    },
+    "high_conf_error_enrichment": {
+      "top25_n": 633,
+      "bottom25_n": 634,
+      "top25_positive": 38,
+      "bottom25_positive": 0,
+      "top25_rate": 0.06003159557661927,
+      "bottom25_rate": 0.0,
+      "enrichment": 60031595576.61928,
+      "smoothed_odds_ratio": 82.04282115869017,
+      "fisher_exact_greater_p": 1.991017514924371e-12
+    }
+  },
+  {
+    "dataset": "weibo",
+    "split": "val",
+    "score": "full_conflict_zscore_equal_weight",
+    "target": "is_error",
+    "pooled_auc": 0.7463373258623349,
+    "per_seed_auc": {
+      "42": 0.7846816867601332,
+      "2024": 0.7184199408534009,
+      "2026": 0.7436918635731851
+    },
+    "domain_macro_auc": 0.8028842579184298,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.7018085939799524,
+        0.7850843392567822
+      ],
+      "mean": 0.7446195601878534
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 0.0033222591362126247
+    },
+    "high_conf_error_enrichment": null
+  },
+  {
+    "dataset": "weibo",
+    "split": "val",
+    "score": "full_conflict_zscore_equal_weight",
+    "target": "is_high_conf_error",
+    "pooled_auc": 0.5622685288474409,
+    "per_seed_auc": {
+      "42": 0.5793265993265994,
+      "2024": 0.5329097283085014,
+      "2026": 0.5890522875816993
+    },
+    "domain_macro_auc": 0.5560099657976375,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.5045347606654819,
+        0.629162680811204
+      ],
+      "mean": 0.5646883194002502
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 0.04983388704318937
+    },
+    "high_conf_error_enrichment": {
+      "top25_n": 633,
+      "bottom25_n": 633,
+      "top25_positive": 24,
+      "bottom25_positive": 13,
+      "top25_rate": 0.037914691943127965,
+      "bottom25_rate": 0.020537124802527645,
+      "enrichment": 1.8461538461538463,
+      "smoothed_odds_ratio": 1.847567830340595,
+      "fisher_exact_greater_p": 0.0469745245841103
+    }
+  },
+  {
+    "dataset": "weibo",
+    "split": "val",
+    "score": "confidence_uncertainty",
+    "target": "is_error",
+    "pooled_auc": 0.8588506771306339,
+    "per_seed_auc": {
+      "42": 0.8613278053570455,
+      "2024": 0.870206074261841,
+      "2026": 0.8600983641612318
+    },
+    "domain_macro_auc": 0.8692616933184353,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.8328655487701058,
+        0.8788639419401956
+      ],
+      "mean": 0.8586699070383212
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 0.0033222591362126247
+    },
+    "high_conf_error_enrichment": null
+  },
+  {
+    "dataset": "weibo",
+    "split": "val",
+    "score": "confidence_uncertainty",
+    "target": "is_high_conf_error",
+    "pooled_auc": 0.7257987149167818,
+    "per_seed_auc": {
+      "42": 0.6867340067340068,
+      "2024": 0.751840490797546,
+      "2026": 0.756309005083515
+    },
+    "domain_macro_auc": 0.6736085731639601,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.6890871574364362,
+        0.7586101511736559
+      ],
+      "mean": 0.7258244584563939
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 0.0033222591362126247
+    },
+    "high_conf_error_enrichment": {
+      "top25_n": 633,
+      "bottom25_n": 633,
+      "top25_positive": 33,
+      "bottom25_positive": 0,
+      "top25_rate": 0.052132701421800945,
+      "bottom25_rate": 0.0,
+      "enrichment": 52132701421.80095,
+      "smoothed_odds_ratio": 70.6819317235637,
+      "fisher_exact_greater_p": 7.587326909113024e-11
+    }
+  },
+  {
+    "dataset": "weibo",
+    "split": "val",
+    "score": "overconfidence",
+    "target": "is_error",
+    "pooled_auc": 0.14114932286936605,
+    "per_seed_auc": {
+      "42": 0.13867219464295455,
+      "2024": 0.12979392573815896,
+      "2026": 0.1399016358387683
+    },
+    "domain_macro_auc": 0.13073830668156464,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.11669382891473419,
+        0.16608160738852187
+      ],
+      "mean": 0.14103619410879953
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 1.0
+    },
+    "high_conf_error_enrichment": null
+  },
+  {
+    "dataset": "weibo",
+    "split": "val",
+    "score": "overconfidence",
+    "target": "is_high_conf_error",
+    "pooled_auc": 0.27420128508321806,
+    "per_seed_auc": {
+      "42": 0.31326599326599325,
+      "2024": 0.24815950920245397,
+      "2026": 0.2436909949164851
+    },
+    "domain_macro_auc": 0.32639142683604006,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.24165209904126125,
+        0.307366956568014
+      ],
+      "mean": 0.27483246904085007
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 1.0
+    },
+    "high_conf_error_enrichment": {
+      "top25_n": 633,
+      "bottom25_n": 633,
+      "top25_positive": 0,
+      "bottom25_positive": 33,
+      "top25_rate": 0.0,
+      "bottom25_rate": 0.052132701421800945,
+      "enrichment": 0.0,
+      "smoothed_odds_ratio": 0.014147887240985287,
+      "fisher_exact_greater_p": 1.0
+    }
+  },
+  {
+    "dataset": "weibo",
+    "split": "val",
+    "score": "random_conflict_negative_control",
+    "target": "is_error",
+    "pooled_auc": 0.4494193983218812,
+    "per_seed_auc": {
+      "42": 0.42886367355845284,
+      "2024": 0.49992958738205884,
+      "2026": 0.4179407676681278
+    },
+    "domain_macro_auc": 0.4738051769323296,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.4029077050620209,
+        0.502458809779946
+      ],
+      "mean": 0.4499915830811298
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 0.9634551495016611
+    },
+    "high_conf_error_enrichment": null
+  },
+  {
+    "dataset": "weibo",
+    "split": "val",
+    "score": "random_conflict_negative_control",
+    "target": "is_high_conf_error",
+    "pooled_auc": 0.42726228191513094,
+    "per_seed_auc": {
+      "42": 0.35757575757575755,
+      "2024": 0.5292725679228746,
+      "2026": 0.3762708787218591
+    },
+    "domain_macro_auc": 0.49387527234586015,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.36662246178657243,
+        0.4990469420536954
+      ],
+      "mean": 0.42834989383419386
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 0.9667774086378738
+    },
+    "high_conf_error_enrichment": {
+      "top25_n": 633,
+      "bottom25_n": 633,
+      "top25_positive": 14,
+      "bottom25_positive": 28,
+      "top25_rate": 0.022116903633491312,
+      "bottom25_rate": 0.044233807266982623,
+      "enrichment": 0.5,
+      "smoothed_odds_ratio": 0.49727425909406286,
+      "fisher_exact_greater_p": 0.9912164907866301
+    }
+  },
+  {
+    "dataset": "weibo21",
+    "split": "val",
+    "score": "clip_dissimilarity",
+    "target": "is_error",
+    "pooled_auc": 0.5314465408805031,
+    "per_seed_auc": {
+      "42": 0.5124401612496852,
+      "2024": 0.5638669950738917,
+      "2026": 0.5134656272147413
+    },
+    "domain_macro_auc": 0.4923126882709814,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.46289782408417074,
+        0.5896626720371775
+      ],
+      "mean": 0.5321729335771682
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 0.17275747508305647
+    },
+    "high_conf_error_enrichment": null
+  },
+  {
+    "dataset": "weibo21",
+    "split": "val",
+    "score": "clip_dissimilarity",
+    "target": "is_high_conf_error",
+    "pooled_auc": 0.5164958217270195,
+    "per_seed_auc": {
+      "42": 0.494,
+      "2024": 0.5253117439047088,
+      "2026": 0.5271001377139485
+    },
+    "domain_macro_auc": 0.4611875260127633,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.44287762879060566,
+        0.6114384071555649
+      ],
+      "mean": 0.5186920805836561
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 0.37209302325581395
+    },
+    "high_conf_error_enrichment": {
+      "top25_n": 471,
+      "bottom25_n": 462,
+      "top25_positive": 14,
+      "bottom25_positive": 11,
+      "top25_rate": 0.029723991507430998,
+      "bottom25_rate": 0.023809523809523808,
+      "enrichment": 1.248407643312102,
+      "smoothed_odds_ratio": 1.2443335709194583,
+      "fisher_exact_greater_p": 0.36129665901729313
+    }
+  },
+  {
+    "dataset": "weibo21",
+    "split": "val",
+    "score": "branch_disagreement",
+    "target": "is_error",
+    "pooled_auc": 0.7961275490756623,
+    "per_seed_auc": {
+      "42": 0.7790375409423028,
+      "2024": 0.8293103448275861,
+      "2026": 0.7756403766325808
+    },
+    "domain_macro_auc": 0.7929193545353795,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.7606545490228147,
+        0.8330316386204157
+      ],
+      "mean": 0.7972268477617338
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 0.0033222591362126247
+    },
+    "high_conf_error_enrichment": null
+  },
+  {
+    "dataset": "weibo21",
+    "split": "val",
+    "score": "branch_disagreement",
+    "target": "is_high_conf_error",
+    "pooled_auc": 0.7607799442896936,
+    "per_seed_auc": {
+      "42": 0.720888888888889,
+      "2024": 0.7966685278243067,
+      "2026": 0.7586071217784773
+    },
+    "domain_macro_auc": 0.7194642745855035,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.7021528842795848,
+        0.8102598671910045
+      ],
+      "mean": 0.760910064974603
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 0.0033222591362126247
+    },
+    "high_conf_error_enrichment": {
+      "top25_n": 462,
+      "bottom25_n": 462,
+      "top25_positive": 28,
+      "bottom25_positive": 2,
+      "top25_rate": 0.06060606060606061,
+      "bottom25_rate": 0.004329004329004329,
+      "enrichment": 14.0,
+      "smoothed_odds_ratio": 12.08216340621404,
+      "fisher_exact_greater_p": 3.01205396105385e-07
+    }
+  },
+  {
+    "dataset": "weibo21",
+    "split": "val",
+    "score": "fusion_uncertainty",
+    "target": "is_error",
+    "pooled_auc": 0.8644761292166953,
+    "per_seed_auc": {
+      "42": 0.8757243638196018,
+      "2024": 0.864384236453202,
+      "2026": 0.8602814619823833
+    },
+    "domain_macro_auc": 0.8861007148273037,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.8336848931941137,
+        0.8978078019779022
+      ],
+      "mean": 0.8641109889045432
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 0.0033222591362126247
+    },
+    "high_conf_error_enrichment": null
+  },
+  {
+    "dataset": "weibo21",
+    "split": "val",
+    "score": "fusion_uncertainty",
+    "target": "is_high_conf_error",
+    "pooled_auc": 0.7806016713091922,
+    "per_seed_auc": {
+      "42": 0.8073333333333333,
+      "2024": 0.7738693467336684,
+      "2026": 0.7737556561085973
+    },
+    "domain_macro_auc": 0.8159930304343173,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.7329366971072031,
+        0.8251446665586555
+      ],
+      "mean": 0.7821173591351597
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 0.0033222591362126247
+    },
+    "high_conf_error_enrichment": {
+      "top25_n": 462,
+      "bottom25_n": 462,
+      "top25_positive": 29,
+      "bottom25_positive": 1,
+      "top25_rate": 0.06277056277056277,
+      "bottom25_rate": 0.0021645021645021645,
+      "enrichment": 29.0,
+      "smoothed_odds_ratio": 20.936947327950787,
+      "fisher_exact_greater_p": 1.8901563904872594e-08
+    }
+  },
+  {
+    "dataset": "weibo21",
+    "split": "val",
+    "score": "full_conflict_zscore_equal_weight",
+    "target": "is_error",
+    "pooled_auc": 0.8514508290451687,
+    "per_seed_auc": {
+      "42": 0.8378054925673973,
+      "2024": 0.8714778325123153,
+      "2026": 0.8369444163207451
+    },
+    "domain_macro_auc": 0.8681819612810291,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.8187701280696468,
+        0.88531668715616
+      ],
+      "mean": 0.851574065681918
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 0.0033222591362126247
+    },
+    "high_conf_error_enrichment": null
+  },
+  {
+    "dataset": "weibo21",
+    "split": "val",
+    "score": "full_conflict_zscore_equal_weight",
+    "target": "is_high_conf_error",
+    "pooled_auc": 0.7778718662952646,
+    "per_seed_auc": {
+      "42": 0.7664444444444444,
+      "2024": 0.7769402568397543,
+      "2026": 0.7831005311823726
+    },
+    "domain_macro_auc": 0.8020231773172631,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.728368507501145,
+        0.8226591937538089
+      ],
+      "mean": 0.7777043025887743
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 0.0033222591362126247
+    },
+    "high_conf_error_enrichment": {
+      "top25_n": 462,
+      "bottom25_n": 462,
+      "top25_positive": 33,
+      "bottom25_positive": 0,
+      "top25_rate": 0.07142857142857142,
+      "bottom25_rate": 0.0,
+      "enrichment": 71428571428.57143,
+      "smoothed_odds_ratio": 72.14784633294529,
+      "fisher_exact_greater_p": 6.43780595221888e-11
+    }
+  },
+  {
+    "dataset": "weibo21",
+    "split": "val",
+    "score": "confidence_uncertainty",
+    "target": "is_error",
+    "pooled_auc": 0.8767926910615591,
+    "per_seed_auc": {
+      "42": 0.8713151927437642,
+      "2024": 0.8907389162561576,
+      "2026": 0.8692922952313455
+    },
+    "domain_macro_auc": 0.8926776716601736,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.8455587027005371,
+        0.9077021664564481
+      ],
+      "mean": 0.8785706380647464
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 0.0033222591362126247
+    },
+    "high_conf_error_enrichment": null
+  },
+  {
+    "dataset": "weibo21",
+    "split": "val",
+    "score": "confidence_uncertainty",
+    "target": "is_high_conf_error",
+    "pooled_auc": 0.7730250696378831,
+    "per_seed_auc": {
+      "42": 0.7754444444444445,
+      "2024": 0.7976921645263353,
+      "2026": 0.7465079677355891
+    },
+    "domain_macro_auc": 0.7999324889386432,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.7399090587561987,
+        0.8056355286262856
+      ],
+      "mean": 0.7733228707111843
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 0.0033222591362126247
+    },
+    "high_conf_error_enrichment": {
+      "top25_n": 462,
+      "bottom25_n": 462,
+      "top25_positive": 32,
+      "bottom25_positive": 0,
+      "top25_rate": 0.06926406926406926,
+      "bottom25_rate": 0.0,
+      "enrichment": 69264069264.06926,
+      "smoothed_odds_ratio": 69.83159117305459,
+      "fisher_exact_greater_p": 1.3354704440416848e-10
+    }
+  },
+  {
+    "dataset": "weibo21",
+    "split": "val",
+    "score": "overconfidence",
+    "target": "is_error",
+    "pooled_auc": 0.12320730893844101,
+    "per_seed_auc": {
+      "42": 0.12868480725623582,
+      "2024": 0.10926108374384237,
+      "2026": 0.13070770476865445
+    },
+    "domain_macro_auc": 0.10732232833982633,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.09924006745319598,
+        0.15119364279122544
+      ],
+      "mean": 0.1238082570248919
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 1.0
+    },
+    "high_conf_error_enrichment": null
+  },
+  {
+    "dataset": "weibo21",
+    "split": "val",
+    "score": "overconfidence",
+    "target": "is_high_conf_error",
+    "pooled_auc": 0.22697493036211697,
+    "per_seed_auc": {
+      "42": 0.22455555555555554,
+      "2024": 0.2023078354736646,
+      "2026": 0.2534920322644108
+    },
+    "domain_macro_auc": 0.20006751106135687,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.19006915696468277,
+        0.2659161773968361
+      ],
+      "mean": 0.22548107491888847
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 1.0
+    },
+    "high_conf_error_enrichment": {
+      "top25_n": 462,
+      "bottom25_n": 462,
+      "top25_positive": 0,
+      "bottom25_positive": 32,
+      "top25_rate": 0.0,
+      "bottom25_rate": 0.06926406926406926,
+      "enrichment": 0.0,
+      "smoothed_odds_ratio": 0.014320166320166321,
+      "fisher_exact_greater_p": 1.0
+    }
+  },
+  {
+    "dataset": "weibo21",
+    "split": "val",
+    "score": "random_conflict_negative_control",
+    "target": "is_error",
+    "pooled_auc": 0.46004859919954255,
+    "per_seed_auc": {
+      "42": 0.47965482489292005,
+      "2024": 0.43354679802955665,
+      "2026": 0.46496912017819175
+    },
+    "domain_macro_auc": 0.45523048438591535,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.4056152218453735,
+        0.5102919816849206
+      ],
+      "mean": 0.45959467032657547
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 0.8870431893687708
+    },
+    "high_conf_error_enrichment": null
+  },
+  {
+    "dataset": "weibo21",
+    "split": "val",
+    "score": "random_conflict_negative_control",
+    "target": "is_high_conf_error",
+    "pooled_auc": 0.4576490250696379,
+    "per_seed_auc": {
+      "42": 0.391,
+      "2024": 0.47701470314535643,
+      "2026": 0.4877041117450325
+    },
+    "domain_macro_auc": 0.4515217785594266,
+    "bootstrap_auc": {
+      "type": "domain_stratified",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "ci95": [
+        0.3891257968913871,
+        0.5217964834349402
+      ],
+      "mean": 0.459007802248269
+    },
+    "permutation_test": {
+      "type": "domain_stratified_label_permutation",
+      "n_iter": 300,
+      "valid_iter": 300,
+      "greater_equal_p": 0.8604651162790697
+    },
+    "high_conf_error_enrichment": {
+      "top25_n": 462,
+      "bottom25_n": 462,
+      "top25_positive": 4,
+      "bottom25_positive": 9,
+      "top25_rate": 0.008658008658008658,
+      "bottom25_rate": 0.01948051948051948,
+      "enrichment": 0.4444444444444445,
+      "smoothed_odds_ratio": 0.46851862480629053,
+      "fisher_exact_greater_p": 0.9549915035049675
+    }
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "variant": "r7d_sample_aux_curriculum_lite",
+  "family": "R7-D",
+  "train_batches": 40,
+  "train_loss_first": 1.0605896711349487,
+  "train_loss_last": 0.6470388174057007,
+  "train_loss_mean": 0.9372587963938713,
+  "metrics": {
+    "rows": 615,
+    "macro_f1": 0.6305924144055595,
+    "accuracy": 0.6601626016260163,
+    "auc": 0.8365943945002644,
+    "nll": 0.5777316360528698,
+    "ece": 0.06363133453741307,
+    "brier": 0.19892280873433488,
+    "high_conf_error_rate": 0.0,
+    "weak_domain_macro_f1": 0.6039024390243902
+  }
+}
