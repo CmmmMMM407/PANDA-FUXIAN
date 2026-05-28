@@ -44,8 +44,8 @@
 - [x] 保全 2026-05-28 整理前完整文档快照：`docs/archive/full_snapshots_20260528/root/`。
 - [x] 将历史方案、投稿规划、阅读笔记、Word 文档、候选登记表移动到 `docs/archive/`。
 - [x] 将根目录入口文档压缩为当前状态 / TODO / 精简日志 / 报告。
-- [ ] 将整理后的文档和筛选后的实验日志同步到 GitHub 仓库 `CmmmMMM407/PANDA-FUXIAN`。
-- [ ] 同步前扫描敏感信息，确认不包含服务器密码、token、私钥、完整 SSH 连接串、checkpoint、权重或原始数据集。
+- [x] 将整理后的文档和筛选后的实验日志同步到 GitHub 仓库 `CmmmMMM407/PANDA-FUXIAN`，提交 `d94253b`。
+- [x] 同步前扫描敏感信息，确认不包含服务器密码、token、私钥、完整 SSH 连接串、checkpoint、权重或原始数据集。
 
 ## 已完成主线索引
 

@@ -5,13 +5,13 @@
 
 本文件现在只保留高密度索引和最新关键实验摘要。逐条长日志、命令细节和历史流水账见完整快照与 `remote_panda_work/repro_logs/`。
 
-## 2026-05-28：文档整理与日志同步准备
+## 2026-05-28：文档整理与日志同步
 
 目标：
 
 - 精简本地项目文档，合并重复入口，归档历史长文。
 - 保留信息保真：先完整快照，再压缩根目录文档。
-- 准备把整理后的实验日志同步到 GitHub 仓库 `CmmmMMM407/PANDA-FUXIAN`。
+- 把整理后的实验日志同步到 GitHub 仓库 `CmmmMMM407/PANDA-FUXIAN`。
 
 操作：
 
@@ -21,12 +21,14 @@
 - 将候选登记表移动到 `docs/archive/registries/`。
 - 将 Word 文档移动到 `docs/archive/word_docs/`。
 - 将 `project_overview.md`、`current_status.md`、`todo.md`、`experiment_log.md` 重写为入口型短文档。
+- 筛选公开安全的 summary、manifest、metrics、notes 和必要 stdout log；排除 checkpoint、权重、原始数据、大 `.npz`、压缩包、DOCX 和含样本正文/图片字段的预测长表。
+- 同步到 GitHub 提交 `d94253b`，并确认远端 HEAD 指向该提交。
 
 结果：
 
 - 根目录保留当前入口、报告、manifest 和工具目录。
 - 完整旧文档未删除，已进入快照和归档区。
-- 敏感信息初筛未发现真实 SSH 连接串或密码落盘；同步时仍需排除 checkpoint、权重、原始数据、大 `.npz`、压缩包和含样本正文的预测长表。
+- 敏感信息扫描未发现真实 SSH 连接串或密码落盘；GitHub 同步仓库未跟踪 checkpoint、权重、原始数据、大 `.npz`、压缩包、DOCX 或含样本正文的预测长表。
 
 ## 2026-05-28：Round 7 D3.5 与 D4-lite
 
