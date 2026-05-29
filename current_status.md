@@ -5,7 +5,7 @@
 
 ## 一句话结论
 
-复现、baseline、诊断和 R2-R11 当前作用域方法验证已经闭环；当前仍没有 `Primary-Candidate`。R8-B static aux 2.0 有稳定正向趋势但被 seed2026 generic DWA control 打穿，Round9 CUE/DGL-Aux 未打过强 controls，Round10 BUA D2.5 显示 utility 信号干净但 boundary gate 增量不成立，Round11 UEA 消融显示 utility-entropy per-sample aux allocation 未打过 static aux 2.0 且被 reverse-utility control 抹平；继续禁止 test 参与方法选择。
+复现、baseline、诊断和 R2-R11 当前作用域方法验证已经闭环；当前仍没有 `Primary-Candidate`。下一阶段切换为 Round12-R15 SOTA 冲刺与论文实验总方案：先用 train/val-only ensemble 上界诊断判断冲榜空间，再以 `ADWA-PANDA / Anchored Dynamic Auxiliary-supervision PANDA` 追单模型方法，最后只在必要时重构 OOF utility calibration。继续禁止 test 参与方法选择。
 
 ## 已完成
 
@@ -20,6 +20,7 @@
 - Round 9 已完成 CUE D2 counterfactual utility probe 与 DGL-Aux D4 fallback。CUE 当前 frozen gate 不成立，DGL-Aux 当前 gradient decoupling 不成立；不打开 D5。
 - Round 10 已完成 BUA D2.5 offline allocator simulation。Utility allocation 打过 shuffled/random/reverse/confidence controls，但 boundary-gated primary 被 utility-only 和 entropy-only ablations 反超；当前 BUA 不打开 D3.5/D4/D5。
 - Round 11 已完成 UEA-PANDA D4 seed42 train/val-only 消融。Primary UEA 不成立；milder entropy alpha0.25 只接近 DWA，reverse-utility control 与 static aux 2.0 并列最高；当前 UEA 不打开 D5。
+- Round 12-R15 后续总方案已制定，详见 `docs/PANDA_SOTA冲刺与论文实验总方案.md`。核心是把 SOTA 冲榜线和论文方法线分开：ensemble/calibration 先测上界，ADWA-PANDA 作为优先单模型方法，OOF utility calibration 作为有条件重启线。
 
 ## 关键复现数字
 
@@ -84,9 +85,10 @@ Best real UEA ablation 是更温和的 `uea_entropy_alpha0p25`，F1/Acc/AUC `0.9
 
 ## 下一步最高优先级
 
-1. 不启动 test、不做两数据集三 seed新方法主表；当前没有够格 primary。
-2. 若继续论文创新，只能基于 R8-B/Round9/Round10/Round11 反例重新提出本质不同机制：为什么 static aux 2.0 稳定高于 deterministic 但会被 DWA seed2026 打穿，为什么 oracle branch utility 有强上界但 train-only utility gate 泛化失败，为什么 utility-only/entropy-only allocation 反而强于 boundary-gated allocation，以及为什么 reverse-utility UEA control 能追平 best control。
-3. 也可以暂停方法赛马，转向复现/负结果/诊断型论文叙事；现有证据支持“PANDA 对训练动力学和多任务辅助监督敏感”的结论，但不支持新 SOTA 方法。
+1. 启动 Round12 train/val-only 模型资产盘点与 ensemble 上界诊断；只导出 train/val logits，不导出 test。
+2. 同步启动 Round13 ADWA-PANDA 设计：static aux 2.0 作为总预算 anchor，DWA 只调 text/image/fusion auxiliary branches 的相对权重，并加入 clip/final-loss guard。
+3. 只有 Round12 显示明显可学习融合空间，或 Round13 有正趋势，才启动 Round14 OOF utility calibration；不再沿旧 CUE/BUA/UEA 直接续参。
+4. Round15 只在至少一条线三 seed val 通过并冻结配置后启动，最终 test 只允许在冻结后打开一次。
 
 ## 不建议继续做
 
@@ -97,6 +99,7 @@ Best real UEA ablation 是更温和的 `uea_entropy_alpha0p25`，F1/Acc/AUC `0.9
 - 不把 R8-B seed42 D4 `Feasible-A` 写成 `Primary-Candidate`；D5 已经显示稳定性不足。
 - 不把 Round10 BUA D2.5 的 utility-only 正信号写成 BUA 成功；当前 boundary-gated BUA 已被 utility-only/entropy-only ablations 反超。
 - 不把 Round11 的 `uea_entropy_alpha0p25` 接近 DWA 写成方法成功；reverse-utility control 追平 best control，当前 utility directionality claim 不成立。
+- 不把冲榜 ensemble 和单模型方法混成一个贡献；ensemble 可以冲指标，ADWA/OOF utility 才能承担方法叙事。
 
 ## 证据位置
 
@@ -105,6 +108,7 @@ Best real UEA ablation 是更温和的 `uea_entropy_alpha0p25`，F1/Acc/AUC `0.9
 - Round 9：`remote_panda_work/repro_logs/round9_cue_d2/seed42/`、`remote_panda_work/repro_logs/round9c_dgl_aux_d4/seed42/summary/`、`remote_panda_work/logs/round9c_dgl_aux_d4/`、`remote_panda_work/code_snapshots/round9c_dgl_aux_patch/`
 - Round 10：`remote_panda_work/repro_logs/round10_bua_d25/seed42/`
 - Round 11：`remote_panda_work/repro_logs/round11_uea_d4/seed42/summary/`、`remote_panda_work/logs/round11_uea_d4/`、`remote_panda_work/code_snapshots/round11_uea_patch_after/`
+- Round 12-R15 planning：`docs/PANDA_SOTA冲刺与论文实验总方案.md`
 - Round 6：`remote_panda_work/repro_logs/round6_r6a_smoke/seed42/`、`remote_panda_work/repro_logs/round6_*`
 - Reproduced baselines：`remote_panda_work/repro_logs/reproduced_baseline_main_table/`
 - Reliability / diagnostics：`remote_panda_work/repro_logs/panda_diagnostics/`、`remote_panda_work/repro_logs/statistical_diagnostics/`

@@ -10,9 +10,10 @@
 1. `current_status.md`
 2. `todo.md`
 3. `project_overview.md`
-4. `experiment_log.md` 最近几条
-5. `docs/README.md`
-6. `docs/archive/README.md`
+4. `docs/PANDA_SOTA冲刺与论文实验总方案.md`
+5. `experiment_log.md` 最近几条
+6. `docs/README.md`
+7. `docs/archive/README.md`
 
 需要追历史方法细节时再读：
 
@@ -37,12 +38,13 @@ cd /root/autodl-tmp/panda_repro/panda
 ## 当前默认路线
 
 1. PANDA、MMDFND、DAMMFND 的 Weibo-21 / Weibo reproduced baselines 已完成；主表使用 reproduced baseline。
-2. 当前没有 `Primary-Candidate`，不直接启动两数据集三 seed新方法主表。
+2. 当前没有 `Primary-Candidate`，不直接启动两数据集三 seed test 主表；下一阶段只启动 Round12-R15 的 train/val-only SOTA 冲刺与论文方法路线。
 3. CS-PANDA、clean Reliability-aware selector、uncertainty stable-source、R3、历史 R4、P0/P1、Round 2、Round 3、Round 4、Round 5、Round 6 当前作用域均已验证或归档。
 4. Round 7 已完成 D2/D3、D3.5、R7-A/R7-D D4-lite。R7-A 只保留 `D4-lite Feasible-B trend`；R7-D current sample aux 被 static aux 2.0 打穿；R7-B/R7-C 只保留 path evidence。
 5. Round 8、Round 9、Round 10、Round 11 当前作用域均已闭环：R8-B static aux 2.0 有训练动力学正信号但 D5 不稳定；Round9 CUE/DGL-Aux No-Go；Round10 BUA D2.5 显示 utility allocation 干净但 boundary gate 不成立；Round11 UEA D4 消融显示 current utility-entropy aux allocation 未打过 static aux 2.0，且 reverse-utility control 追平 best control。
-6. 当前没有 `Primary-Candidate`，不直接启动两数据集三 seed新方法主表。
-7. 三 seed val 通过并冻结最终 primary config 前，不导出、不打开、不分析 test。
+6. Round12-R15 新路线已制定：Round12 做 ensemble / calibration 上界诊断，Round13 做 `ADWA-PANDA` 单模型方法，Round14 按门控重构 OOF utility calibration，Round15 冻结最终配置并规定 test 只打开一次。
+7. 当前没有 `Primary-Candidate`，不直接启动两数据集三 seed test 主表。
+8. 三 seed val 通过并冻结最终 primary config 前，不导出、不打开、不分析 test。
 
 ## 验证深度规则
 

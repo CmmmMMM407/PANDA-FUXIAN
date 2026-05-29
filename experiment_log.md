@@ -5,6 +5,32 @@
 
 本文件现在只保留高密度索引和最新关键实验摘要。逐条长日志、命令细节和历史流水账见完整快照与 `remote_panda_work/repro_logs/`。
 
+## 2026-05-29：Round12-R15 SOTA 冲刺与论文实验总方案制定
+
+目标：
+
+- 回应“继续追 SOTA”的目标切换，把后续实验从单一路线赛马改成两线并行：SOTA 冲榜线与论文方法线。
+- 整合 R2-R11 的正/负证据，避免继续沿已失败的 CUE/BUA/UEA/boundary hard gate 直接续参。
+- 明确最终 test 协议：三 seed val 通过并冻结最终配置前，不导出、不打开、不分析 test。
+
+规划：
+
+- Round12：先做 train/val-only 模型资产盘点与 ensemble 上界诊断，覆盖 PANDA、static aux 2.0、generic DWA、DAMMFND、MMDFND 的多 seed logits；用 equal-weight、convex-weight、calibration-before-ensemble、oracle disagreement 和 diversity audit 判断冲榜空间。
+- Round13：优先做 `ADWA-PANDA / Anchored Dynamic Auxiliary-supervision PANDA`。核心是用 static aux 2.0 提供稳定总预算 anchor，用 clipped DWA 调 text/image/fusion auxiliary branch 相对权重，并加入 final-loss guard。
+- Round14：只在 Round12/13 显示空间后启动 OOF utility calibration。它必须重做 split-safe OOF utility target，不能复用旧 train-only CUE gate 或 Round11 UEA allocation。
+- Round15：只有至少一条线完成三 seed val 并冻结配置后，才允许执行最终 test；test 后禁止回头改权重、阈值、seed、aux weight 或 ensemble 成员。
+
+关键判断：
+
+- 最快冲指标的是多 seed / 多方法 ensemble，但必须和单模型方法线分开叙事。
+- 最值得写成方法的是 ADWA-PANDA，因为它直接解释 R8-B static aux 2.0 的稳定正向趋势和 seed2026 DWA 反例。
+- Utility / entropy 仍有研究价值，但只能通过 OOF target、calibration 或 ensemble feature 重构；旧 boundary hard gate 和当前 UEA 不再续参。
+
+文档：
+
+- 新增 `docs/PANDA_SOTA冲刺与论文实验总方案.md`。
+- 更新 `current_status.md`、`todo.md`、`project_overview.md`、`session_start.md`、`docs/README.md`。
+
 ## 2026-05-29：Round 11 UEA-PANDA D4 消融闭环
 
 目标：
