@@ -1,9 +1,115 @@
 # 实验日志
 
-最后整理：2026-05-28  
+最后整理：2026-05-29  
 完整旧版快照：`docs/archive/full_snapshots_20260528/root/experiment_log.md`
 
 本文件现在只保留高密度索引和最新关键实验摘要。逐条长日志、命令细节和历史流水账见完整快照与 `remote_panda_work/repro_logs/`。
+
+## 2026-05-29：Round 10 BUA-PANDA D2.5 offline allocator 闭环
+
+目标：
+
+- 验证 `Boundary-gated Utility-Anchored Auxiliary PANDA` 是否能把 Round9-A 的 counterfactual branch utility 从 inference gate 降级为 training-time branch auxiliary supervision allocator。
+- 检查 boundary trust gate 是否提供增量价值，而不是削弱 utility 或退化为 confidence / boundary heuristic。
+- 继续执行 train/val-only；不训练 PANDA，不导出、不打开、不分析 test。
+
+操作：
+
+- 新增 `tools/run_panda_round10a_bua_d25.py`。
+- 复用远端 Round9-A 已生成的 `branch_utility_train.csv` 与 `branch_utility_val_diagnostic.csv`，构造 `q_i,b = normalize(relu(u_i,b)+epsilon)`。
+- 用 train 分布确定 low-margin / risk thresholds，构造 `boundary_trust_i = 1[low_margin_i or high_boundary_risk_i]` 与 `alpha_i = clip(boundary_trust_i * utility_confidence_i, 0, 0.5)`。
+- 比较 primary `bua_boundary_gated_utility_aux` 与 static uniform anchor、utility-only、entropy-only、boundary-only、shuffled utility、shuffled boundary、random utility、reverse utility、confidence-only branch allocation。
+- 安全同步仅保留 summary、manifest、metrics 和 md decision；不保存 checkpoint、权重、原始数据、branch utility 长表或 test artifact。
+
+结果：
+
+- Round10-A D2.5 结论为 `D2.5-No-Go-for-current-BUA-boundary-gate`。
+- Primary `bua_boundary_gated_utility_aux` expected utility `0.773082`，明显高于 static anchor `0.503536`、shuffled utility `0.539701`、random utility `0.508881`、reverse utility `0.468324`、confidence-only allocation `0.505511`。
+- 但 primary 低于 utility-only `0.911898` 和 entropy-only `0.816022`；decision reason 为 `boundary_gate_not_proven_vs:bua_utility_only_aux_alloc,bua_entropy_gated_utility_aux`。
+- Val utility entropy 对 final error 的 AUC 为 `0.936162`，top-utility branch correct rate 为 `0.939837`，top-utility 与 top-confidence match rate 仅 `0.380488`。
+
+结论：
+
+- 当前 BUA boundary-gated allocator 不进入 D3.5/D4/D5。
+- 重要规律 1：counterfactual utility 作为 branch aux allocation 的离线信号是干净的，能打过 shuffled/random/reverse/confidence controls。
+- 重要规律 2：当前 boundary trust gate 不是有效开关，反而压低 utility-only / entropy-only allocation 的收益；后续若重开，不应继续沿 `low-margin or high-risk` 的 hard boundary gate 续参。
+- 重要规律 3：utility entropy 比 boundary risk 更像“何时信 utility”的变量；这提示下一版机制应考虑 soft reliability / entropy calibration / train-time coupling，而不是把 R7/R8 risk 直接作为 trust gate。
+
+证据目录：
+
+- `remote_panda_work/repro_logs/round10_bua_d25/seed42/`
+
+## 2026-05-29：Round 9 CUE-PANDA 与 DGL-Aux fallback 闭环
+
+目标：
+
+- 验证 `Counterfactual Utility-aligned Evidence PANDA` 是否能用 train-only branch utility 学到比 confidence/stacking/calibration 更干净的 evidence gate。
+- 若 CUE D2 不成立，验证 DGL-style branch-local gradient decoupling / aux-final conflict drop 是否能超过 static aux 2.0、DWA、GradNorm、PCGrad/CAGrad、detached aux 和 same-budget controls。
+- 继续执行 train/val-only；D5 前不导出、不打开、不分析 test。
+
+操作：
+
+- Round9-A：基于现有 PANDA checkpoint 与 Round6-R6B branch features，构造 leave-one-branch-out counterfactual utility：`u_branch = CE(y_minus_branch,y)-CE(y_full,y)`；训练 CUE gate，并比较 original equal-sum、global weights、confidence-only、uncertainty/disagreement、random/shuffled utility、same-param MLP、final+aux stacking、Platt/temperature controls。
+- Round9-C：在远端 `main.py` / `model/PANDA.py` 增加 `dgl_branch_pcgrad` 与 `dgl_branch_conflict_drop` 两种 `r5a_grad_mode`，运行 4 个 seed42 D4 variants：PCGrad aux1.0/2.0 与 conflict-drop aux1.0/2.0。
+- 安全同步仅保留 summary、decision、manifest、metrics、flip audit、stdout log 和代码快照；不保存 checkpoint、权重、原始数据、branch utility 长表或 val prediction 长表。
+
+结果：
+
+- Round9-A D2 `No-Go-for-current-CUE-D2`：`cue_gate` F1/Acc/AUC `0.921800/0.921951/0.980069`，低于 `confidence_only_gate` `0.930045/0.930081/0.983659`、`same_param_mlp_classifier` `0.936542/0.936585/0.949355`，也低于 `final_aux_stacking` / `platt_temperature` `0.954451/0.954472`。原始 equal-sum 为 `0.956086/0.956098/0.987372`。
+- CUE flip audit 为 W2C `8`、C2W `29`，不是净正收益。
+- Oracle val utility gate diagnostic F1/Acc/AUC `0.973959/0.973984/0.998773`，说明 counterfactual utility 有强上界信号，但当前 train-only CUE gate 学不到可泛化版本。
+- Round9-C D4 `No-Go-for-current-DGL-Aux`：best DGL `round9c_dgl_branch_conflict_drop_aux1p0` F1/Acc/AUC `0.933299/0.933333/0.981650`，低于 `static_aux_weight_2p0_anchor_control` `0.939837/0.939837/0.981407`、`generic_dwa` `0.938210/0.938211/0.980962`、deterministic/same-budget/detached `0.936585/0.936585/0.983765`。
+- Best DGL flip audit W2C `15`、C2W `17`；4 个 DGL variants 的 flip net 均为负。
+
+结论：
+
+- Round9 当前作用域闭环，仍无 `Primary-Candidate`，不进入 D5。
+- 重要规律 1：utility 不是没有信息，而是“oracle 有信号、train-only gate 泛化失败”。后续若再做 CUE，必须从 utility target 的稳定性、跨 split 校准、正负 utility 归因偏差或 train-time representation coupling 上重新设计，而不是继续调当前 gate。
+- 重要规律 2：DGL-style branch-local gradient surgery 没有解决 aux-final 冲突；简单 static aux 2.0 仍是更强控制。这进一步支持 R8-B 的观察：当前有效信号更像辅助监督强度/训练动力学，而不是已经形成 PANDA-specific 新机制。
+
+证据目录：
+
+- `remote_panda_work/repro_logs/round9_cue_d2/seed42/`
+- `remote_panda_work/repro_logs/round9c_dgl_aux_d4/seed42/summary/`
+- `remote_panda_work/logs/round9c_dgl_aux_d4/`
+- `remote_panda_work/code_snapshots/round9c_dgl_aux_patch/`
+
+## 2026-05-29：Round 8 完整闭环与 R8-B D5
+
+目标：
+
+- 接续 R8 队列，把有正向线索的方法推进到当前可验证层级。
+- 对所有正式训练继续执行 train/val-only，不导出、不打开、不分析 test。
+
+操作：
+
+- R8-A：运行 formal D4 seed42 5-epoch，显式 `--model_name FTmodel`，强 controls 覆盖 same-budget CE、static aux 2.0、focal/class-balanced、confidence/random/shuffled risk、risk-margin/consistency。
+- R8-B：独立登记 static aux 2.0；补跑 `generic_gradnorm`、`generic_dwa` controls；随后运行 D5 seeds 2024/2026，与 seed42 合并成三 seed val 复核。
+- R8-C：修正 D3.5 决策理由命名，把“梯度不一致非零”与“完全无梯度”区分开，重跑并同步 summary。
+- R8-D：修正同类未来 reason 命名；当前结果不需重跑。
+- 安全同步仅保留 manifest、summary、decision、metrics、notes、telemetry 和必要 stdout log；排除 checkpoint、权重、原始数据、大 `.npz` 和逐样本 val/prediction 长表。
+
+结果：
+
+- R8-A formal D4 `No-Go`：best primary `r8a_composite_risk_primary` F1/Acc/AUC `0.926767/0.926829/0.978847`，低于 best strong control `shuffled_risk_control` `0.938207/0.938211/0.980836`。
+- R8-B seed42 D4 `Feasible-A`：static aux 2.0 F1/Acc/AUC `0.939837/0.939837/0.981407`，打过 deterministic、random/shuffled label、same-budget、PCGrad/CAGrad/GradNorm/DWA controls。
+- R8-B D5 降级为 `D5-Feasible-B-not-stable-enough`：static aux 2.0 三 seed 均高于 deterministic，平均 Macro-F1 delta `+0.004856`；但 seed2026 被 `generic_dwa` 打穿，static aux F1/Acc `0.911679/0.912195`，DWA `0.926826/0.926829`。
+- R8-C D3.5 `No-Go`：primary 只在 `1/5` batch 产生非零 final-boundary 梯度，且 low-margin 梯度富集不高于 controls。
+- R8-D D3.5 `No-Go`：aux-logit endogenous signal 能到 final boundary，但 high-mismatch 梯度富集没有打过 controls。
+
+结论：
+
+- Round 8 当前作用域全部闭环，仍无 `Primary-Candidate`。
+- 重要规律：static aux 2.0 对 deterministic 有跨 seed 正向趋势，但 DWA seed2026 反例说明它更像“辅助监督训练动力学”而不是足够干净的 PANDA-specific 方法贡献。
+- R8-A 的 shuffled-risk control 打穿 primary，提示 risk-aware 线的提升主要来自扰动/正则化 artifact。
+
+证据目录：
+
+- `remote_panda_work/repro_logs/round8_r8a_formal_d4/seed42/`
+- `remote_panda_work/repro_logs/round8_r8b_static_aux_candidate/seed42/`
+- `remote_panda_work/repro_logs/round8_r8b_d5_seed_recheck/summary/`
+- `remote_panda_work/repro_logs/round8_r8c_d35_gradient_sanity/seed42/`
+- `remote_panda_work/repro_logs/round8_r8d_d35_branch_aux_endogenous_sanity/seed42/`
 
 ## 2026-05-28：文档整理与日志同步
 

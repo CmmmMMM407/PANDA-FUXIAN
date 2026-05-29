@@ -1,43 +1,94 @@
 # TODO
 
-最后整理：2026-05-28  
+最后整理：2026-05-29  
 完整旧版快照：`docs/archive/full_snapshots_20260528/root/todo.md`
 
 ## P0：R8 有希望方法验证队列
 
 这些候选只表示“已有提升线索，值得更深验证”，不表示已有 `Primary-Candidate`。所有任务默认 train/val-only；三 seed val 通过并冻结最终 primary config 前，不导出、不打开、不分析 test。
 
-- [ ] **R8-A / R7-A formal D4：Boundary-Risk Aware Training**
-  冻结 Weibo-21 seed42 5-epoch manifest。现有线索：R7-A composite risk val error AUC `0.828231`，D3.5 risk-margin 可触达 final classifier / `h_final`，D4-lite `r7a_composite_risk_lite` F1/Acc/AUC `0.732329/0.739837/0.866367`，优于 deterministic-lite、confidence-only、random risk、shuffled risk controls。
+- [x] **R8-A / R7-A formal D4：Boundary-Risk Aware Training**
+  已完成 Weibo-21 seed42 train/val-only 5-epoch formal D4。结论 `No-Go`：best primary `r8a_composite_risk_primary` F1/Acc/AUC `0.926767/0.926829/0.978847`，没有打过 best strong control `shuffled_risk_control` 的 `0.938207/0.938211/0.980836`。
 
-- [ ] **R8-A 强对照**
-  必须包括 deterministic_train、same-budget CE / no-new-signal、static aux 2.0、focal loss、class-balanced CE、confidence-only risk、random risk、shuffled risk、risk-margin only、risk-consistency only、risk-margin + consistency。输出 val metrics、flip audit、hard-bin / weak-domain summary、risk-bin summary 和 manifest。
+- [x] **R8-A 强对照**
+  deterministic_train、same-budget CE、static aux 2.0、focal loss、class-balanced CE、confidence-only risk、random risk、shuffled risk、risk-margin only、risk-consistency only、risk-margin + consistency 已跑完，并输出 summary/manifest/decision。
 
-- [ ] **R8-A Go/No-Go**
-  Seed42 D4 primary 的 Macro-F1/Acc 不低于 deterministic，理想提升 `>= +0.3pp`；wrong->correct 大于 correct->wrong；low-margin、high-disagreement、weak-domain 至少不净负；AUC/ECE/Brier/HCE 至少两个不劣化；best strong control 不能追平或打穿。过线后才进入 D5 seeds 2024/2026 val 复核。
+- [x] **R8-A Go/No-Go**
+  `No-Go`，原因 `best_primary_not_above_best_strong_control`。不进入 D5。
 
-- [ ] **R8-B：Static/Adaptive Auxiliary-Supervision Strength**
-  将 `aux_weight_2p0 / static-aux-strength` 独立登记为候选。现有线索：R5-A smoke 中 `aux_weight_2p0` F1/Acc `0.939837/0.939837` 高于 deterministic `0.938175/0.938211`；R7-D D4-lite 中 static aux 2.0 F1/Acc/AUC `0.736521/0.739837/0.837197` 明显高于 sample aux curriculum。
+- [x] **R8-B：Static/Adaptive Auxiliary-Supervision Strength**
+  已将 `aux_weight_2p0 / static-aux-strength` 从 R6-A control 独立登记为 R8-B。Seed42 D4 formal moat 结论 `Feasible-A`：static aux 2.0 F1/Acc/AUC `0.939837/0.939837/0.981407`，打过 deterministic、random/shuffled label、same-budget、PCGrad/CAGrad/GradNorm/DWA controls。
 
-- [ ] **R8-B formal D4**
-  预注册 static aux `0.5/1.0/1.5/2.0/3.0`、warmup/ramp schedule、branch-specific aux weights、detached/no-feature-update aux、same-budget controls、random aux labels、shuffled aux labels、generic PCGrad/CAGrad/GradNorm/DWA controls。通过线是打过 deterministic、random/shuffled label、same-budget 和 generic gradient controls，并解释 branch-to-final alignment 是否改善。
+- [x] **R8-B formal D4 / D5**
+  D4 已补齐 GradNorm/DWA moat；D5 三 seed val 复核完成，结论 `D5-Feasible-B-not-stable-enough`。三 seed static aux 2.0 均高于 deterministic，平均 Macro-F1 delta `+0.004856`，但 seed2026 被 `generic_dwa` 打穿：static aux `0.911679/0.912195`，generic DWA `0.926826/0.926829`。不能升 `Primary-Candidate`。
 
-- [ ] **R8-C：Training-time low-margin margin/risk regularizer**
-  只把 R6-C low-margin 线索改写为训练期 regularizer，不再做 offline adapter。先补 D3.5 gradient sanity，再决定是否开 D4 seed42。强对照包括 confidence-only low-margin、global calibration / Platt / temperature、focal loss、class-balanced CE、random low-margin mask、shuffled low-margin mask、all-sample margin regularizer。
+- [x] **R8-C：Training-time low-margin margin/risk regularizer**
+  D3.5 gradient sanity 已完成，结论 `D3.5-No-Go-for-current-regularizer`。Primary 只在 `1/5` batch 产生非零 final-boundary 梯度，且低 margin 梯度富集不高于 controls；不打开 D4。
 
-- [ ] **R8-D：Branch Aux-Logit Endogenous Boundary Signal**
-  重新登记 P2-B `final+aux logits` 弱信号为训练期内生机制。先补 D3.5 检查 detached branch logits/features、小 residual head、branch-logit distillation loss 是否触达 final boundary；强对照必须包括 weighted average final+aux、logistic stacking、final-only MLP、parameter-matched final-only head、random/shuffled aux logits、branch identity permutation、branch-drop ablation 和 same-budget controls。
+- [x] **R8-D：Branch Aux-Logit Endogenous Boundary Signal**
+  D3.5 train-only sanity 已完成，结论 `D3.5-No-Go-for-current-aux-logit-signal`。Primary 可触达 final boundary，但 high-mismatch 梯度富集没有打过 controls；不打开 D4。
 
-- [ ] **R8-E：Confidence-uncertainty stable-source calibration add-on**
-  只在 R8-A/R8-B/R8-C/R8-D 产生 D4 过线 primary 后作为 second-stage add-on。必须打过 overconfidence-only、random、deterministic、signed/asymmetric uncertainty controls。通过线为三 seed val F1/Acc 不下降且 ECE/Brier/HCE/weak-domain 至少两个稳定改善。
+- [x] **R8-E：Confidence-uncertainty stable-source calibration add-on**
+  本轮不启动。R8-A/C/D 未过线；R8-B 虽 seed42 D4 `Feasible-A`，但 D5 未能升 `Primary-Candidate`，因此没有可挂载的 primary。
+
+## P0：Round9 / CUE-PANDA 候选验证队列
+
+当前推荐主线来自 `docs/创新方案第一性原理复审与更优方法建议.md`：把 `Evidence-Gated Final Boundary + Aux-to-Final Meta Weighting` 升级为 `CUE-PANDA / Counterfactual Utility-aligned Evidence PANDA`。核心不是继续用 uncertainty/confidence heuristic 做 gate，而是先用 train-only counterfactual branch utility 监督 evidence gate，再用同一 utility 信号组织 aux-to-final training。
+
+所有任务继续默认 train/val-only；D5 三 seed val 通过并冻结最终 primary config 前，不导出、不打开、不分析 test。
+
+- [x] **Round9-A / CUE D2 Counterfactual Utility Probe**
+  已完成 Weibo-21 seed42 train/val-only frozen/offline D2。结论 `No-Go-for-current-CUE-D2`：`cue_gate` F1/Acc/AUC `0.921800/0.921951/0.980069`，低于 `confidence_only_gate` `0.930045/0.930081/0.983659` 和 `same_param_mlp_classifier` `0.936542/0.936585/0.949355`；flip audit 为 W2C `8`、C2W `29`。
+
+- [x] **Round9-A D2 strong controls**
+  已比较 original equal-sum、global branch weights、confidence-only gate、uncertainty/disagreement gate、CUE gate、random/shuffled utility、same-param MLP、final+aux stacking、Platt/temperature。`final_aux_stacking` 与 `platt_temperature` 均为 `0.954451/0.954472`，接近原始 equal-sum `0.956086/0.956098`，强于 CUE。Oracle val utility diagnostic 达到 `0.973959/0.973984/0.998773`，说明 utility 本身有上界信号，但当前 train-only CUE gate 泛化失败；不进入 CUE D3.5/D4/D5。
+
+- [x] **Round9-B / CUE D3.5 Gradient Sanity**
+  已按门控关闭。Round9-A D2 已 `No-Go-for-current-CUE-D2`，因此当前 CUE 变体不启动 D3.5。
+
+- [x] **Round9-B / CUE D4 seed42 training smoke**
+  已按门控关闭。D3.5 未打开，因此当前 CUE D4 不启动。
+
+- [x] **Round9-B / CUE D5 three-seed val**
+  已按门控关闭。当前 CUE D4 未打开，继续禁止 test 参与任何选择。
+
+- [x] **Round9-C / DGL-Aux PANDA 降级候选**
+  已完成 Weibo-21 seed42 train/val-only D4 smoke。结论 `No-Go-for-current-DGL-Aux`：best DGL `round9c_dgl_branch_conflict_drop_aux1p0` F1/Acc/AUC `0.933299/0.933333/0.981650`，低于 `static_aux_weight_2p0_anchor_control` `0.939837/0.939837/0.981407`、`generic_dwa` `0.938210/0.938211/0.980962`、deterministic/same-budget/detached `0.936585/0.936585/0.983765`；flip audit W2C `15`、C2W `17`，不打开 D5。
+
+## P0：Round10 / BUA-PANDA 融合候选验证队列
+
+Round10 新主线来自 `docs/创新方案第一性原理复审与更优方法建议.md` 的 BUA-PANDA 方案：融合 R8-B static aux 2.0、Round9-A oracle counterfactual utility 和 R7/R8 boundary-risk。核心不是继续让 utility 做 inference gate，而是把 utility 降级为 training-time branch auxiliary supervision allocator；boundary-risk 只作为 trust gate；static aux 2.0 作为 anchor。
+
+所有任务继续默认 train/val-only；D5 三 seed val 通过并冻结最终 primary config 前，不导出、不打开、不分析 test。
+
+- [x] **Round10-A / BUA D2.5 offline allocator simulation**
+  已完成 Weibo-21 seed42 train/val-only offline allocator 诊断。结论 `D2.5-No-Go-for-current-BUA-boundary-gate`：primary `bua_boundary_gated_utility_aux` expected utility `0.773082`，高于 static anchor `0.503536`、shuffled utility `0.539701`、random utility `0.508881`、reverse utility `0.468324`、confidence-only allocation `0.505511`，但低于 utility-only `0.911898` 和 entropy-only `0.816022`。原因 `boundary_gate_not_proven_vs:bua_utility_only_aux_alloc,bua_entropy_gated_utility_aux`。证据：`remote_panda_work/repro_logs/round10_bua_d25/seed42/`。
+
+- [x] **Round10-A D2.5 strong controls**
+  已比较 uniform static aux allocation、utility-only allocation、boundary-only allocation、entropy-only gate、random utility、shuffled utility、reverse/negative utility、shuffled boundary-risk、confidence-only branch allocation。真实 utility 信号与 shuffled/random/reverse/confidence controls 分离，但当前 boundary gate 没有证明增量贡献，因此当前 BUA 不进入 D3.5。
+
+- [x] **Round10-B / BUA D3.5 gradient sanity**
+  已按门控关闭。Round10-A D2.5 未证明 boundary-gated allocation 优于 utility-only / entropy-only ablations，因此当前 BUA 不启动训练图梯度 sanity。
+
+- [x] **Round10-C / BUA D4 seed42 training smoke**
+  已按门控关闭。D3.5 未打开，当前 BUA D4 不启动；继续禁止 test 参与任何选择。
+
+- [x] **Round10-C D4 strong controls / moat**
+  已按门控关闭。当前 D4 不启动，因此 D4 moat 不执行；若未来重开，需要保留 deterministic、same-budget、static aux 2.0、DWA/GradNorm/PCGrad/CAGrad、detached aux、utility-only、boundary-only、shuffled/random/reverse utility 与 shuffled boundary-risk controls。
+
+- [x] **Round10-D / BUA D5 three-seed val**
+  已按门控关闭。当前 BUA D4 未打开，不启动 D5；继续禁止 test 参与任何选择。
+
+- [x] **Round10-E / Source-CUE reserve**
+  继续关闭。BUA 当前未进入 D4，未来只有 CUE-family 至少 D4 有正向趋势，或 forced source utility D2 直接证明 source marginal utility 优于 PAD/random/shuffled/reverse/bottom controls，才重开 source utility 线。
 
 ## P0：共同执行纪律
 
-- [ ] 所有 PANDA 训练命令显式 `--model_name FTmodel`。
-- [ ] 所有正式候选先写 manifest，记录 `allowed_splits=["train","val"]`、`test_split_exported=false`、`test_used_for_decision=false`。
-- [ ] 每个结论写清 `claim_scope / level_reached / required_level_for_exclusion / status_scope`。
-- [ ] D2/D3 只否定当前 probe/offline/frozen 变体；D3.5/D4-lite 只作为梯度可达和短训趋势；D4 才能判当前训练实现；D5 才能判稳定性。
-- [ ] No-Go checkpoint 默认可回收；长期保留 manifest、stdout、metrics、summary、notes、flip audit、telemetry，不同步 checkpoint、权重、原始数据、大 `.npz` 或含样本正文的预测长表。
+- [x] 所有 PANDA 训练命令显式 `--model_name FTmodel`。
+- [x] 所有正式候选先写 manifest，记录 `allowed_splits=["train","val"]`、`test_split_exported=false`、`test_used_for_decision=false`。
+- [x] 每个结论写清 `claim_scope / level_reached / required_level_for_exclusion / status_scope`。
+- [x] D2/D3 只否定当前 probe/offline/frozen 变体；D3.5/D4-lite 只作为梯度可达和短训趋势；D4 才能判当前训练实现；D5 才能判稳定性。
+- [x] No-Go checkpoint 默认可回收；长期保留 manifest、stdout、metrics、summary、notes、flip audit、telemetry，不同步 checkpoint、权重、原始数据、大 `.npz` 或含样本正文的预测长表。
 
 ## P1：文档与日志同步
 
@@ -56,3 +107,6 @@
 - [x] Reliability / uncertainty / selector stability / statistical diagnostics。
 - [x] CS-PANDA、Reliability-aware selector、uncertainty stable-source、R3、历史 R4、P0/P1、Round 2、Round 3、Round 4、Round 5、Round 6 当前作用域验证。
 - [x] Round 7 D2/D3、D3.5 和 R7-A/R7-D D4-lite。
+- [x] Round 8 A/B/C/D formal/D3.5/D5 当前作用域验证。
+- [x] Round 9 CUE D2 与 DGL-Aux D4 当前作用域验证。
+- [x] Round 10 BUA D2.5 当前作用域验证；后续 D3.5/D4/D5 按门控关闭。

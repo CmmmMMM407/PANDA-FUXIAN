@@ -1,6 +1,6 @@
 # 新会话启动清单
 
-最后整理：2026-05-28  
+最后整理：2026-05-29  
 完整旧版快照：`docs/archive/full_snapshots_20260528/root/session_start.md`
 
 ## 必读顺序
@@ -40,8 +40,9 @@ cd /root/autodl-tmp/panda_repro/panda
 2. 当前没有 `Primary-Candidate`，不直接启动两数据集三 seed新方法主表。
 3. CS-PANDA、clean Reliability-aware selector、uncertainty stable-source、R3、历史 R4、P0/P1、Round 2、Round 3、Round 4、Round 5、Round 6 当前作用域均已验证或归档。
 4. Round 7 已完成 D2/D3、D3.5、R7-A/R7-D D4-lite。R7-A 只保留 `D4-lite Feasible-B trend`；R7-D current sample aux 被 static aux 2.0 打穿；R7-B/R7-C 只保留 path evidence。
-5. 下一轮 R8 队列只表示“值得进一步验证”，不是已有主方法。优先 R8-A formal D4 与 R8-B static/adaptive aux strength。
-6. 三 seed val 通过并冻结最终 primary config 前，不导出、不打开、不分析 test。
+5. Round 8、Round 9、Round 10 当前作用域均已闭环：R8-B static aux 2.0 有训练动力学正信号但 D5 不稳定；Round9 CUE/DGL-Aux No-Go；Round10 BUA D2.5 显示 utility allocation 干净但 boundary gate 不成立。
+6. 当前没有 `Primary-Candidate`，不直接启动两数据集三 seed新方法主表。
+7. 三 seed val 通过并冻结最终 primary config 前，不导出、不打开、不分析 test。
 
 ## 验证深度规则
 

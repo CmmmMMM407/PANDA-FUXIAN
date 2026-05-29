@@ -1,0 +1,29 @@
+{
+  "task": "Round10-A / BUA D2.5 offline allocator simulation",
+  "status": "D2.5-No-Go-for-current-BUA-boundary-gate",
+  "dataset": "weibo21",
+  "seed": 42,
+  "allowed_splits": [
+    "train",
+    "val"
+  ],
+  "test_split_exported": false,
+  "test_used_for_decision": false,
+  "training_allowed": false,
+  "outputs": {
+    "metrics_csv": "repro_logs/round10_bua_d25/seed42/bua_d25_metrics.csv",
+    "summary_json": "repro_logs/round10_bua_d25/seed42/bua_d25_summary.json",
+    "summary_md": "repro_logs/round10_bua_d25/seed42/bua_d25_summary.md"
+  },
+  "command_args": {
+    "dataset": "weibo21",
+    "seed": 42,
+    "input_dir": "repro_logs/round9_cue_d2/seed42",
+    "output_dir": "repro_logs/round10_bua_d25/seed42",
+    "alpha_max": 0.5,
+    "low_margin_quantile": 0.25,
+    "risk_quantile": 0.75,
+    "min_utility_delta": 0.02,
+    "overwrite": true
+  }
+}
