@@ -1,6 +1,6 @@
 # 文档索引
 
-整理日期：2026-05-28
+整理日期：2026-05-29
 
 ## 当前入口
 
@@ -14,6 +14,7 @@
 - `跨领域可借鉴方法与PANDA迁移方案.md`：从医学影像、遥感、工业缺陷、自动驾驶、推荐/因果、RAG/事实核验等领域迁移到 PANDA 的候选机制。
 - `PANDA模块第一性原理审计与架构重组建议.md`：结合现有实验规律，对 PANDA baseline 每个模块做第一性原理审计，并给出模块替换、架构重组和 Round9 候选赛马建议。
 - `创新方案第一性原理复审与更优方法建议.md`：对 Evidence-Gated / Aux-to-Final 当前主线做反审，记录 CUE-PANDA / BUA-PANDA 的 Round9-Round10 方案推导；当前执行结论以 `../current_status.md` 和 `../experiment_log.md` 为准。
+- `round11_uea_panda_ablation_plan.md`：记录 UEA-PANDA 融合消融计划；当前执行结论为 D4 diagnostic-only，不打开 D5，详见 `../experiment_log.md`。
 
 ## 归档
 
@@ -25,4 +26,4 @@
 
 ## 日志证据
 
-主要证据仍在 `../remote_panda_work/repro_logs/` 和 `../remote_panda_work/logs/`。最新 Round10 BUA D2.5 证据在 `../remote_panda_work/repro_logs/round10_bua_d25/seed42/`。上传 GitHub 时只同步摘要、manifest、metrics、notes 和必要 stdout；不上传 checkpoint、权重、原始数据、大 `.npz`、压缩包或含样本正文的预测长表。
+主要证据仍在 `../remote_panda_work/repro_logs/` 和 `../remote_panda_work/logs/`。最新 Round11 UEA D4 证据在 `../remote_panda_work/repro_logs/round11_uea_d4/seed42/summary/`。上传 GitHub 时只同步摘要、manifest、metrics、notes 和必要 stdout；不上传 checkpoint、权重、原始数据、大 `.npz`、压缩包或含样本正文的预测长表。

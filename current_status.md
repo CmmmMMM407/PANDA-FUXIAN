@@ -5,7 +5,7 @@
 
 ## 一句话结论
 
-复现、baseline、诊断和 R2-R10 当前作用域方法验证已经闭环；当前仍没有 `Primary-Candidate`。R8-B static aux 2.0 有稳定正向趋势但被 seed2026 generic DWA control 打穿，Round9 CUE/DGL-Aux 未打过强 controls，Round10 BUA D2.5 显示 utility 信号干净但 boundary gate 增量不成立；继续禁止 test 参与方法选择。
+复现、baseline、诊断和 R2-R11 当前作用域方法验证已经闭环；当前仍没有 `Primary-Candidate`。R8-B static aux 2.0 有稳定正向趋势但被 seed2026 generic DWA control 打穿，Round9 CUE/DGL-Aux 未打过强 controls，Round10 BUA D2.5 显示 utility 信号干净但 boundary gate 增量不成立，Round11 UEA 消融显示 utility-entropy per-sample aux allocation 未打过 static aux 2.0 且被 reverse-utility control 抹平；继续禁止 test 参与方法选择。
 
 ## 已完成
 
@@ -19,6 +19,7 @@
 - Round 8 已完成 R8-A formal D4、R8-B D4/D5、R8-C D3.5、R8-D D3.5；当前无可进入 test 或论文主表的新方法。
 - Round 9 已完成 CUE D2 counterfactual utility probe 与 DGL-Aux D4 fallback。CUE 当前 frozen gate 不成立，DGL-Aux 当前 gradient decoupling 不成立；不打开 D5。
 - Round 10 已完成 BUA D2.5 offline allocator simulation。Utility allocation 打过 shuffled/random/reverse/confidence controls，但 boundary-gated primary 被 utility-only 和 entropy-only ablations 反超；当前 BUA 不打开 D3.5/D4/D5。
+- Round 11 已完成 UEA-PANDA D4 seed42 train/val-only 消融。Primary UEA 不成立；milder entropy alpha0.25 只接近 DWA，reverse-utility control 与 static aux 2.0 并列最高；当前 UEA 不打开 D5。
 
 ## 关键复现数字
 
@@ -73,10 +74,18 @@ Round10-A / BUA-PANDA 已完成 seed42 train/val-only D2.5 offline allocator sim
 
 但 primary 低于 `bua_utility_only_aux_alloc` 的 `0.911898` 和 `bua_entropy_gated_utility_aux` 的 `0.816022`；decision reason 为 `boundary_gate_not_proven_vs:bua_utility_only_aux_alloc,bua_entropy_gated_utility_aux`。当前结论是：utility 可作为训练期分支辅助监督分配信号继续研究，但 BUA 当前的 boundary trust gate 会削弱 utility 信号，不能打开 D3.5/D4/D5。
 
+### Round11
+
+Round11-A / UEA-PANDA 已完成 seed42 train/val-only D4 消融，结论 `Utility-Entropy-Aux-Diagnostic-only`。Primary `uea_entropy_alpha0p5` F1/Acc/AUC 为 `0.921905/0.921951/0.981142`，明显低于 static aux 2.0 `0.939837/0.939837/0.981407`、generic DWA `0.938210/0.938211/0.980962`，flip audit 为 W2C `12`、C2W `21`。
+
+Best real UEA ablation 是更温和的 `uea_entropy_alpha0p25`，F1/Acc/AUC `0.938207/0.938211/0.983977`，接近 DWA 但仍低于 static aux 2.0。更关键的负证据是 `uea_reverse_utility_entropy_alpha0p5` 达到 `0.939837/0.939837/0.982084`，与 static aux 2.0 并列最高；这说明当前 per-sample utility allocation 的方向性没有被证明，训练收益更可能来自辅助监督强度/扰动正则化，而不是 utility 指向本身。
+
+`uea_boundary_entropy_alpha0p5` 只有 `0.923574/0.923577/0.979397`，继续支持 Round10 结论：low-margin/high-risk boundary gate 不能作为 hard trust gate 续参。当前 UEA 不打开 D5；可保留的论文启发是“utility entropy / soft reliability calibration / train-time coupling 值得研究，但当前实现不是候选方法”。
+
 ## 下一步最高优先级
 
 1. 不启动 test、不做两数据集三 seed新方法主表；当前没有够格 primary。
-2. 若继续论文创新，只能基于 R8-B/Round9/Round10 反例重新提出本质不同机制：为什么 static aux 2.0 稳定高于 deterministic 但会被 DWA seed2026 打穿，为什么 oracle branch utility 有强上界但 train-only utility gate 泛化失败，以及为什么 utility-only/entropy-only allocation 反而强于 boundary-gated allocation。
+2. 若继续论文创新，只能基于 R8-B/Round9/Round10/Round11 反例重新提出本质不同机制：为什么 static aux 2.0 稳定高于 deterministic 但会被 DWA seed2026 打穿，为什么 oracle branch utility 有强上界但 train-only utility gate 泛化失败，为什么 utility-only/entropy-only allocation 反而强于 boundary-gated allocation，以及为什么 reverse-utility UEA control 能追平 best control。
 3. 也可以暂停方法赛马，转向复现/负结果/诊断型论文叙事；现有证据支持“PANDA 对训练动力学和多任务辅助监督敏感”的结论，但不支持新 SOTA 方法。
 
 ## 不建议继续做
@@ -87,6 +96,7 @@ Round10-A / BUA-PANDA 已完成 seed42 train/val-only D2.5 offline allocator sim
 - 不把 R7 的 D3.5/D4-lite 写成正式 D4 结论。
 - 不把 R8-B seed42 D4 `Feasible-A` 写成 `Primary-Candidate`；D5 已经显示稳定性不足。
 - 不把 Round10 BUA D2.5 的 utility-only 正信号写成 BUA 成功；当前 boundary-gated BUA 已被 utility-only/entropy-only ablations 反超。
+- 不把 Round11 的 `uea_entropy_alpha0p25` 接近 DWA 写成方法成功；reverse-utility control 追平 best control，当前 utility directionality claim 不成立。
 
 ## 证据位置
 
@@ -94,6 +104,7 @@ Round10-A / BUA-PANDA 已完成 seed42 train/val-only D2.5 offline allocator sim
 - Round 8：`remote_panda_work/repro_logs/round8_r8a_formal_d4/seed42/`、`remote_panda_work/repro_logs/round8_r8b_static_aux_candidate/seed42/`、`remote_panda_work/repro_logs/round8_r8b_d5_seed_recheck/summary/`、`remote_panda_work/repro_logs/round8_r8c_d35_gradient_sanity/seed42/`、`remote_panda_work/repro_logs/round8_r8d_d35_branch_aux_endogenous_sanity/seed42/`
 - Round 9：`remote_panda_work/repro_logs/round9_cue_d2/seed42/`、`remote_panda_work/repro_logs/round9c_dgl_aux_d4/seed42/summary/`、`remote_panda_work/logs/round9c_dgl_aux_d4/`、`remote_panda_work/code_snapshots/round9c_dgl_aux_patch/`
 - Round 10：`remote_panda_work/repro_logs/round10_bua_d25/seed42/`
+- Round 11：`remote_panda_work/repro_logs/round11_uea_d4/seed42/summary/`、`remote_panda_work/logs/round11_uea_d4/`、`remote_panda_work/code_snapshots/round11_uea_patch_after/`
 - Round 6：`remote_panda_work/repro_logs/round6_r6a_smoke/seed42/`、`remote_panda_work/repro_logs/round6_*`
 - Reproduced baselines：`remote_panda_work/repro_logs/reproduced_baseline_main_table/`
 - Reliability / diagnostics：`remote_panda_work/repro_logs/panda_diagnostics/`、`remote_panda_work/repro_logs/statistical_diagnostics/`

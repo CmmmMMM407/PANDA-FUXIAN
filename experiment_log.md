@@ -5,6 +5,42 @@
 
 本文件现在只保留高密度索引和最新关键实验摘要。逐条长日志、命令细节和历史流水账见完整快照与 `remote_panda_work/repro_logs/`。
 
+## 2026-05-29：Round 11 UEA-PANDA D4 消融闭环
+
+目标：
+
+- 验证 `Utility-Entropy Anchored Auxiliary PANDA` 是否能把 R8-B static aux 2.0、Round9/Round10 counterfactual branch utility、Round10 utility entropy 融合成有效训练期 per-sample branch auxiliary allocation。
+- 特别检查 utility entropy 是否能替代失败的 low-margin/high-risk hard boundary trust gate。
+- 继续执行 train/val-only；显式 `--model_name FTmodel --skip_final_test`，不导出、不打开、不分析 test。
+
+操作：
+
+- 在远端 PANDA 活代码中加入 `sample_id` 透传、UEA CLI/config 参数、per-sample branch aux allocation 逻辑。
+- 新增 `tools/run_panda_round11_uea_d4.sh` 与 `tools/summarize_panda_round11_uea_d4.py`。
+- 复用 Round9-A train branch utility CSV，只读取 train utility target；运行 primary、alpha 消融、utility controls、boundary negative control，并合并 static aux 2.0、DWA/GradNorm/PCGrad/CAGrad、detached aux、same-budget 等 required controls。
+- 完成 `py_compile`、`bash -n`、dataloader batch `sample_id` smoke、1-epoch UEA smoke 和 seed42 5-epoch D4 全量消融。
+
+结果：
+
+- Round11-A 结论为 `Utility-Entropy-Aux-Diagnostic-only`，不打开 D5。
+- Primary `uea_entropy_alpha0p5` F1/Acc/AUC `0.921905/0.921951/0.981142`，flip audit W2C `12`、C2W `21`，低于 static aux 2.0 `0.939837/0.939837/0.981407` 和 generic DWA `0.938210/0.938211/0.980962`。
+- Best real UEA ablation `uea_entropy_alpha0p25` 为 `0.938207/0.938211/0.983977`，接近 DWA 但仍低于 static aux 2.0。
+- `uea_reverse_utility_entropy_alpha0p5` 达到 `0.939837/0.939837/0.982084`，与 static aux 2.0 并列最高；这击穿了当前 utility directionality claim。
+- `uea_boundary_entropy_alpha0p5` 只有 `0.923574/0.923577/0.979397`，继续证明 Round10 low-margin/high-risk boundary gate 不是可复用抓手。
+
+结论：
+
+- 当前 UEA 不是 `Primary-Candidate`，也不值得三 seed D5。
+- 重要规律 1：static aux / auxiliary supervision strength 仍是最稳定的有希望线，但它更像训练动力学观察，不是已经可投稿的 PANDA-specific 方法。
+- 重要规律 2：utility signal 的训练期使用仍有启发，但当前 per-sample branch allocation 的方向性没有被证明；reverse utility 追平 best control，说明收益可能来自扰动/正则化或预算分配形状。
+- 重要规律 3：utility entropy 比 boundary risk 更值得作为 soft calibration 变量继续研究；但下一版必须重做 utility target / reliability 泛化机制，不能沿当前 UEA 直接续参。
+
+证据目录：
+
+- `remote_panda_work/repro_logs/round11_uea_d4/seed42/summary/`
+- `remote_panda_work/logs/round11_uea_d4/`
+- `remote_panda_work/code_snapshots/round11_uea_patch_after/`
+
 ## 2026-05-29：Round 10 BUA-PANDA D2.5 offline allocator 闭环
 
 目标：

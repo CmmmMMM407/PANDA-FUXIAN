@@ -1,0 +1,30 @@
+{
+  "status": "Utility-Entropy-Aux-Diagnostic-only",
+  "candidate_id": "Round11-A",
+  "candidate_name": "UEA-PANDA utility-entropy anchored auxiliary allocation",
+  "best_uea_variant": "uea_reverse_utility_entropy_alpha0p5",
+  "best_uea_family": "round11_uea_control",
+  "best_uea_macro_f1": 0.9398367621046955,
+  "best_uea_accuracy": 0.9398373983739837,
+  "best_uea_auc": 0.9820835536753041,
+  "best_uea_wrong_to_correct": 15,
+  "best_uea_correct_to_wrong": 13,
+  "primary_variant": "uea_entropy_alpha0p5",
+  "primary_macro_f1": 0.921904761904762,
+  "primary_accuracy": 0.9219512195121952,
+  "best_control_tag": "static_aux_weight_2p0_anchor_control",
+  "best_control_macro_f1": 0.9398373983739836,
+  "best_control_accuracy": 0.9398373983739836,
+  "reasons": [
+    "best_uea_not_above_required_controls:static_aux_weight_2p0_anchor_control",
+    "primary_not_best:best=uea_reverse_utility_entropy_alpha0p5",
+    "best_uea_macro_f1_moat_lt_delta:best_control:static_aux_weight_2p0_anchor_control"
+  ],
+  "missing_controls": [],
+  "missing_uea_variants": [],
+  "claim_scope": "D4 seed42 train/val-only smoke for current UEA per-sample branch auxiliary allocation implementation.",
+  "level_reached": "D4 seed42",
+  "required_level_for_primary_candidate": "D5 three-seed val only if D4 beats static aux 2.0, DWA/GradNorm/PCGrad/CAGrad, detached aux, same-budget, and utility controls.",
+  "test_split_exported": false,
+  "test_used_for_decision": false
+}

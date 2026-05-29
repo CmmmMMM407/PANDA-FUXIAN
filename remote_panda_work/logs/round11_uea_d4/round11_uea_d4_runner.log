@@ -1,0 +1,11 @@
+[2026-05-29T18:53:56+08:00] train: uea_entropy_alpha0p5
+[2026-05-29T18:58:03+08:00] train: uea_utility_only_alpha0p5
+[2026-05-29T19:02:11+08:00] train: uea_entropy_alpha0p25
+[2026-05-29T19:06:37+08:00] train: uea_utility_only_alpha0p25
+[2026-05-29T19:10:57+08:00] train: uea_shuffled_utility_entropy_alpha0p5
+[2026-05-29T19:14:58+08:00] train: uea_random_utility_entropy_alpha0p5
+[2026-05-29T19:19:17+08:00] train: uea_reverse_utility_entropy_alpha0p5
+[2026-05-29T19:23:46+08:00] train: uea_confidence_entropy_alpha0p5
+[2026-05-29T19:28:12+08:00] train: uea_boundary_entropy_alpha0p5
+Decision: Utility-Entropy-Aux-Diagnostic-only
+Summary: repro_logs/round11_uea_d4/seed42/summary/round11_uea_d4_summary.csv
