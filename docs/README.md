@@ -1,6 +1,6 @@
 # 文档索引
 
-整理日期：2026-05-29
+整理日期：2026-05-30
 
 ## 当前入口
 
@@ -10,7 +10,7 @@
 - `../experiment_log.md`：精简实验日志索引。
 - `../final_reproduction_report.md`：PANDA 复现实验阶段报告。
 - `../diagnostic_paper_report_draft.md`：诊断型论文 / fallback 草稿。
-- `PANDA_SOTA冲刺与论文实验总方案.md`：Round12-R15 后续总方案，区分 SOTA 冲榜线、ADWA-PANDA 单模型方法线、OOF utility calibration 门控线和最终 test 冻结协议。
+- `PANDA_SOTA冲刺与论文实验总方案.md`：Round12-R15 总方案，区分 SOTA 冲榜线、ADWA-PANDA 单模型方法线、OOF utility calibration 门控线和最终 test 冻结协议；当前执行结论以 `../current_status.md` 和 `../experiment_log.md` 为准。
 - `当前领域方法路线与PANDA突破口.md`：当前版领域方法路线、模块架构、优缺点与 PANDA 后续突破口。
 - `跨领域可借鉴方法与PANDA迁移方案.md`：从医学影像、遥感、工业缺陷、自动驾驶、推荐/因果、RAG/事实核验等领域迁移到 PANDA 的候选机制。
 - `PANDA模块第一性原理审计与架构重组建议.md`：结合现有实验规律，对 PANDA baseline 每个模块做第一性原理审计，并给出模块替换、架构重组和 Round9 候选赛马建议。
@@ -27,4 +27,4 @@
 
 ## 日志证据
 
-主要证据仍在 `../remote_panda_work/repro_logs/` 和 `../remote_panda_work/logs/`。最新已完成实验是 Round11 UEA D4，证据在 `../remote_panda_work/repro_logs/round11_uea_d4/seed42/summary/`；最新后续规划是 `PANDA_SOTA冲刺与论文实验总方案.md`。上传 GitHub 时只同步摘要、manifest、metrics、notes 和必要 stdout；不上传 checkpoint、权重、原始数据、大 `.npz`、压缩包或含样本正文的预测长表。
+主要证据仍在 `../remote_panda_work/repro_logs/` 和 `../remote_panda_work/logs/`。最新已完成闭环是 Round12-R15 当前作用域：Round12 证据在 `../remote_panda_work/repro_logs/round12_ensemble_val_audit/`，Round13 证据在 `../remote_panda_work/repro_logs/round13_adwa_d35_gradient_sanity/seed42/` 与 `../remote_panda_work/repro_logs/round13_adwa_d4/seed42/summary/`，Round14 证据在 `../remote_panda_work/repro_logs/round14_oof_launch_gate/`。上传 GitHub 时只同步摘要、manifest、metrics、notes 和必要 stdout；不上传 checkpoint、权重、原始数据、大 `.npz`、压缩包或含样本正文的预测长表。

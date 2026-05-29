@@ -1,0 +1,40 @@
+{
+  "status": "Diagnostic-only-No-Go-to-Round15",
+  "best_single": {
+    "name": "panda_reproduced_seed42",
+    "kind": "single",
+    "families": "panda_reproduced",
+    "rows": 615,
+    "macro_f1": 0.954456974800584,
+    "accuracy": 0.9544715447154472,
+    "auc": 0.9875727128503438,
+    "oracle_unfixable_errors": NaN
+  },
+  "best_non_oracle_ensemble": {
+    "name": "panda_dwa_equal_logit",
+    "kind": "equal_logit",
+    "families": "panda_reproduced,generic_dwa",
+    "rows": 615,
+    "macro_f1": 0.9560901309230725,
+    "accuracy": 0.9560975609756097,
+    "auc": 0.9881967213114754,
+    "oracle_unfixable_errors": NaN
+  },
+  "delta_macro_f1": 0.0016331561224884883,
+  "bootstrap_vs_best_single": {
+    "bootstrap_iters": 1000,
+    "delta_macro_f1_mean": 0.0015260165715383649,
+    "delta_macro_f1_ci025": -0.009763098510207638,
+    "delta_macro_f1_ci975": 0.013078942889884013,
+    "p_delta_le_0": 0.417
+  },
+  "reasons": [
+    "Macro-F1 lift is below +0.002 and paired bootstrap lower bound does not support a positive lift"
+  ],
+  "allowed_splits": [
+    "train",
+    "val"
+  ],
+  "test_split_exported": false,
+  "test_used_for_decision": false
+}

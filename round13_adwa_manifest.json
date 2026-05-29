@@ -1,0 +1,58 @@
+{
+  "protocol_version": "round13_adwa_panda_v1",
+  "created_at": "2026-05-30T01:36:00+08:00",
+  "candidate_id": "Round13-ADWA-PANDA",
+  "candidate_name": "Anchored Dynamic Auxiliary-supervision PANDA",
+  "claim_scope": "train/val-only method-line candidate; no test access before D5 freeze",
+  "dataset": "weibo21",
+  "model_name": "FTmodel",
+  "allowed_splits": ["train", "val"],
+  "test_split_exported": false,
+  "test_used_for_decision": false,
+  "core_hypothesis": "Static aux 2.0 supplies a stable auxiliary budget while branch-relative DWA reallocates only text/image/fusion auxiliary supervision; final CE remains outside DWA.",
+  "implementation": {
+    "files": [
+      "main.py",
+      "run.py",
+      "model/PANDA.py"
+    ],
+    "mode": "r5a_grad_mode=adwa_panda",
+    "anchor": "aux_loss_weight / lambda_aux",
+    "branch_relative_dwa": "softmax(current_aux_loss / previous_aux_loss / adwa_tau) over text/image/fusion only",
+    "clip": "[adwa_clip_min, adwa_clip_max] followed by mean-normalization",
+    "final_guard": "fallback to uniform branch weights if current final loss exceeds previous final loss by adwa_final_guard_ratio"
+  },
+  "planned_variants": [
+    {
+      "tag": "adwa_clip_1p5_2p5",
+      "args": "--r5a_grad_mode adwa_panda --lambda_aux 2.0 --adwa_clip_min 0.75 --adwa_clip_max 1.25 --adwa_tau 2.0"
+    },
+    {
+      "tag": "adwa_clip_1p0_2p5",
+      "args": "--r5a_grad_mode adwa_panda --lambda_aux 2.0 --adwa_clip_min 0.5 --adwa_clip_max 1.25 --adwa_tau 2.0"
+    },
+    {
+      "tag": "adwa_final_guard",
+      "args": "--r5a_grad_mode adwa_panda --lambda_aux 2.0 --adwa_clip_min 0.5 --adwa_clip_max 1.25 --adwa_tau 2.0 --adwa_final_guard_ratio 1.02"
+    },
+    {
+      "tag": "adwa_entropy_smoothed_proxy",
+      "args": "--r5a_grad_mode adwa_panda --lambda_aux 2.0 --adwa_clip_min 0.75 --adwa_clip_max 1.10 --adwa_tau 3.0"
+    }
+  ],
+  "required_controls": [
+    "deterministic_train_l0",
+    "static_aux_weight_2p0_anchor_control",
+    "generic_dwa",
+    "generic_gradnorm",
+    "generic_pcgrad",
+    "generic_cagrad",
+    "detached_aux_no_feature_update",
+    "same_budget_noop_l0"
+  ],
+  "go_no_go": {
+    "d3_5": "finite nonzero gradients reach h_final/final_classifier, branch features, and aux heads; final CE remains outside DWA",
+    "d4": "best ADWA seed42 5-epoch val Macro-F1/Acc must beat both static aux 2.0 and generic DWA controls",
+    "d5": "only if D4 passes; three seed val mean must beat static aux 2.0 and generic DWA, with at least two seeds beating the per-seed best strong control"
+  }
+}

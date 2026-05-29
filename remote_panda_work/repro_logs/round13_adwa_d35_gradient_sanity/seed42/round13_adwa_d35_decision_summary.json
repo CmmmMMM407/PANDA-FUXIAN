@@ -1,0 +1,11 @@
+{
+  "status": "D3.5-Feasible-A",
+  "claim_scope": "ADWA-PANDA D3.5 train-only gradient reachability",
+  "level_reached": "D3.5",
+  "required_level_for_training_implementation": "D4 seed42 train/val-only",
+  "required_level_for_stability": "D5 three-seed val",
+  "reasons": [],
+  "training_allowed_next": true,
+  "test_split_exported": false,
+  "test_used_for_decision": false
+}

@@ -1,6 +1,17 @@
 # PANDA SOTA 冲刺与论文实验总方案
 
-最后更新：2026-05-29
+最后更新：2026-05-30
+
+## 执行状态
+
+Round12-R15 当前作用域已于 2026-05-30 按 train/val-only 门控闭环：
+
+- Round12 ensemble audit：`Diagnostic-only-No-Go-to-Round15`。Best non-oracle `panda_dwa_equal_logit` 只有 `+0.001633` Macro-F1，bootstrap 不支持稳健正收益；oracle any-correct 显示有互补上界但不能直接冻结。
+- Round13 ADWA-PANDA：D3.5 梯度可行，但 D4 best ADWA `0.933331/0.933333/0.980645` 未打过 static aux 2.0、generic DWA 或 deterministic/same-budget/detached controls；不启动 D5。
+- Round14 OOF utility calibration：`Round14-A-No-Go-to-B-C-current-assets`。当前没有 split-safe OOF utility target，旧 Round9 train-only/val-diagnostic utility CSV 不能作为 target；不启动 B/C。
+- Round15：未启动 final freeze/test。最终 test 继续禁止打开。
+
+详细执行结果见 `../experiment_log.md` 与 `../current_status.md`。
 
 ## 总目标
 

@@ -1,11 +1,11 @@
 # 当前状态
 
-最后更新：2026-05-29  
+最后更新：2026-05-30  
 完整旧版快照：`docs/archive/full_snapshots_20260528/root/current_status.md`
 
 ## 一句话结论
 
-复现、baseline、诊断和 R2-R11 当前作用域方法验证已经闭环；当前仍没有 `Primary-Candidate`。下一阶段切换为 Round12-R15 SOTA 冲刺与论文实验总方案：先用 train/val-only ensemble 上界诊断判断冲榜空间，再以 `ADWA-PANDA / Anchored Dynamic Auxiliary-supervision PANDA` 追单模型方法，最后只在必要时重构 OOF utility calibration。继续禁止 test 参与方法选择。
+复现、baseline、诊断和 R2-R15 当前作用域方法验证已经闭环；当前仍没有 `Primary-Candidate`，也没有解锁 Round15 final freeze/test。Round12 显示 PANDA+DWA 有误差互补和 oracle selection 上界，但 learned/simple ensemble 提升不足；Round13 ADWA-PANDA 梯度可行但 D4 未打过 static aux 2.0 / generic DWA；Round14 因缺 split-safe OOF utility target 按门控关闭。继续禁止 test 参与方法选择。
 
 ## 已完成
 
@@ -20,7 +20,7 @@
 - Round 9 已完成 CUE D2 counterfactual utility probe 与 DGL-Aux D4 fallback。CUE 当前 frozen gate 不成立，DGL-Aux 当前 gradient decoupling 不成立；不打开 D5。
 - Round 10 已完成 BUA D2.5 offline allocator simulation。Utility allocation 打过 shuffled/random/reverse/confidence controls，但 boundary-gated primary 被 utility-only 和 entropy-only ablations 反超；当前 BUA 不打开 D3.5/D4/D5。
 - Round 11 已完成 UEA-PANDA D4 seed42 train/val-only 消融。Primary UEA 不成立；milder entropy alpha0.25 只接近 DWA，reverse-utility control 与 static aux 2.0 并列最高；当前 UEA 不打开 D5。
-- Round 12-R15 后续总方案已制定，详见 `docs/PANDA_SOTA冲刺与论文实验总方案.md`。核心是把 SOTA 冲榜线和论文方法线分开：ensemble/calibration 先测上界，ADWA-PANDA 作为优先单模型方法，OOF utility calibration 作为有条件重启线。
+- Round 12-R15 当前作用域已闭环：Round12 ensemble 为 diagnostic-only，Round13 ADWA D4 no-go，Round14 OOF launch gate no-go，Round15 未启动 final freeze/test。
 
 ## 关键复现数字
 
@@ -83,12 +83,24 @@ Best real UEA ablation 是更温和的 `uea_entropy_alpha0p25`，F1/Acc/AUC `0.9
 
 `uea_boundary_entropy_alpha0p5` 只有 `0.923574/0.923577/0.979397`，继续支持 Round10 结论：low-margin/high-risk boundary gate 不能作为 hard trust gate 续参。当前 UEA 不打开 D5；可保留的论文启发是“utility entropy / soft reliability calibration / train-time coupling 值得研究，但当前实现不是候选方法”。
 
+### Round12-R15
+
+Round12 / train-val ensemble audit 已完成，结论 `Diagnostic-only-No-Go-to-Round15`。Strongest single 是 `panda_reproduced_seed42`，F1/Acc/AUC `0.954457/0.954472/0.987573`；best non-oracle ensemble 是 `panda_dwa_equal_logit`，F1/Acc/AUC `0.956090/0.956098/0.988197`。Macro-F1 delta 只有 `+0.001633`，低于 `+0.002`，paired bootstrap CI 跨 0 且 `p_delta_le_0=0.417`，因此不能冻结进 Round15。
+
+Round12 的重要正信号是 oracle any-correct：PANDA+DWA oracle F1/Acc 达 `0.983736/0.983740`，说明多模型确实存在很大误差互补；问题是当前 equal/logit、nested convex、Platt/isotonic 等 split-safe 简单规则无法稳定提取这部分空间。DAMMFND/MMDFND 未进入本轮主 ensemble，因为没有完整三 seed train/val 安全 artifact 池。
+
+Round13 / ADWA-PANDA 已完成实现、D3.5 与 D4。D3.5 结论 `D3.5-Feasible-A`：ADWA 梯度触达 `h_final`、`final_classifier`、branch features 和 aux heads。D4 结论 `D4-No-Go-to-D5`：best ADWA `adwa_clip_1p0_2p5` F1/Acc/AUC `0.933331/0.933333/0.980645`，低于 static aux 2.0 `0.939837/0.939837/0.981407`、generic DWA `0.938210/0.938211/0.980962` 和 deterministic/same-budget/detached `0.936585/0.936585/0.983765`。ADWA 不启动 D5。
+
+ADWA telemetry 显示动态权重不是完全没动，但 final-loss guard 触发率约 `0.44-0.47`，ADWA effective aux weights 平均仍在 `~2.0` 附近，且 conflict rate 只有约 `0.019-0.023`。这说明当前 branch-relative DWA 大量时间被 guard 拉回 static-like 区间；当动态幅度更大时也没有转化成 final boundary 收益。当前可记录为“anchored dynamic aux weighting implementation no-go”，不是 auxiliary dynamics 方向永久失败。
+
+Round14 launch gate 结论 `Round14-A-No-Go-to-B-C-current-assets`。Round12 有 oracle selection 空间（oracle gap `+0.029279`），但 learned ensemble no-go；Round13 ADWA no-go；当前未发现 split-safe OOF utility target。旧 Round9 `branch_utility_train.csv` 是 train-only not-out-of-fold，`branch_utility_val_diagnostic.csv` 不能构造 target，因此 Round14-B/C 不启动。Round15 也按门控关闭，最终 test 未打开。
+
 ## 下一步最高优先级
 
-1. 启动 Round12 train/val-only 模型资产盘点与 ensemble 上界诊断；只导出 train/val logits，不导出 test。
-2. 同步启动 Round13 ADWA-PANDA 设计：static aux 2.0 作为总预算 anchor，DWA 只调 text/image/fusion auxiliary branches 的相对权重，并加入 clip/final-loss guard。
-3. 只有 Round12 显示明显可学习融合空间，或 Round13 有正趋势，才启动 Round14 OOF utility calibration；不再沿旧 CUE/BUA/UEA 直接续参。
-4. Round15 只在至少一条线三 seed val 通过并冻结配置后启动，最终 test 只允许在冻结后打开一次。
+1. 不再启动当前 ADWA D5、Round14 OOF B/C 或 Round15 test；当前 todo 已按门控闭环。
+2. 若继续追方法，需要设计本质不同的 split-safe OOF utility / selection learner，并先生成真正 K-fold OOF train target；不能复用旧 train-only CUE/UEA utility CSV。
+3. 若继续追指标，优先补齐 DAMMFND/MMDFND train/val 三 seed 安全 logits，再重跑 Round12-style ensemble；仍必须保持 test 冻结。
+4. 论文当前更适合写成高质量复现与系统诊断：PANDA reproduced baseline、auxiliary supervision dynamics、utility/oracle selection gap、以及多条失败机制的强控制证据。
 
 ## 不建议继续做
 
@@ -99,7 +111,9 @@ Best real UEA ablation 是更温和的 `uea_entropy_alpha0p25`，F1/Acc/AUC `0.9
 - 不把 R8-B seed42 D4 `Feasible-A` 写成 `Primary-Candidate`；D5 已经显示稳定性不足。
 - 不把 Round10 BUA D2.5 的 utility-only 正信号写成 BUA 成功；当前 boundary-gated BUA 已被 utility-only/entropy-only ablations 反超。
 - 不把 Round11 的 `uea_entropy_alpha0p25` 接近 DWA 写成方法成功；reverse-utility control 追平 best control，当前 utility directionality claim 不成立。
-- 不把冲榜 ensemble 和单模型方法混成一个贡献；ensemble 可以冲指标，ADWA/OOF utility 才能承担方法叙事。
+- 不把 Round12 `panda_dwa_equal_logit` 的 `+0.001633` 写成 SOTA 冻结配置；bootstrap 不支持稳健正收益。
+- 不把 Round13 ADWA 的 D3.5 梯度可行写成方法成功；D4 已被 static aux 2.0、generic DWA 和 deterministic/same-budget/detached controls 打穿。
+- 不把旧 Round9 train-only utility CSV 写成 Round14 OOF target；没有 split-safe OOF target 就不能启动 Round14-B/C。
 
 ## 证据位置
 
@@ -108,6 +122,9 @@ Best real UEA ablation 是更温和的 `uea_entropy_alpha0p25`，F1/Acc/AUC `0.9
 - Round 9：`remote_panda_work/repro_logs/round9_cue_d2/seed42/`、`remote_panda_work/repro_logs/round9c_dgl_aux_d4/seed42/summary/`、`remote_panda_work/logs/round9c_dgl_aux_d4/`、`remote_panda_work/code_snapshots/round9c_dgl_aux_patch/`
 - Round 10：`remote_panda_work/repro_logs/round10_bua_d25/seed42/`
 - Round 11：`remote_panda_work/repro_logs/round11_uea_d4/seed42/summary/`、`remote_panda_work/logs/round11_uea_d4/`、`remote_panda_work/code_snapshots/round11_uea_patch_after/`
+- Round 12：`remote_panda_work/repro_logs/round12_ensemble_val_audit/`
+- Round 13：`remote_panda_work/repro_logs/round13_adwa_d35_gradient_sanity/seed42/`、`remote_panda_work/repro_logs/round13_adwa_d4/seed42/summary/`
+- Round 14：`remote_panda_work/repro_logs/round14_oof_launch_gate/`
 - Round 12-R15 planning：`docs/PANDA_SOTA冲刺与论文实验总方案.md`
 - Round 6：`remote_panda_work/repro_logs/round6_r6a_smoke/seed42/`、`remote_panda_work/repro_logs/round6_*`
 - Reproduced baselines：`remote_panda_work/repro_logs/reproduced_baseline_main_table/`

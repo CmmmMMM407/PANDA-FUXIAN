@@ -1,0 +1,164 @@
+{
+  "status": "Round14-A-No-Go-to-B-C-current-assets",
+  "claim_scope": "Round14 OOF utility calibration launch feasibility only",
+  "level_reached": "Round14-A launch gate",
+  "required_level_for_method_claim": "Round14-B/C split-safe OOF target plus controls, then D5 before Round15",
+  "round12": {
+    "status": "Diagnostic-only-No-Go-to-Round15",
+    "best_single": {
+      "name": "panda_reproduced_seed42",
+      "kind": "single",
+      "families": "panda_reproduced",
+      "rows": 615,
+      "macro_f1": 0.954456974800584,
+      "accuracy": 0.9544715447154472,
+      "auc": 0.9875727128503438,
+      "oracle_unfixable_errors": null
+    },
+    "best_non_oracle_ensemble": {
+      "name": "panda_dwa_equal_logit",
+      "kind": "equal_logit",
+      "families": "panda_reproduced,generic_dwa",
+      "rows": 615,
+      "macro_f1": 0.9560901309230725,
+      "accuracy": 0.9560975609756097,
+      "auc": 0.9881967213114754,
+      "oracle_unfixable_errors": null
+    },
+    "best_oracle": {
+      "name": "panda_dwa_equal_logit_oracle_any_correct",
+      "kind": "oracle_any_correct",
+      "families": "panda_reproduced,generic_dwa",
+      "rows": "615",
+      "macro_f1": "0.9837363544046712",
+      "accuracy": "0.983739837398374",
+      "auc": "",
+      "oracle_unfixable_errors": "10.0"
+    },
+    "learned_delta_macro_f1": 0.0016331561224884883,
+    "oracle_gap_macro_f1": 0.02927937960408722,
+    "oracle_gap_threshold": 0.02
+  },
+  "round13": {
+    "status": "D4-No-Go-to-D5",
+    "best_adwa": {
+      "rows": "615",
+      "macro_f1": "0.9333305130232226",
+      "accuracy": "0.9333333333333333",
+      "auc": "0.9806451612903226",
+      "brier": "0.05310739887260184",
+      "ece": "0.026516924128532675",
+      "high_conf_error_rate": "0.01788617886178862",
+      "selector_margin_mean": "0.004065331792443749",
+      "dataset": "weibo21",
+      "seed": "42",
+      "split": "val",
+      "selector_mode": "deterministic_train",
+      "reliability_signal": "",
+      "reliability_lambda": "",
+      "reliability_gating": "distance",
+      "reliability_stats_mode": "prefit",
+      "reliability_ema_momentum": "0.9",
+      "regret_lambda": "0.0",
+      "route_balance_lambda": "0.0",
+      "regret_margin": "0.0",
+      "router_tau_start": "2.0",
+      "router_tau_end": "1.0",
+      "adapter_dim": "64",
+      "router_hidden": "128",
+      "eval_total_epochs": "5",
+      "variant_tag": "deterministic_train",
+      "checkpoint": "/root/autodl-tmp/panda_repro/panda/repro_logs/round13_adwa_d4/seed42/eval/checkpoints_adwa_clip_1p0_2p5/weibo21_seed42_parameter_panda.pkl",
+      "reliability_stats_count": "",
+      "tag": "adwa_clip_1p0_2p5",
+      "metrics_path": "repro_logs/round13_adwa_d4/seed42/eval/adwa_clip_1p0_2p5/selector_variant_deterministic_train_weibo21_seed42_val_metrics.json",
+      "role": "primary"
+    },
+    "deterministic": {
+      "rows": "615",
+      "macro_f1": "0.9365846951914356",
+      "accuracy": "0.9365853658536586",
+      "auc": "0.983765203595981",
+      "brier": "0.04780633364213472",
+      "ece": "0.03248790660403371",
+      "high_conf_error_rate": "0.024390243902439025",
+      "selector_margin_mean": "0.00411589669018257",
+      "dataset": "weibo21",
+      "seed": "42",
+      "split": "val",
+      "selector_mode": "deterministic_train",
+      "reliability_signal": "",
+      "reliability_lambda": "",
+      "reliability_gating": "distance",
+      "reliability_stats_mode": "prefit",
+      "reliability_ema_momentum": "0.9",
+      "regret_lambda": "0.0",
+      "route_balance_lambda": "0.0",
+      "regret_margin": "0.0",
+      "router_tau_start": "2.0",
+      "router_tau_end": "1.0",
+      "adapter_dim": "64",
+      "router_hidden": "128",
+      "eval_total_epochs": "5",
+      "variant_tag": "deterministic_train",
+      "checkpoint": "/root/autodl-tmp/panda_repro/panda/repro_logs/round13_adwa_d4/seed42/eval/checkpoints_deterministic_train_l0/weibo21_seed42_parameter_panda.pkl",
+      "reliability_stats_count": "",
+      "tag": "deterministic_train_l0",
+      "metrics_path": "repro_logs/round13_adwa_d4/seed42/eval/deterministic_train_l0/selector_variant_deterministic_train_weibo21_seed42_val_metrics.json",
+      "role": "control"
+    },
+    "best_adwa_minus_deterministic_macro_f1": -0.003254182168213049
+  },
+  "oof_assets": {
+    "scanned_assets": [
+      {
+        "path": "repro_logs/round14_oof_launch_gate",
+        "is_split_safe_oof_utility_target": false,
+        "note": ""
+      }
+    ],
+    "old_non_oof_utility_assets": [
+      {
+        "path": "repro_logs/round9_cue_d2/seed42/branch_utility_train.csv",
+        "exists": true,
+        "usable_for_round14_oof_target": false,
+        "reason": "train_only_not_out_of_fold"
+      },
+      {
+        "path": "repro_logs/round9_cue_d2/seed42/branch_utility_val_diagnostic.csv",
+        "exists": true,
+        "usable_for_round14_oof_target": false,
+        "reason": "val_diagnostic_not_allowed_for_target"
+      }
+    ],
+    "split_safe_oof_utility_target_count": 0
+  },
+  "controls": {
+    "platt_temperature": true,
+    "final_aux_stacking": true,
+    "confidence_only_gate": true,
+    "shuffled_utility": true,
+    "reverse_utility": true,
+    "random_utility": true,
+    "static_aux_2p0": true,
+    "generic_dwa": true
+  },
+  "missing_controls": [],
+  "reasons": [
+    "round12_oracle_selection_space_present_but_diagnostic_only",
+    "round12_learned_ensemble_no_go_to_round15",
+    "round13_adwa_no_go_to_d5",
+    "round13_best_adwa_not_above_deterministic",
+    "missing_split_safe_oof_utility_target",
+    "old_round9_train_or_val_utility_assets_exist_but_are_not_oof_safe"
+  ],
+  "round14_b_started": false,
+  "round14_c_started": false,
+  "go_to_round15": false,
+  "allowed_splits": [
+    "train",
+    "val"
+  ],
+  "test_split_exported": false,
+  "test_used_for_decision": false
+}

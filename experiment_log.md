@@ -1,9 +1,51 @@
 # 实验日志
 
-最后整理：2026-05-29  
+最后整理：2026-05-30  
 完整旧版快照：`docs/archive/full_snapshots_20260528/root/experiment_log.md`
 
 本文件现在只保留高密度索引和最新关键实验摘要。逐条长日志、命令细节和历史流水账见完整快照与 `remote_panda_work/repro_logs/`。
+
+## 2026-05-30：Round12-R15 当前作用域闭环
+
+目标：
+
+- 按 `docs/PANDA_SOTA冲刺与论文实验总方案.md` 执行 Round12-R15：先判断现有 train/val 模型资产的 ensemble 冲榜空间，再验证 `ADWA-PANDA` 单模型方法，最后按门控决定是否启动 OOF utility calibration 与 final freeze/test。
+- 全程保持 train/val-only；所有 PANDA 训练显式 `--model_name FTmodel`，D4 命令使用 `--skip_final_test`；最终配置冻结前不导出、不打开、不分析 test。
+
+操作：
+
+- Round12：新增并运行 `tools/run_panda_round12_export_trainval_logits.sh` 与 `tools/run_panda_round12_ensemble_audit.py`。补齐 PANDA reproduced、static aux 2.0、generic DWA 的 seeds `42/2024/2026` train/val logits/probability artifacts；DAMMFND/MMDFND 因未形成完整三 seed train/val 安全 artifact 池，未纳入主 ensemble。
+- Round12 audit 覆盖 equal-logit average、nested convex weights、nested Platt/isotonic calibration、oracle any-correct upper bound、pairwise diversity / disagreement-correct audit 与 bootstrap。
+- Round13：在远端活代码中实现 `adwa_panda`，新增 `--lambda_aux` alias、`--adwa_tau`、clip、final-loss guard 参数。ADWA 只对 text/image/fusion auxiliary branch 相对权重做 DWA；final CE 始终保持主导，不纳入 DWA；不使用 boundary hard gate。
+- Round13 D3.5：新增并运行 `tools/run_panda_round13_adwa_d35_gradient_sanity.py`，使用 train-only real PANDA batches，无 optimizer step、无 checkpoint、无 val/test。
+- Round13 D4：新增并运行 `tools/run_panda_round13_adwa_d4.sh` 与 `tools/summarize_panda_round13_adwa_d4.py`，完成 12 个 seed42 5-epoch train/val-only variants：deterministic、static aux 2.0、generic DWA/GradNorm/PCGrad/CAGrad、detached aux、same-budget no-op、4 个 ADWA primary。
+- Round14：新增并运行 `tools/run_panda_round14_oof_launch_gate.py`，只做 launch gate，不训练、不读 test、不把旧 train-only utility CSV 当 OOF target。额外修复 Round12 JSON 中 `NaN` 写入非标准 JSON 的清洗问题。
+- 安全同步仅拉取 manifest、summary、metrics、decision、telemetry 聚合和必要 audit CSV；不复制 checkpoint、权重、原始数据、大 `.npz` 或逐样本 prediction 长表。
+
+结果：
+
+- Round12 结论 `Diagnostic-only-No-Go-to-Round15`。Strongest single：`panda_reproduced_seed42` F1/Acc/AUC `0.954457/0.954472/0.987573`。Best non-oracle ensemble：`panda_dwa_equal_logit` F1/Acc/AUC `0.956090/0.956098/0.988197`。Macro-F1 delta `+0.001633`，低于 `+0.002`；paired bootstrap CI 跨 0，`p_delta_le_0=0.417`。
+- Round12 oracle any-correct 显示明显上界：PANDA+DWA oracle F1/Acc `0.983736/0.983740`，说明误差互补真实存在，但当前 equal/nested/calibrated learned rules 不能稳定提取。
+- Round13 D3.5 结论 `D3.5-Feasible-A`。ADWA 梯度触达 `h_final`、`final_classifier`、branch features 和 aux heads；training allowed next 为 true。
+- Round13 D4 结论 `D4-No-Go-to-D5`。Best ADWA `adwa_clip_1p0_2p5` F1/Acc/AUC `0.933331/0.933333/0.980645`，低于 static aux 2.0 `0.939837/0.939837/0.981407`、generic DWA `0.938210/0.938211/0.980962`，也低于 deterministic/same-budget/detached `0.936585/0.936585/0.983765`。
+- ADWA telemetry 聚合：四个 ADWA variants 的 final-loss guard rate 约 `0.44-0.47`，conflict rate 约 `0.019-0.023`；effective aux weights 均值仍接近 `2.0`，但可达范围约 `1.06-3.33`。动态权重确实发生变化，但大量 step 被 guard 拉回 static-like 区间，且未转化成 final boundary 收益。
+- Round14 launch gate 结论 `Round14-A-No-Go-to-B-C-current-assets`。Round12 oracle selection gap 为 `+0.029279`，但 learned ensemble no-go；Round13 ADWA no-go；当前 split-safe OOF utility target count 为 `0`。旧 Round9 `branch_utility_train.csv` 被标为 `train_only_not_out_of_fold`，`branch_utility_val_diagnostic.csv` 被标为 `val_diagnostic_not_allowed_for_target`。
+- Round15 按门控关闭：没有任何 Round12/13/14 线完成三 seed val 并冻结最终配置，final test 未打开。
+
+结论：
+
+- Round12-R15 当前作用域已闭环，仍无 `Primary-Candidate`。
+- 重要规律 1：现有 PANDA/static/DWA 模型族存在很强 oracle 互补，但简单 split-safe ensemble/calibration 只带来小幅且统计不稳的提升；下一步若追 ensemble，关键不是再调 val 权重，而是补齐更多安全模型族 artifact 或构造真正 OOF selection learner。
+- 重要规律 2：ADWA 的失败不是梯度不可达，而是 branch-relative DWA 在 final-loss guard 下常退回 static-like 权重；放宽动态幅度也未打过 static aux 2.0 / generic DWA。当前实现说明“动态 aux branch weighting”这版不成立，但不否定 auxiliary supervision dynamics 作为研究方向。
+- 重要规律 3：Round14 的正确重启条件是先生成 K-fold OOF utility target。旧 train-only/val-diagnostic utility assets 只能作为失败证据和上界动机，不能作为 split-safe target。
+- 重要规律 4：当前最诚实的论文叙事是高质量复现 + 系统诊断 + auxiliary/utility/ensemble 上界与失败机制，而不是包装一个未过 D4/D5 的新方法。
+
+证据目录：
+
+- `remote_panda_work/repro_logs/round12_ensemble_val_audit/`
+- `remote_panda_work/repro_logs/round13_adwa_d35_gradient_sanity/seed42/`
+- `remote_panda_work/repro_logs/round13_adwa_d4/seed42/summary/`
+- `remote_panda_work/repro_logs/round14_oof_launch_gate/`
 
 ## 2026-05-29：Round12-R15 SOTA 冲刺与论文实验总方案制定
 

@@ -1,0 +1,31 @@
+fold,weights,tune_macro_f1,tune_accuracy,group,method,calibration,family_count
+1,"[0.65, 0.35]",0.9491699830153357,0.9491869918699187,panda_static_equal_logit,nested_convex,,
+2,"[0.65, 0.35]",0.9532425676094456,0.9532520325203252,panda_static_equal_logit,nested_convex,,
+3,"[1.0, 0.0]",0.951206611570248,0.9512195121951219,panda_static_equal_logit,nested_convex,,
+4,"[0.65, 0.35]",0.951206611570248,0.9512195121951219,panda_static_equal_logit,nested_convex,,
+5,"[0.55, 0.45]",0.9532472039629978,0.9532520325203252,panda_static_equal_logit,nested_convex,,
+1,,,,panda_static_equal_logit,nested_platt_equal,platt,2.0
+2,,,,panda_static_equal_logit,nested_platt_equal,platt,2.0
+3,,,,panda_static_equal_logit,nested_platt_equal,platt,2.0
+4,,,,panda_static_equal_logit,nested_platt_equal,platt,2.0
+5,,,,panda_static_equal_logit,nested_platt_equal,platt,2.0
+1,"[0.5, 0.5]",0.9552727272727273,0.9552845528455285,panda_dwa_equal_logit,nested_convex,,
+2,"[0.55, 0.45]",0.9573084312955809,0.9573170731707317,panda_dwa_equal_logit,nested_convex,,
+3,"[0.85, 0.15]",0.9552779017303783,0.9552845528455285,panda_dwa_equal_logit,nested_convex,,
+4,"[0.55, 0.45]",0.9552727272727273,0.9552845528455285,panda_dwa_equal_logit,nested_convex,,
+5,"[0.55, 0.45]",0.957316896840905,0.9573170731707317,panda_dwa_equal_logit,nested_convex,,
+1,,,,panda_dwa_equal_logit,nested_platt_equal,platt,2.0
+2,,,,panda_dwa_equal_logit,nested_platt_equal,platt,2.0
+3,,,,panda_dwa_equal_logit,nested_platt_equal,platt,2.0
+4,,,,panda_dwa_equal_logit,nested_platt_equal,platt,2.0
+5,,,,panda_dwa_equal_logit,nested_platt_equal,platt,2.0
+1,"[0.5, 0.05, 0.45]",0.9552727272727273,0.9552845528455285,panda_static_dwa_equal_logit,nested_convex,,
+2,"[0.55, 0.0, 0.45]",0.9573084312955809,0.9573170731707317,panda_static_dwa_equal_logit,nested_convex,,
+3,"[0.85, 0.0, 0.15]",0.9552779017303783,0.9552845528455285,panda_static_dwa_equal_logit,nested_convex,,
+4,"[0.55, 0.0, 0.45]",0.9552727272727273,0.9552845528455285,panda_static_dwa_equal_logit,nested_convex,,
+5,"[0.55, 0.0, 0.45]",0.957316896840905,0.9573170731707317,panda_static_dwa_equal_logit,nested_convex,,
+1,,,,panda_static_dwa_equal_logit,nested_platt_equal,platt,3.0
+2,,,,panda_static_dwa_equal_logit,nested_platt_equal,platt,3.0
+3,,,,panda_static_dwa_equal_logit,nested_platt_equal,platt,3.0
+4,,,,panda_static_dwa_equal_logit,nested_platt_equal,platt,3.0
+5,,,,panda_static_dwa_equal_logit,nested_platt_equal,platt,3.0

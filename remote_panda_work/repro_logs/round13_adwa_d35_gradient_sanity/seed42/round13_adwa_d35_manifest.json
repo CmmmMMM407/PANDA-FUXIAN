@@ -1,0 +1,29 @@
+{
+  "protocol_version": "round13_adwa_d35_gradient_sanity_v1",
+  "candidate_id": "Round13-ADWA-PANDA",
+  "dataset": "weibo21",
+  "seed": 42,
+  "model_name": "FTmodel",
+  "checkpoint": "./param_model/FTmodel/checkpoints_by_seed/weibo21_seed42_parameter_panda.pkl",
+  "allowed_splits": [
+    "train"
+  ],
+  "forbidden_splits": [
+    "val",
+    "test"
+  ],
+  "test_split_exported": false,
+  "test_used_for_decision": false,
+  "optimization_steps": 0,
+  "checkpoint_written": false,
+  "variants": [
+    "final_ce",
+    "static_aux_2p0",
+    "generic_dwa_proxy",
+    "detached_aux_control",
+    "adwa_panda"
+  ],
+  "status": "COMPLETED",
+  "missing_state_keys": [],
+  "unexpected_state_keys": []
+}

@@ -1,6 +1,6 @@
 # 新会话启动清单
 
-最后整理：2026-05-29  
+最后整理：2026-05-30  
 完整旧版快照：`docs/archive/full_snapshots_20260528/root/session_start.md`
 
 ## 必读顺序
@@ -38,13 +38,14 @@ cd /root/autodl-tmp/panda_repro/panda
 ## 当前默认路线
 
 1. PANDA、MMDFND、DAMMFND 的 Weibo-21 / Weibo reproduced baselines 已完成；主表使用 reproduced baseline。
-2. 当前没有 `Primary-Candidate`，不直接启动两数据集三 seed test 主表；下一阶段只启动 Round12-R15 的 train/val-only SOTA 冲刺与论文方法路线。
+2. 当前没有 `Primary-Candidate`，不直接启动两数据集三 seed test 主表；Round12-R15 当前作用域已按门控闭环，Round15 final freeze/test 未解锁。
 3. CS-PANDA、clean Reliability-aware selector、uncertainty stable-source、R3、历史 R4、P0/P1、Round 2、Round 3、Round 4、Round 5、Round 6 当前作用域均已验证或归档。
 4. Round 7 已完成 D2/D3、D3.5、R7-A/R7-D D4-lite。R7-A 只保留 `D4-lite Feasible-B trend`；R7-D current sample aux 被 static aux 2.0 打穿；R7-B/R7-C 只保留 path evidence。
 5. Round 8、Round 9、Round 10、Round 11 当前作用域均已闭环：R8-B static aux 2.0 有训练动力学正信号但 D5 不稳定；Round9 CUE/DGL-Aux No-Go；Round10 BUA D2.5 显示 utility allocation 干净但 boundary gate 不成立；Round11 UEA D4 消融显示 current utility-entropy aux allocation 未打过 static aux 2.0，且 reverse-utility control 追平 best control。
-6. Round12-R15 新路线已制定：Round12 做 ensemble / calibration 上界诊断，Round13 做 `ADWA-PANDA` 单模型方法，Round14 按门控重构 OOF utility calibration，Round15 冻结最终配置并规定 test 只打开一次。
-7. 当前没有 `Primary-Candidate`，不直接启动两数据集三 seed test 主表。
-8. 三 seed val 通过并冻结最终 primary config 前，不导出、不打开、不分析 test。
+6. Round12-R15 当前作用域已闭环：Round12 ensemble diagnostic-only no-go to Round15；Round13 ADWA D3.5 feasible 但 D4 no-go to D5；Round14 launch gate no-go to B/C-current-assets；Round15 未启动。
+7. Round12 的关键信号是 oracle any-correct 空间大但 learned/simple ensemble 提升不稳；Round13 的关键信号是 ADWA 梯度可行但被 static aux 2.0、generic DWA 和 deterministic/same-budget/detached controls 打穿；Round14 的关键限制是没有 split-safe OOF utility target。
+8. 当前没有 `Primary-Candidate`，不直接启动两数据集三 seed test 主表。
+9. 三 seed val 通过并冻结最终 primary config 前，不导出、不打开、不分析 test。
 
 ## 验证深度规则
 
